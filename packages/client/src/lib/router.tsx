@@ -5,6 +5,7 @@ import HomePage from '../pages/HomePage';
 import ServicesPage from '../pages/ServicesPage';
 import WellTestingPage from '../pages/WellTestingPage';
 import CsrPage from '../pages/CsrPage';
+import HseqPage from '../pages/HseqPage';
 
 export const routes: RouteObject[] = [
   {
@@ -26,6 +27,10 @@ export const routes: RouteObject[] = [
       {
         path: 'csr',
         element: <CsrPage />,
+      },
+      {
+        path: 'hseq',
+        element: <HseqPage />,
       },
     ],
   },
