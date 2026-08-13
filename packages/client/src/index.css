@@ -105,6 +105,10 @@
 
   --card-soft: #f7f9fb;
 
+  --surface: #f8fafc;
+
+  --placeholder: #9ca3af;
+
   --secondary-tint: #eff6ff;
 
   --secondary-pale: #dbeafe;
@@ -191,6 +195,8 @@ body {
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-card-soft: var(--card-soft);
+  --color-surface: var(--surface);
+  --color-placeholder: var(--placeholder);
   --color-secondary-tint: var(--secondary-tint);
   --color-secondary-pale: var(--secondary-pale);
   --color-primary-light: var(--primary-light);
