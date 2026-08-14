@@ -9,4 +9,6 @@ export const paths = {
   csr: '/csr',
   hseq: '/hseq',
   contact: '/contact',
+  privacy: '/privacy-policy',
+  blog: '/blog',
 };

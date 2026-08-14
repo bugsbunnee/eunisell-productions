@@ -8,13 +8,15 @@ interface FadeInProps {
   className?: string;
   delay?: number;
   y?: number;
+  id?: string;
 }
 
-export const FadeIn: React.FC<FadeInProps> = ({ children, className, delay = 0, y = 24 }) => {
+export const FadeIn: React.FC<FadeInProps> = ({ children, className, delay = 0, y = 24, id }) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.div
+      id={id}
       className={className}
       initial="hidden"
       whileInView="visible"

@@ -11,6 +11,8 @@ import EpcPage from '../pages/EpcPage';
 import CsrPage from '../pages/CsrPage';
 import HseqPage from '../pages/HseqPage';
 import ContactPage from '../pages/ContactPage';
+import PrivacyPage from '../pages/PrivacyPage';
+import BlogPage from '../pages/BlogPage';
 
 export const routes: RouteObject[] = [
   {
@@ -56,6 +58,14 @@ export const routes: RouteObject[] = [
       {
         path: 'contact',
         element: <ContactPage />,
+      },
+      {
+        path: 'privacy-policy',
+        element: <PrivacyPage />,
+      },
+      {
+        path: 'blog',
+        element: <BlogPage />,
       },
     ],
   },

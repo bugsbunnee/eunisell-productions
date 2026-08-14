@@ -33,7 +33,7 @@ export const SOCIAL_LINKS = {
 };
 
 export const legalLinks: { label: string; path?: string }[] = [
-  { label: 'Privacy Policy' },
+  { label: 'Privacy Policy', path: paths.privacy },
   { label: 'Terms of Use' },
   { label: 'HSEQ Policy', path: paths.hseq },
   { label: 'Cookie Settings' },
