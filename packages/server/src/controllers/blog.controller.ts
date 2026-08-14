@@ -29,7 +29,11 @@ class BlogController {
       .startOf('month')
       .toDate();
 
-    const [recentActivity, monthly] = await Promise.all([blogRepository.recentActivity(5), blogRepository.createdSince(since)]);
+    const [recentActivity, monthly, categoryBreakdown] = await Promise.all([
+      blogRepository.recentActivity(5),
+      blogRepository.createdSince(since),
+      blogRepository.categoryBreakdown(),
+    ]);
 
     return res.json({
       total,
@@ -37,6 +41,8 @@ class BlogController {
       draft,
       recentActivity,
       monthlyPosts: blogService.bucketByMonth(monthly, STATS_MONTHS),
+      monthlyBreakdown: blogService.bucketByMonthAndStatus(monthly, STATS_MONTHS),
+      categoryBreakdown,
     });
   }
 

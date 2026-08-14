@@ -24,7 +24,17 @@ const Navbar: React.FC = () => {
   return (
     <header className={`sticky top-0 z-50 border-b flex flex-col w-full ${isDark ? 'bg-deep-navy border-white' : 'bg-white border-transparent'}`}>
       <div className="flex items-center justify-between h-25 max-w-432 w-full mx-auto px-9 md:px-16 lg:px-36">
-        <Link to={paths.contact} className="inline-flex items-center bg-secondary rounded-full px-6 py-[8.5px] text-sm text-white leading-5 whitespace-nowrap">
+        <button
+          type="button"
+          onClick={() => setOpen((p) => !p)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          className={`lg:hidden shrink-0 ${isDark ? 'text-white' : 'text-accent'}`}
+        >
+          {open ? <XIcon size={24} /> : <MenuIcon size={24} />}
+        </button>
+
+        <Link to={paths.contact} className="hidden lg:inline-flex items-center bg-secondary rounded-full px-6 py-[8.5px] text-sm text-white leading-5 whitespace-nowrap">
           Contact Our Team
         </Link>
 
@@ -36,25 +46,13 @@ const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={() => setOpen((p) => !p)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            className={`lg:hidden ${isDark ? 'text-white' : 'text-accent'}`}
-          >
-            {open ? <XIcon size={24} /> : <MenuIcon size={24} />}
-          </button>
-
-          <Link to={paths.home} className="shrink-0">
-            {isDark ? (
-              <img src="/general/logo-alternate.png" alt="Eunisell" className="h-10.5 w-26.5 object-contain" />
-            ) : (
-              <img src="/general/full-logo.png" alt="Eunisell" className="h-14 w-36.25 object-contain" />
-            )}
-          </Link>
-        </div>
+        <Link to={paths.home} className="shrink-0">
+          {isDark ? (
+            <img src="/general/logo-alternate.png" alt="Eunisell" className="h-10.5 w-26.5 object-contain" />
+          ) : (
+            <img src="/general/full-logo.png" alt="Eunisell" className="h-14 w-36.25 object-contain" />
+          )}
+        </Link>
       </div>
 
       {open && (
@@ -64,6 +62,14 @@ const Navbar: React.FC = () => {
               {label}
             </Link>
           ))}
+
+          <Link
+            to={paths.contact}
+            onClick={() => setOpen(false)}
+            className="inline-flex w-fit items-center bg-secondary rounded-full px-6 py-[8.5px] text-sm text-white leading-5 whitespace-nowrap mt-3"
+          >
+            Contact Our Team
+          </Link>
         </nav>
       )}
     </header>

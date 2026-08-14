@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpDown, FileText, MoreVertical, SquarePen, Trash2 } from 'lucide-react';
+import { Activity } from 'react';
 
 import type { BlogPost } from '../../../../services/blog.service';
 import { adminPaths } from '../../../../lib/data';
+
+import StatusPill from './status-pill';
 import dayjs from '../../../../lib/dayjs';
 
 import { Button } from '../../../ui/button';
 import { Skeleton } from '../../../ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../ui/table';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../ui/dropdown-menu';
-import StatusPill from './status-pill';
 
 interface BlogListTableProps {
   posts: BlogPost[];
@@ -43,8 +45,8 @@ const BlogListTable: React.FC<BlogListTableProps> = ({ posts, isLoading, skeleto
         </TableHeader>
 
         <TableBody>
-          {isLoading ? (
-            Array.from({ length: skeletonRowCount }).map((_, index) => (
+          <Activity mode={isLoading ? 'visible' : 'hidden'}>
+            {Array.from({ length: skeletonRowCount }).map((_, index) => (
               <TableRow key={index} className="border-border">
                 <TableCell>
                   <Skeleton className="h-4 w-16" />
@@ -71,56 +73,62 @@ const BlogListTable: React.FC<BlogListTableProps> = ({ posts, isLoading, skeleto
                   <Skeleton className="size-8 rounded-md" />
                 </TableCell>
               </TableRow>
-            ))
-          ) : posts.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={7} className="h-48 text-center">
-                <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                  <FileText className="size-6" strokeWidth={1.5} />
-                  <p className="text-sm">{emptyMessage}</p>
-                </div>
-              </TableCell>
-            </TableRow>
-          ) : (
-            posts.map((post, index) => (
-              <TableRow key={post.id} className="border-border">
-                <TableCell className="text-xs text-muted-foreground">EUN-BLG-{String(docNumberForIndex(index)).padStart(4, '0')}</TableCell>
-                <TableCell className="whitespace-normal max-w-0">
-                  <Link to={adminPaths.blogEdit(post.id)} className="flex items-center gap-3 group min-w-0">
-                    <img src={post.coverImage} alt="" className="size-9 rounded-lg object-cover border border-border shrink-0" />
-                    <span title={post.title} className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1 min-w-0">
-                      {post.title}
-                    </span>
-                  </Link>
-                </TableCell>
-                <TableCell className="text-sm text-muted-foreground">{post.category}</TableCell>
-                <TableCell className="text-sm text-muted-foreground">{post.readTime}</TableCell>
-                <TableCell className="text-sm text-muted-foreground">{dayjs(post.createdAt).format('DD/MM/YY')}</TableCell>
-                <TableCell>
-                  <StatusPill status={post.status} />
-                </TableCell>
-                <TableCell>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon-sm" aria-label={`Actions for ${post.title}`}>
-                        <MoreVertical className="size-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem asChild>
-                        <Link to={adminPaths.blogEdit(post.id)}>
-                          <SquarePen className="size-3.5" /> Edit
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem variant="destructive" onSelect={() => onDeleteRequest(post)}>
-                        <Trash2 className="size-3.5" /> Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+            ))}
+          </Activity>
+
+          <Activity mode={isLoading ? 'hidden' : 'visible'}>
+            <Activity mode={posts.length === 0 ? 'visible' : 'hidden'}>
+              <TableRow>
+                <TableCell colSpan={7} className="h-48 text-center">
+                  <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                    <FileText className="size-6" strokeWidth={1.5} />
+                    <p className="text-sm">{emptyMessage}</p>
+                  </div>
                 </TableCell>
               </TableRow>
-            ))
-          )}
+            </Activity>
+
+            <Activity mode={posts.length > 0 ? 'visible' : 'hidden'}>
+              {posts.map((post, index) => (
+                <TableRow key={post.id} className="border-border">
+                  <TableCell className="text-xs text-muted-foreground">EUN-BLG-{String(docNumberForIndex(index)).padStart(4, '0')}</TableCell>
+                  <TableCell className="whitespace-normal max-w-0">
+                    <Link to={adminPaths.blogEdit(post.id)} className="flex items-center gap-3 group min-w-0">
+                      <img src={post.coverImage} alt="" className="size-9 rounded-lg object-cover border border-border shrink-0" />
+                      <span title={post.title} className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-1 min-w-0">
+                        {post.title}
+                      </span>
+                    </Link>
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{post.category}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{post.readTime}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{dayjs(post.createdAt).format('DD/MM/YY')}</TableCell>
+                  <TableCell>
+                    <StatusPill status={post.status} />
+                  </TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon-sm" aria-label={`Actions for ${post.title}`}>
+                          <MoreVertical className="size-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuItem asChild>
+                          <Link to={adminPaths.blogEdit(post.id)}>
+                            <SquarePen className="size-3.5" /> Edit
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem variant="destructive" onSelect={() => onDeleteRequest(post)}>
+                          <Trash2 className="size-3.5" /> Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </Activity>
+          </Activity>
         </TableBody>
       </Table>
     </div>

@@ -30,4 +30,12 @@ export const activityRepository = {
       },
     });
   },
+
+  async recent(limit: number) {
+    return prisma.activityLog.findMany({
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+      select: { id: true, action: true, category: true, description: true, createdAt: true },
+    });
+  },
 };

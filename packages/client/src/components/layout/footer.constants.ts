@@ -2,9 +2,7 @@ import { paths } from '../../lib/data';
 
 export const companyLinks = [
   { label: 'About Us', path: paths.about },
-  { label: 'Management Team', path: paths.about },
-  { label: 'Our Story', path: paths.about },
-  { label: 'News & Insights', path: paths.about },
+  { label: 'News & Insights', path: paths.blog },
   { label: 'Corporate Social Responsibility', path: paths.csr },
 ];
 
@@ -34,7 +32,7 @@ export const SOCIAL_LINKS = {
 
 export const legalLinks: { label: string; path?: string }[] = [
   { label: 'Privacy Policy', path: paths.privacy },
-  { label: 'Terms of Use' },
+  { label: 'Terms of Use', path: paths.privacy },
   { label: 'HSEQ Policy', path: paths.hseq },
-  { label: 'Cookie Settings' },
+  { label: 'Cookie Settings', path: paths.privacy },
 ];

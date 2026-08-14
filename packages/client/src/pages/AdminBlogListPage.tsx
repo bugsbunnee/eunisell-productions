@@ -107,7 +107,7 @@ const AdminBlogListPage: React.FC = () => {
           <BlogListTable
             posts={posts}
             isLoading={isLoading}
-            skeletonRowCount={Math.min(pageSize, 8)}
+            skeletonRowCount={Math.min(pageSize, 5)}
             docNumberForIndex={(index) => total - ((page - 1) * pageSize + index)}
             onSortToggle={() => {
               setSort((value) => (value === 'desc' ? 'asc' : 'desc'));

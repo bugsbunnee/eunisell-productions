@@ -42,6 +42,28 @@ class BlogService {
       posts: count,
     }));
   }
+
+  bucketByMonthAndStatus(entries: { createdAt: Date; status: 'DRAFT' | 'PUBLISHED' }[], months: number) {
+    const buckets = new Map<string, { published: number; draft: number }>();
+    const now = moment();
+
+    for (let i = months - 1; i >= 0; i--) {
+      buckets.set(now.clone().subtract(i, 'months').format('YYYY-MM'), { published: 0, draft: 0 });
+    }
+
+    for (const { createdAt, status } of entries) {
+      const key = moment(createdAt).format('YYYY-MM');
+      const bucket = buckets.get(key);
+      if (!bucket) continue;
+      if (status === 'PUBLISHED') bucket.published += 1;
+      else bucket.draft += 1;
+    }
+
+    return Array.from(buckets.entries()).map(([key, counts]) => ({
+      month: moment(key, 'YYYY-MM').format('MMM'),
+      ...counts,
+    }));
+  }
 }
 
 export default new BlogService();

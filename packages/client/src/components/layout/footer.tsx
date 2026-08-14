@@ -12,7 +12,7 @@ import { paths } from '../../lib/data';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-deep-navy border-t border-secondary/20 flex flex-col items-center px-48.5 md:px-16 py-20">
+    <footer className="bg-deep-navy border-t border-secondary/20 flex flex-col items-center px-6 sm:px-9 md:px-16 lg:px-36 py-12 md:py-16 lg:py-20">
       <div className="flex flex-col gap-16 w-full max-w-360">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[320px_1fr_1fr_1fr_1fr] gap-x-8 gap-y-12 lg:gap-x-19.5 w-full">
           <div className="flex flex-col gap-3 items-start sm:col-span-2 lg:col-span-1">
@@ -85,7 +85,7 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div className="flex flex-col gap-5 items-start sm:col-span-2 lg:col-span-1">
+          <div className="flex flex-col gap-5 items-start">
             <h3 className="font-light text-white text-[11px] tracking-[2.2px]">CONTACT</h3>
             <div className="flex flex-col gap-4 items-start w-full">
               <div className="flex gap-3 items-start">

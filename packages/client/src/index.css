@@ -70,9 +70,9 @@
 
   --card-foreground: #606060;
 
-  --popover: #d2d2d2;
+  --popover: #ffffff;
 
-  --popover-foreground: #94a3b8;
+  --popover-foreground: var(--graphite);
 
   --primary: #003e61;
 
@@ -157,6 +157,18 @@
   --slate: #595959;
 
   --smoke: #b8b8b8;
+
+  --viz-1: #2a78d6;
+
+  --viz-2: #eb6834;
+
+  --viz-3: #1baf7a;
+
+  --viz-4: #eda100;
+
+  --viz-5: #e87ba4;
+
+  --viz-6: #008300;
 }
 
 #root {

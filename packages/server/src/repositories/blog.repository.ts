@@ -65,6 +65,66 @@ export const blogRepository = {
   },
 
   createdSince(since: Date) {
-    return prisma.blogPost.findMany({ where: { createdAt: { gte: since } }, select: { createdAt: true } });
+    return prisma.blogPost.findMany({ where: { createdAt: { gte: since } }, select: { createdAt: true, status: true } });
+  },
+
+  async categoryBreakdown() {
+    const rows = await prisma.blogPost.groupBy({ by: ['category'], _count: { _all: true } });
+    return rows.map((row) => ({ category: row.category, count: row._count._all })).sort((a, b) => b.count - a.count);
+  },
+
+  async publicList(filters: { search?: string; category?: string; sort: 'asc' | 'desc' }, skip: number, take: number) {
+    const where: Prisma.BlogPostWhereInput = {
+      status: 'PUBLISHED',
+      category: filters.category,
+      ...(filters.search
+        ? {
+            OR: [
+              { title: { contains: filters.search, mode: 'insensitive' } },
+              { category: { contains: filters.search, mode: 'insensitive' } },
+              { excerpt: { contains: filters.search, mode: 'insensitive' } },
+            ],
+          }
+        : {}),
+    };
+
+    const select = {
+      id: true,
+      title: true,
+      slug: true,
+      category: true,
+      excerpt: true,
+      readTime: true,
+      coverImage: true,
+      featured: true,
+      publishedAt: true,
+      createdAt: true,
+    } satisfies Prisma.BlogPostSelect;
+
+    const [posts, total] = await Promise.all([prisma.blogPost.findMany({ where, skip, take, orderBy: { publishedAt: filters.sort }, select }), prisma.blogPost.count({ where })]);
+
+    return { posts, total };
+  },
+
+  featured() {
+    return prisma.blogPost.findFirst({
+      where: { status: 'PUBLISHED', featured: true },
+      orderBy: { publishedAt: 'desc' },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        category: true,
+        excerpt: true,
+        readTime: true,
+        coverImage: true,
+        publishedAt: true,
+      },
+    });
+  },
+
+  async publishedCategories() {
+    const rows = await prisma.blogPost.groupBy({ by: ['category'], where: { status: 'PUBLISHED' } });
+    return rows.map((row) => row.category).sort((a, b) => a.localeCompare(b));
   },
 };

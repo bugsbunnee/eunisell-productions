@@ -45,6 +45,8 @@ export interface BlogStats {
   draft: number;
   recentActivity: { id: string; title: string; status: BlogStatus; createdAt: string; updatedAt: string }[];
   monthlyPosts: { month: string; posts: number }[];
+  monthlyBreakdown: { month: string; published: number; draft: number }[];
+  categoryBreakdown: { category: string; count: number }[];
 }
 
 const buildFormData = (values: BlogFormValues, coverImage?: File | null) => {
