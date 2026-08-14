@@ -4,6 +4,7 @@ import documentIcon from '../../../assets/icons/contact/method-document.svg';
 import arrowIcon from '../../../assets/icons/contact/method-arrow.svg';
 
 import { scrollToView } from '../../../lib/utils';
+import { Stagger, StaggerItem } from '../../common/motion';
 
 interface Method {
   icon: string;
@@ -40,9 +41,9 @@ const methods: Method[] = [
 const Methods: React.FC = () => {
   return (
     <section className="bg-surface flex flex-col items-start px-9 md:px-16 lg:px-36 py-16 lg:py-35">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 w-full">
+      <Stagger className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 w-full">
         {methods.map(({ icon, iconClassName, title, description, cta }) => (
-          <div key={title} className="flex flex-col gap-4 items-start bg-white border border-line rounded-3xl p-12">
+          <StaggerItem key={title} hover className="flex flex-col gap-4 items-start bg-white border border-line rounded-3xl p-12 h-full">
             <div className="flex items-center justify-center bg-ice-blue rounded-full size-16 shrink-0">
               <img src={icon} alt="" className={iconClassName} />
             </div>
@@ -55,9 +56,9 @@ const Methods: React.FC = () => {
               {cta}
               <img src={arrowIcon} alt="" className="w-2.75 h-3" />
             </button>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 };

@@ -1,5 +1,7 @@
+import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn } from '../../common/motion';
 
 import decor1 from '../../../assets/icons/well-testing/partner-decor-1.svg';
 import decor2 from '../../../assets/icons/well-testing/partner-decor-2.svg';
@@ -21,7 +23,7 @@ const PartnerCta: React.FC = () => {
       <img src={decor1} alt="" className="absolute -right-30 -top-30 size-150 opacity-3" />
       <img src={decor2} alt="" className="absolute -left-25 -bottom-25 size-125 opacity-3" />
 
-      <div className="relative flex flex-col gap-8 items-center w-full">
+      <FadeIn className="relative flex flex-col gap-8 items-center w-full">
         <div className="flex gap-4 items-center">
           <div className="bg-secondary h-0.5 w-12" />
           <p className="font-light text-secondary text-[13px] tracking-[4px] uppercase">Partner With Eunisell</p>
@@ -38,20 +40,24 @@ const PartnerCta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-5 items-center justify-center pt-2">
-          <button
+          <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="bg-secondary rounded-full flex items-center justify-center px-12 py-5 font-light text-white text-base whitespace-nowrap"
           >
             Contact Our Production Solutions Team
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="border-2 border-white rounded-full flex items-center justify-center px-12 py-5 font-light text-white text-base whitespace-nowrap"
           >
             Request Technical Consultation
-          </button>
+          </motion.button>
         </div>
 
         <div className="flex flex-wrap gap-6 sm:gap-10 items-center justify-center opacity-40 pt-6">
@@ -62,7 +68,7 @@ const PartnerCta: React.FC = () => {
             </span>
           ))}
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn } from '../../common/motion';
+
 import heroBg from '/projects/hero-bg.png';
 
 const Hero: React.FC = () => {
@@ -8,7 +10,7 @@ const Hero: React.FC = () => {
       <img src={heroBg} alt="Industrial petroleum facility at dusk" className="absolute inset-0 size-full object-cover opacity-40" />
       <div className="absolute inset-0 bg-linear-to-r from-deep-navy via-deep-navy/80 via-50% to-deep-navy/0" />
 
-      <div className="relative flex flex-col gap-6 items-start w-full px-9 md:px-16 lg:px-36">
+      <FadeIn className="relative flex flex-col gap-6 items-start w-full px-9 md:px-16 lg:px-36">
         <div className="flex gap-3 items-center">
           <Link to={paths.home} className="font-light text-secondary text-sm">
             Home
@@ -26,7 +28,7 @@ const Hero: React.FC = () => {
         <p className="font-light text-navy-subtle text-lg lg:text-xl leading-[1.6] max-w-175">
           Explore our portfolio of integrated production solutions, from early production facilities to complex optimization projects across Sub-Saharan Africa.
         </p>
-      </div>
+      </FadeIn>
     </section>
   );
 };

@@ -1,5 +1,7 @@
+import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn } from '../../common/motion';
 
 const badges = ['ISO 9001 Certified', 'HSE Excellence', 'Global Operations'];
 
@@ -10,7 +12,7 @@ const Cta: React.FC = () => {
     <section className="relative bg-deep-navy flex flex-col items-center py-16 lg:py-40 overflow-hidden">
       <div className="absolute bg-primary blur-[60px] -right-100 -top-100 rounded-full size-200 pointer-events-none" />
 
-      <div className="relative flex flex-col items-center px-9 md:px-16 lg:px-36 w-full">
+      <FadeIn className="relative flex flex-col items-center px-9 md:px-16 lg:px-36 w-full">
         <h2 className="font-light text-white text-[36px] md:text-[50px] lg:text-[64px] leading-[1.25] text-center max-w-225 pb-8">
           Deliver Your Next EPC
           <br />
@@ -22,13 +24,25 @@ const Cta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-6 items-center justify-center">
-          <button type="button" onClick={() => navigate(paths.contact)} className="bg-secondary rounded-full px-12 py-5 font-light text-white text-base whitespace-nowrap">
+          <motion.button
+            type="button"
+            onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="bg-secondary rounded-full px-12 py-5 font-light text-white text-base whitespace-nowrap"
+          >
             Contact Our Engineers
-          </button>
+          </motion.button>
 
-          <button type="button" onClick={() => navigate(paths.contact)} className="border border-white rounded-full px-12 py-5 font-light text-white text-base whitespace-nowrap">
+          <motion.button
+            type="button"
+            onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="border border-white rounded-full px-12 py-5 font-light text-white text-base whitespace-nowrap"
+          >
             Request Technical Consultation
-          </button>
+          </motion.button>
         </div>
 
         <div className="flex flex-wrap gap-8 items-center justify-center opacity-40 pt-16">
@@ -39,7 +53,7 @@ const Cta: React.FC = () => {
             </span>
           ))}
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

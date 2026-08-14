@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { Stagger, StaggerItem } from '../../common/motion';
+
 import wellTestingImg from '/portfolio/card-well-testing.png';
 import productionFacilitiesImg from '/portfolio/card-production-facilities.png';
 import operationsMaintenanceImg from '/portfolio/card-operations-maintenance.png';
@@ -79,8 +81,8 @@ const services: Service[] = [
 ];
 
 const LargeCard: React.FC<{ service: Service }> = ({ service }) => (
-  <div className="lg:col-span-2 relative h-140 rounded-2xl overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
-    <img src={service.image} alt={service.title} className="absolute inset-0 size-full object-cover" />
+  <StaggerItem hover className="group lg:col-span-2 relative h-140 rounded-2xl overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
+    <img src={service.image} alt={service.title} className="absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
     <div className="absolute inset-0 bg-linear-to-t from-accent from-10% to-transparent" />
 
     <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-4 items-start p-8 lg:p-12">
@@ -97,13 +99,13 @@ const LargeCard: React.FC<{ service: Service }> = ({ service }) => (
         </Link>
       </div>
     </div>
-  </div>
+  </StaggerItem>
 );
 
 const SmallCard: React.FC<{ service: Service }> = ({ service }) => (
-  <div className="relative flex flex-col h-140 rounded-2xl overflow-hidden bg-white shadow-lg">
+  <StaggerItem hover className="group relative flex flex-col h-140 rounded-2xl overflow-hidden bg-white shadow-lg">
     <div className="h-70 shrink-0 overflow-hidden">
-      <img src={service.image} alt={service.title} className="size-full object-cover" />
+      <img src={service.image} alt={service.title} className="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
     </div>
 
     <div className="flex flex-1 flex-col justify-between p-10">
@@ -122,15 +124,15 @@ const SmallCard: React.FC<{ service: Service }> = ({ service }) => (
         </Link>
       </div>
     </div>
-  </div>
+  </StaggerItem>
 );
 
 const ServiceGrid: React.FC = () => {
   return (
     <section className="bg-ice-blue flex flex-col items-start px-9 md:px-16 lg:px-36 py-16 lg:py-32">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 w-full">
+      <Stagger className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 w-full">
         {services.map((service) => (service.size === 'large' ? <LargeCard key={service.number} service={service} /> : <SmallCard key={service.number} service={service} />))}
-      </div>
+      </Stagger>
     </section>
   );
 };

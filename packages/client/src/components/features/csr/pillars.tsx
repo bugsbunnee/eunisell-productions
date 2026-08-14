@@ -1,3 +1,5 @@
+import { Stagger, StaggerItem } from '../../common/motion';
+
 import peopleImg from '/csr/pillar-people.png';
 import communitiesImg from '/csr/pillar-communities.png';
 import environmentImg from '/csr/pillar-environment.png';
@@ -26,19 +28,19 @@ const pillars = [
 const Pillars: React.FC = () => {
   return (
     <section className="bg-white flex flex-col items-start px-9 md:px-16 lg:px-36 py-16 lg:py-32">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16 w-full max-w-360 mx-auto">
+      <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16 w-full max-w-360 mx-auto">
         {pillars.map(({ image, title, description }) => (
-          <div key={title} className="flex flex-col gap-8 items-start">
+          <StaggerItem key={title} className="flex flex-col gap-8 items-start">
             <div className="rounded-2xl overflow-hidden h-75 w-full">
-              <img src={image} alt={title} className="size-full object-cover" />
+              <img src={image} alt={title} className="size-full object-cover transition-transform duration-500 ease-out hover:scale-105" />
             </div>
             <div className="border-l-4 border-secondary pl-6 flex flex-col gap-3.5 items-start">
               <h3 className="font-light text-accent text-[28px] leading-[42px]">{title}</h3>
               <p className="font-light text-[#6c6c6c] text-sm leading-[25.6px]">{description}</p>
             </div>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 };

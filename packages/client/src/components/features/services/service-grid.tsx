@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { paths } from '../../../lib/data';
 import arrowBlue from '../../../assets/icons/services/arrow-blue.svg';
+import { Stagger, StaggerItem } from '../../common/motion';
 
 import epcImg from '/services/card-epc.png';
 import installationImg from '/services/card-installation-1.png';
@@ -129,9 +130,9 @@ const services: Service[] = [
 ];
 
 const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
-  <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0px_32px_64px_-16px_rgba(0,16,32,0.06)]">
-    <div className="relative h-100 shrink-0">
-      <img src={service.image} alt={service.title} className="absolute inset-0 size-full object-cover" />
+  <StaggerItem hover className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0px_32px_64px_-16px_rgba(0,16,32,0.06)]">
+    <div className="relative h-100 shrink-0 overflow-hidden">
+      <img src={service.image} alt={service.title} className="absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
       <div className="absolute top-8 left-8 bg-secondary rounded-full px-4 py-1.5">
         <p className="font-light text-white text-xs tracking-[1.2px] uppercase whitespace-nowrap">{service.badge}</p>
       </div>
@@ -146,17 +147,17 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
         <img src={arrowBlue} alt="" className="w-3 h-3.5" />
       </Link>
     </div>
-  </div>
+  </StaggerItem>
 );
 
 const ServiceGrid: React.FC = () => {
   return (
     <section className="bg-ice-blue flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:pb-35">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-360 pt-16 lg:pt-35 w-full">
+      <Stagger className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-360 pt-16 lg:pt-35 w-full">
         {services.map((service) => (
           <ServiceCard key={service.title} service={service} />
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 };

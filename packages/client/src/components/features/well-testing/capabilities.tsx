@@ -1,3 +1,5 @@
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+
 import swtIcon from '../../../assets/icons/well-testing/benefit-swt.svg';
 import ewtIcon from '../../../assets/icons/well-testing/benefit-ewt.svg';
 import cleanupIcon from '../../../assets/icons/well-testing/benefit-cleanup.svg';
@@ -18,16 +20,17 @@ const Capabilities: React.FC = () => {
   return (
     <section className="bg-white flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:py-32">
       <div className="flex flex-col gap-20 items-center w-full max-w-360">
-        <div className="flex flex-col gap-4 items-center text-center">
+        <FadeIn className="flex flex-col gap-4 items-center text-center">
           <h2 className="font-light text-accent text-[32px] md:text-[40px] lg:text-[48px] leading-[1.3]">Well Testing</h2>
           <p className="font-light text-navy-subtle text-lg tracking-[-0.09px]">End-to-end well testing solutions for accurate reservoir characterisation</p>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 w-full">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 w-full">
           {capabilities.map(({ icon, title }) => (
-            <div
+            <StaggerItem
               key={title.join(' ')}
-              className="bg-white border border-line border-t-3 border-t-secondary rounded-2xl drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] flex flex-col gap-5 items-start p-10"
+              hover
+              className="bg-white border border-line border-t-3 border-t-secondary rounded-2xl drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] flex flex-col gap-5 items-start p-10 h-full"
             >
               <div className="bg-ice-blue rounded-xl flex items-center justify-center shrink-0 size-14">
                 <img src={icon} alt="" className="size-7" />
@@ -39,9 +42,9 @@ const Capabilities: React.FC = () => {
                   </span>
                 ))}
               </h3>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

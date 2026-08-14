@@ -1,4 +1,5 @@
 import cultureBg from '/hseq/culture-bg.jpg';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 
 const stats = [
   { value: '0.00', label: 'Lost Time Injury Rate' },
@@ -18,7 +19,7 @@ const CultureOfSafety: React.FC = () => {
         }}
       />
 
-      <div className="relative flex flex-col gap-6 items-center max-w-256 w-full">
+      <FadeIn className="relative flex flex-col gap-6 items-center max-w-256 w-full">
         <h2 className="font-light text-white text-[32px] md:text-[44px] lg:text-[56px] text-center tracking-[-0.11px] leading-[1.5]">
           Building a Culture of Safety and Accountability
         </h2>
@@ -28,18 +29,18 @@ const CultureOfSafety: React.FC = () => {
           partner in every successful project milestone.
         </p>
 
-        <div className="flex flex-wrap gap-8 md:gap-12 items-center justify-center pt-4">
+        <Stagger className="flex flex-wrap gap-8 md:gap-12 items-center justify-center pt-4">
           {stats.map(({ value, label }, index) => (
-            <div key={label} className="flex items-center gap-8 md:gap-12">
+            <StaggerItem key={label} className="flex items-center gap-8 md:gap-12">
               {index > 0 && <div className="bg-white h-20 w-px" />}
               <div className="flex flex-col items-center">
                 <p className="font-light text-white text-[42px] leading-[1.5]">{value}</p>
                 <p className="font-light text-secondary text-xs tracking-[3px] uppercase">{label}</p>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
-      </div>
+        </Stagger>
+      </FadeIn>
     </section>
   );
 };

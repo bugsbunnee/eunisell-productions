@@ -1,5 +1,7 @@
+import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn } from '../../common/motion';
 
 import icon1 from '../../../assets/icons/csr/final-icon-1.svg';
 import icon2 from '../../../assets/icons/csr/final-icon-2.svg';
@@ -14,7 +16,7 @@ const FinalCta: React.FC = () => {
     <section className="relative bg-deep-navy overflow-hidden flex flex-col items-center justify-end px-9 md:px-16 lg:px-20 pt-16 pb-16 lg:pb-20">
       <div className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 bg-primary blur-[100px] opacity-20 rounded-full size-300 pointer-events-none" />
 
-      <div className="relative flex flex-col gap-8 items-center max-w-320 w-full">
+      <FadeIn className="relative flex flex-col gap-8 items-center max-w-320 w-full">
         <div className="bg-linear-to-b from-secondary to-secondary/0 h-16 w-1" />
 
         <h2 className="font-light text-white text-[40px] md:text-[52px] lg:text-[64px] text-center tracking-[-0.06px] leading-[1.25]">
@@ -31,20 +33,24 @@ const FinalCta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-6 items-center justify-center pt-2">
-          <button
+          <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="bg-secondary rounded-full flex items-center justify-center px-12 py-5.5 font-light text-white text-lg whitespace-nowrap"
           >
             Contact Eunisell
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             onClick={() => navigate(paths.about)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="border-2 border-white rounded-full flex items-center justify-center px-12 py-5 font-light text-white text-lg whitespace-nowrap"
           >
             Explore Eunisell
-          </button>
+          </motion.button>
         </div>
 
         <div className="flex gap-8 md:gap-32 items-center opacity-30 pt-16">
@@ -52,7 +58,7 @@ const FinalCta: React.FC = () => {
             <img key={index} src={icon} alt="" className="size-16 md:size-24" />
           ))}
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

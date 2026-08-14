@@ -1,9 +1,10 @@
 import epfImg from '/projects/accelerated-epf.png';
+import { FadeIn } from '../../common/motion';
 
 const FeaturedAcceleratedEpf: React.FC = () => {
   return (
     <section className="bg-white flex flex-col lg:flex-row gap-16 lg:gap-25 items-center px-9 md:px-16 lg:px-36 py-16 lg:py-35">
-      <div className="flex flex-1 flex-col gap-8 items-start w-full">
+      <FadeIn className="flex flex-1 flex-col gap-8 items-start w-full">
         <div className="flex flex-col gap-4.25 items-start pt-0.5">
           <p className="font-light text-secondary text-xl tracking-[1.4px] uppercase">Onshore · OML 13 Qua Iboe</p>
           <h4 className="font-light text-accent text-[32px] md:text-[40px] lg:text-[52px] leading-[1.15]">
@@ -24,9 +25,9 @@ const FeaturedAcceleratedEpf: React.FC = () => {
             The project enabled rapid monetization of assets, providing the necessary cash flow for further exploration and site development.
           </p>
         </div>
-      </div>
+      </FadeIn>
 
-      <div className="relative flex-1 w-full pt-10 lg:pt-0">
+      <FadeIn delay={0.15} className="relative flex-1 w-full pt-10 lg:pt-0">
         <div className="h-100 md:h-125 lg:h-162.5 rounded-2xl overflow-hidden">
           <img src={epfImg} alt="Early production facility pipelines" className="size-full object-cover" />
         </div>
@@ -38,7 +39,7 @@ const FeaturedAcceleratedEpf: React.FC = () => {
           </div>
           <p className="font-light text-navy-subtle text-[13px] leading-[1.5]">Lease, operate and maintain, then own — a sustainable growth model.</p>
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

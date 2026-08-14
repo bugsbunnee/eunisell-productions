@@ -1,3 +1,5 @@
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+
 import waterIcon from '../../../assets/icons/about/valuechain-water.svg';
 import enhancementIcon from '../../../assets/icons/about/valuechain-enhancement.svg';
 import equipmentIcon from '../../../assets/icons/about/valuechain-equipment.svg';
@@ -20,21 +22,21 @@ const crossCutting = [
 const ValueChain: React.FC = () => {
   return (
     <section className="bg-white flex flex-col gap-16 items-start px-9 md:px-16 lg:px-36 py-16 lg:py-35">
-      <div className="flex flex-col gap-4 items-center w-full">
+      <FadeIn className="flex flex-col gap-4 items-center w-full">
         <p className="font-light text-secondary text-sm text-center tracking-[4px] uppercase">The Value Chain</p>
         <h2 className="font-light text-accent text-[32px] md:text-[40px] lg:text-[48px] leading-[1.5] text-center">Integrated Operational Lifecycle</h2>
-      </div>
+      </FadeIn>
 
       <div className="flex flex-col gap-8 items-start w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
           {steps.map(({ step, title, description }) => (
-            <div key={step} className="flex flex-col gap-2 items-start bg-ice-blue border-t-4 border-secondary rounded-xl p-8">
+            <StaggerItem key={step} hover className="flex flex-col gap-2 items-start bg-ice-blue border-t-4 border-secondary rounded-xl p-8">
               <p className="font-light text-secondary text-sm">{step}</p>
               <h4 className="font-light text-accent text-xl leading-[1.5] pt-2">{title}</h4>
               <p className="font-light text-navy-subtle text-sm leading-[1.625]">{description}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         <div className="relative flex flex-col items-start pt-12 w-full">
           <div className="absolute top-0 left-0 right-0 border-t border-dashed border-line" />
@@ -42,16 +44,16 @@ const ValueChain: React.FC = () => {
             <p className="font-light text-navy-subtle text-xs tracking-[1.2px] uppercase whitespace-nowrap">Cross-Cutting Engineering Services</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
             {crossCutting.map(({ icon, label }) => (
-              <div key={label} className="flex gap-4 items-center">
+              <StaggerItem key={label} className="flex gap-4 items-center">
                 <div className="flex items-center justify-center bg-line rounded shrink-0 size-10">
                   <img src={icon} alt="" className="size-6" />
                 </div>
                 <p className="font-light text-accent text-base whitespace-nowrap">{label}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </div>
     </section>

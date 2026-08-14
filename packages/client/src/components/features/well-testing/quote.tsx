@@ -1,3 +1,5 @@
+import { FadeIn } from '../../common/motion';
+
 import decor1 from '../../../assets/icons/well-testing/quote-decor-1.svg';
 import decor2 from '../../../assets/icons/well-testing/quote-decor-2.svg';
 import quoteIcon from '../../../assets/icons/well-testing/quote-icon.svg';
@@ -15,7 +17,7 @@ const Quote: React.FC = () => {
       <img src={decor1} alt="" className="absolute -right-20 -top-20 size-100 opacity-3" />
       <img src={decor2} alt="" className="absolute -left-15 -bottom-15 size-75 opacity-3" />
 
-      <div className="relative flex flex-col gap-10 items-center w-full">
+      <FadeIn className="relative flex flex-col gap-10 items-center w-full">
         <div className="bg-secondary h-0.5 w-20" />
         <div className="bg-secondary rounded-xl flex items-center justify-center shrink-0 size-16">
           <img src={quoteIcon} alt="" className="w-7 h-4" />
@@ -23,7 +25,7 @@ const Quote: React.FC = () => {
         <p className="font-light text-white text-2xl md:text-3xl lg:text-[40px] text-center leading-[1.45] max-w-275">
           &quot;EUNISELL EDGE: Test data feeds directly into facility design — no hand-off delay between testing and development.&quot;
         </p>
-      </div>
+      </FadeIn>
     </section>
   );
 };

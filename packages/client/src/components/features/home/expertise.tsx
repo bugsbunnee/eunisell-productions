@@ -1,5 +1,7 @@
+import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn } from '../../common/motion';
 
 import expertiseImage from '/home/expertise.svg';
 
@@ -8,7 +10,7 @@ const Expertise: React.FC = () => {
 
   return (
     <section className="relative bg-ice-blue grid grid-cols-1 lg:grid-cols-2 items-center lg:items-stretch py-16 lg:py-24 lg:min-h-[1117px]">
-      <div className="flex flex-col items-start px-9 md:px-16 lg:px-30 relative z-10">
+      <FadeIn className="flex flex-col items-start px-9 md:px-16 lg:px-30 relative z-10">
         <div className="flex gap-4 items-center pb-8">
           <div className="bg-secondary h-0.5 w-12" />
           <p className="font-light text-secondary text-lg uppercase">Our Expertise</p>
@@ -34,25 +36,29 @@ const Expertise: React.FC = () => {
         </div>
 
         <div className="flex gap-6 items-center">
-          <button
+          <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="min-w-72.5 h-14.5 bg-secondary rounded-full px-2.5 flex items-center justify-center font-light text-white text-lg tracking-[0.07px] text-center"
           >
             Speak with Our Experts
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="min-w-72.5 h-14.5 border border-accent rounded-full px-2.5 flex items-center justify-center font-light text-accent text-lg tracking-[0.07px] text-center"
           >
             Speak With Our Engineers
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </FadeIn>
 
-      <div className="flex items-center justify-center mt-16 lg:mt-0 lg:h-full">
+      <FadeIn delay={0.15} className="flex items-center justify-center mt-16 lg:mt-0 lg:h-full">
         <div className="relative overflow-hidden w-full max-w-125 lg:max-w-none lg:h-full lg:w-auto" style={{ aspectRatio: '864 / 1007.3' }}>
           <img
             src={expertiseImage}
@@ -61,7 +67,7 @@ const Expertise: React.FC = () => {
             style={{ transform: 'translateY(-9.82%)' }}
           />
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

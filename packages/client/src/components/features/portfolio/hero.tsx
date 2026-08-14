@@ -1,4 +1,5 @@
 import heroBg from '/portfolio/hero-bg.png';
+import { FadeIn } from '../../common/motion';
 
 const Hero: React.FC = () => {
   return (
@@ -7,7 +8,7 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-accent/67" />
 
       <div className="relative flex flex-col items-start px-9 md:px-16 lg:px-36 w-full">
-        <div className="flex flex-col gap-6 items-start max-w-200 w-full">
+        <FadeIn className="flex flex-col gap-6 items-start max-w-200 w-full">
           <div className="flex gap-4 items-center">
             <div className="bg-secondary h-0.5 w-12" />
             <p className="font-light text-white text-sm tracking-[1.4px] uppercase">Our Portfolio</p>
@@ -22,7 +23,7 @@ const Hero: React.FC = () => {
           <p className="font-light text-white text-lg md:text-xl lg:text-2xl leading-[1.35] lg:leading-[39px] pt-2">
             Seven service lines, one coordinated delivery capability. We bridge the gap between complex engineering and operational excellence.
           </p>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

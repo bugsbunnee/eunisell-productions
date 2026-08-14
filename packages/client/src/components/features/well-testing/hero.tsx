@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 
 import heroBg from '/services/well-testing/hero-bg.png';
 import heroDecor1 from '../../../assets/icons/well-testing/hero-decor-1.svg';
@@ -19,21 +20,27 @@ const Hero: React.FC = () => {
       <img src={heroDecor2} alt="" className="absolute right-15 bottom-20 size-70 opacity-10" />
 
       <div className="relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 px-9 md:px-16 lg:px-36 py-25 w-full">
-        <div className="flex flex-col gap-6 items-start max-w-180">
-          <p className="font-light text-navy-muted text-sm">
-            Home <span className="opacity-50">/</span> Integrated Service Portfolio <span className="opacity-50">/</span> Well Testing
-          </p>
+        <Stagger className="flex flex-col gap-6 items-start max-w-180">
+          <StaggerItem>
+            <p className="font-light text-navy-muted text-sm">
+              Home <span className="opacity-50">/</span> Integrated Service Portfolio <span className="opacity-50">/</span> Well Testing
+            </p>
+          </StaggerItem>
 
-          <div className="flex gap-4 items-center">
+          <StaggerItem className="flex gap-4 items-center">
             <div className="bg-secondary h-0.5 w-12" />
             <p className="font-light text-secondary text-[13px] tracking-[4px] uppercase">01</p>
-          </div>
+          </StaggerItem>
 
-          <h1 className="font-light text-white text-[44px] md:text-[56px] lg:text-[72px] leading-[1.1]">Well Testing</h1>
+          <StaggerItem>
+            <h1 className="font-light text-white text-[44px] md:text-[56px] lg:text-[72px] leading-[1.1]">Well Testing</h1>
+          </StaggerItem>
 
-          <p className="font-light text-navy-muted text-lg md:text-xl leading-[1.7] max-w-150">Surface &amp; Extended Well Testing (SWT, EWT) and reservoir surveillance</p>
+          <StaggerItem>
+            <p className="font-light text-navy-muted text-lg md:text-xl leading-[1.7] max-w-150">Surface &amp; Extended Well Testing (SWT, EWT) and reservoir surveillance</p>
+          </StaggerItem>
 
-          <div className="flex flex-wrap gap-5 items-center pt-4">
+          <StaggerItem className="flex flex-wrap gap-5 items-center pt-4">
             <button
               type="button"
               onClick={() => navigate(paths.contact)}
@@ -50,10 +57,13 @@ const Hero: React.FC = () => {
             >
               Request Technical Consultation
             </button>
-          </div>
-        </div>
+          </StaggerItem>
+        </Stagger>
 
-        <div className="bg-accent border border-secondary rounded-xl drop-shadow-[0px_25px_25px_rgba(0,0,0,0.4)] flex flex-col gap-6 items-start p-10 w-full sm:w-85 shrink-0">
+        <FadeIn
+          delay={0.2}
+          className="bg-accent border border-secondary rounded-xl drop-shadow-[0px_25px_25px_rgba(0,0,0,0.4)] flex flex-col gap-6 items-start p-10 w-full sm:w-85 shrink-0"
+        >
           <div className="flex gap-3 items-center">
             <div className="bg-secondary h-0.5 w-8" />
             <p className="font-light text-secondary text-[11px] tracking-[3px] uppercase">Service Capabilities</p>
@@ -67,7 +77,7 @@ const Hero: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
+import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
 import { scrollToView } from '../../../lib/utils';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 
 const badges = ['ISO 9001 Certified', '20+ Years Experience', 'Global Operations', 'HSE Excellence'];
 
@@ -23,7 +25,7 @@ const FinalCta: React.FC<FinalCtaProps> = ({ scrollTargetId }) => {
       />
       <div className="absolute bg-primary blur-[60px] rounded-full size-200 -right-30 -top-100 pointer-events-none" />
 
-      <div className="relative flex flex-col gap-8 items-center max-w-215 w-full text-center">
+      <FadeIn className="relative flex flex-col gap-8 items-center max-w-215 w-full text-center">
         <h2 className="font-light text-white text-[36px] md:text-[50px] lg:text-[64px] leading-[1.05] lg:leading-[67.2px]">
           Let&apos;s Improve Your
           <br />
@@ -36,23 +38,35 @@ const FinalCta: React.FC<FinalCtaProps> = ({ scrollTargetId }) => {
         </p>
 
         <div className="flex flex-wrap gap-5 items-center justify-center pt-6">
-          <button type="button" onClick={handleCtaClick} className="bg-secondary rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap">
+          <motion.button
+            type="button"
+            onClick={handleCtaClick}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="bg-secondary rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap"
+          >
             Contact Our Production Solutions Team
-          </button>
-          <button type="button" onClick={handleCtaClick} className="border-2 border-white rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap">
+          </motion.button>
+          <motion.button
+            type="button"
+            onClick={handleCtaClick}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="border-2 border-white rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap"
+          >
             Request a Technical Consultation
-          </button>
+          </motion.button>
         </div>
 
-        <div className="flex flex-wrap gap-8 items-center justify-center pt-4">
+        <Stagger className="flex flex-wrap gap-8 items-center justify-center pt-4">
           {badges.map((badge, index) => (
-            <span key={badge} className="flex items-center gap-8 font-light text-white text-sm whitespace-nowrap">
+            <StaggerItem key={badge} className="flex items-center gap-8 font-light text-white text-sm whitespace-nowrap">
               {badge}
               {index < badges.length - 1 && <span aria-hidden="true">·</span>}
-            </span>
+            </StaggerItem>
           ))}
-        </div>
-      </div>
+        </Stagger>
+      </FadeIn>
     </section>
   );
 };

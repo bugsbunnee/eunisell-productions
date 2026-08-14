@@ -1,4 +1,5 @@
 import certificateImg from '/hseq/iso-certificate.png';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 import isoBadge from '../../../assets/icons/hseq/iso-badge-check.svg';
 
 const stats = [
@@ -10,7 +11,7 @@ const Standards: React.FC = () => {
   return (
     <section className="bg-white flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:py-32">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center w-full max-w-360">
-        <div className="flex flex-col gap-6 items-start">
+        <FadeIn className="flex flex-col gap-6 items-start">
           <div className="flex gap-4 items-center">
             <div className="bg-secondary h-0.5 w-12" />
             <p className="font-light text-secondary text-[17px]">OUR PHILOSOPHY</p>
@@ -23,17 +24,17 @@ const Standards: React.FC = () => {
             team is dedicated to maintaining the highest safety standards across all operations, from deepwater platforms to swamp facilities.
           </p>
 
-          <div className="flex flex-wrap gap-8 items-start pt-2">
+          <Stagger className="flex flex-wrap gap-8 items-start pt-2">
             {stats.map(({ value, label }) => (
-              <div key={label} className="flex flex-col gap-2 items-start">
+              <StaggerItem key={label} className="flex flex-col gap-2 items-start">
                 <p className="font-light text-secondary text-[32px] leading-12">{value}</p>
                 <p className="font-light text-navy-subtle text-sm">{label}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-        </div>
+          </Stagger>
+        </FadeIn>
 
-        <div className="relative">
+        <FadeIn delay={0.15} className="relative">
           <div className="bg-white rounded-2xl shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] overflow-hidden h-156">
             <img src={certificateImg} alt="ISO 9001:2015 certificate" className="size-full object-contain" />
             <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
@@ -47,7 +48,7 @@ const Standards: React.FC = () => {
               <p className="font-light text-navy-subtle text-sm">Certified Quality Management</p>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

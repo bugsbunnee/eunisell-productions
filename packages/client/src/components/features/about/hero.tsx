@@ -1,4 +1,5 @@
 import heroBg from '/about/hero-bg.png';
+import { FadeIn } from '../../common/motion';
 
 const Hero: React.FC = () => {
   return (
@@ -6,7 +7,7 @@ const Hero: React.FC = () => {
       <img src={heroBg} alt="Oil and gas production facility" className="absolute inset-0 size-full object-cover" />
       <div className="absolute inset-0 bg-linear-to-r from-deep-navy via-deep-navy/80 via-50% to-deep-navy/0" />
 
-      <div className="relative flex flex-col gap-6 items-start max-w-300 px-9 md:px-16 lg:px-36 w-full">
+      <FadeIn className="relative flex flex-col gap-6 items-start max-w-300 px-9 md:px-16 lg:px-36 w-full">
         <div className="flex gap-4 items-center">
           <div className="bg-white h-px w-12" />
           <p className="font-light text-white text-sm tracking-[4px] uppercase">Eunisell Production Solutions</p>
@@ -21,7 +22,7 @@ const Hero: React.FC = () => {
         </h1>
 
         <p className="font-light text-navy-muted text-lg lg:text-2xl leading-[1.4] max-w-175">A single, engineering-led partner across the production value chain.</p>
-      </div>
+      </FadeIn>
     </section>
   );
 };

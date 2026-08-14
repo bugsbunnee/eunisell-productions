@@ -1,16 +1,18 @@
 import decliningYieldsImg from '/projects/case-declining-yields.png';
 import secondaryRecoveryImg from '/projects/case-secondary-recovery.png';
 
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+
 const CaseStudies: React.FC = () => {
   return (
     <section className="bg-white flex flex-col gap-20 items-center px-9 md:px-16 lg:px-36 py-16 lg:py-35">
-      <div className="flex flex-col gap-4 items-center max-w-200 w-full">
+      <FadeIn className="flex flex-col gap-4 items-center max-w-200 w-full">
         <p className="font-light text-secondary text-base text-center tracking-[4px] uppercase">Case Studies</p>
         <h3 className="font-light text-accent text-[32px] md:text-[40px] lg:text-[48px] leading-[1.17] text-center">Production Enhancement Solutions</h3>
-      </div>
+      </FadeIn>
 
-      <div className="flex flex-col gap-20 items-start w-full">
-        <div className="flex flex-col lg:flex-row gap-12 items-stretch bg-surface border border-line rounded-3xl overflow-hidden w-full">
+      <Stagger className="flex flex-col gap-20 items-start w-full">
+        <StaggerItem className="flex flex-col lg:flex-row gap-12 items-stretch bg-surface border border-line rounded-3xl overflow-hidden w-full">
           <div className="lg:w-110 shrink-0">
             <img src={decliningYieldsImg} alt="Gas lift production equipment" className="size-full h-75 lg:h-full object-cover" />
           </div>
@@ -45,9 +47,9 @@ const CaseStudies: React.FC = () => {
               <p className="font-light text-accent text-sm leading-[1.5]">Increased production from 3,000 to 15,000 BPD and significantly extended field life.</p>
             </div>
           </div>
-        </div>
+        </StaggerItem>
 
-        <div className="flex flex-col lg:flex-row-reverse gap-12 items-stretch bg-deep-navy border border-primary rounded-3xl overflow-hidden w-full">
+        <StaggerItem className="flex flex-col lg:flex-row-reverse gap-12 items-stretch bg-deep-navy border border-primary rounded-3xl overflow-hidden w-full">
           <div className="lg:w-110 shrink-0">
             <img src={secondaryRecoveryImg} alt="Triplex pump maintenance team" className="size-full h-75 lg:h-full object-cover" />
           </div>
@@ -75,8 +77,8 @@ const CaseStudies: React.FC = () => {
               </p>
             </div>
           </div>
-        </div>
-      </div>
+        </StaggerItem>
+      </Stagger>
     </section>
   );
 };

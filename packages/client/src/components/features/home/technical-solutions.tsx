@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import epcWatermark from '../../../assets/icons/home/epc-watermark.svg';
 import { paths } from '../../../lib/data';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+
+import epcWatermark from '../../../assets/icons/home/epc-watermark.svg';
 
 const services = [
   {
@@ -48,15 +50,15 @@ const TechnicalSolutions: React.FC = () => {
   return (
     <section className="bg-ice-blue flex flex-col items-center px-9 md:px-16 lg:px-36 py-24 lg:py-35">
       <div className="flex flex-col gap-16 items-start max-w-360 w-full">
-        <div className="flex flex-col gap-4 items-center w-full">
+        <FadeIn className="flex flex-col gap-4 items-center w-full">
           <p className="font-light text-secondary text-lg text-center">FEATURED SERVICES</p>
           <h2 className="font-light text-accent text-[32px] md:text-[42px] lg:text-[52px] text-center tracking-[-0.05px]">Engineering &amp; Technical Solutions</h2>
           <p className="font-light text-navy-subtle text-lg text-center max-w-141.5">Delivering technical excellence across the full scope of production engineering.</p>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 w-full">
+        <Stagger className="grid grid-cols-1 lg:grid-cols-2 gap-7 w-full">
           {services.map(({ badge, title, description, cta, path, gradient, watermark }) => (
-            <div key={title} className="relative flex flex-col justify-between overflow-hidden rounded-2xl p-12 min-h-120" style={{ backgroundImage: gradient }}>
+            <StaggerItem key={title} hover style={{ backgroundImage: gradient }} className="relative flex flex-col justify-between overflow-hidden rounded-2xl p-12 min-h-120">
               {watermark && <img src={epcWatermark} alt="" className="absolute left-0 top-0 size-10 opacity-30" />}
 
               <div className="flex flex-col gap-3.75 items-start relative">
@@ -70,9 +72,9 @@ const TechnicalSolutions: React.FC = () => {
                   {cta}
                 </button>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

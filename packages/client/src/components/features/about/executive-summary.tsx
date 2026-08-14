@@ -1,9 +1,11 @@
+import { FadeIn } from '../../common/motion';
+
 const ExecutiveSummary: React.FC = () => {
   return (
     <section className="relative bg-accent flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:py-30 overflow-hidden">
       <div className="absolute inset-y-0 left-1/2 right-0 opacity-10 border border-dashed border-white m-8" />
 
-      <div className="relative flex flex-col gap-6 items-start w-full lg:max-w-250">
+      <FadeIn className="relative flex flex-col gap-6 items-start w-full lg:max-w-250">
         <p className="font-light text-secondary text-sm tracking-[4px] uppercase">Executive Summary</p>
 
         <h2 className="font-light text-white text-[32px] md:text-[40px] lg:text-[48px] leading-[1.2]">
@@ -22,7 +24,7 @@ const ExecutiveSummary: React.FC = () => {
             across the entire African energy landscape.
           </p>
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

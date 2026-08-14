@@ -1,5 +1,7 @@
+import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 
 import assetLifecycleIcon from '../../../assets/icons/home/asset-lifecycle.svg';
 import engineeringExpertiseIcon from '../../../assets/icons/home/engineering-expertise.svg';
@@ -44,38 +46,48 @@ const Hero: React.FC = () => {
 
       <div className="relative flex-1 flex items-center justify-center px-9 md:px-16 lg:px-36 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_520px] gap-16 max-w-432 w-full items-center">
-          <div className="flex flex-col items-start">
-            <p className="font-light text-white text-[11px] tracking-[3.85px] leading-[16.5px] pb-2.5">INTEGRATED PRODUCTION SOLUTIONS</p>
+          <Stagger className="flex flex-col items-start">
+            <StaggerItem>
+              <p className="font-light text-white text-[11px] tracking-[3.85px] leading-[16.5px] pb-2.5">INTEGRATED PRODUCTION SOLUTIONS</p>
+            </StaggerItem>
 
-            <h1 className="font-light text-white text-[32px] md:text-[40px] lg:text-[50px] tracking-[-2.2px] leading-[1.15] lg:leading-[83.6px]">
-              Integrated Production Solutions for Reliable, Safe and Efficient Oil &amp; Gas Operations
-            </h1>
+            <StaggerItem>
+              <h1 className="font-light text-white text-[32px] md:text-[40px] lg:text-[50px] tracking-[-2.2px] leading-[1.15] lg:leading-[83.6px]">
+                Integrated Production Solutions for Reliable, Safe and Efficient Oil &amp; Gas Operations
+              </h1>
+            </StaggerItem>
 
-            <p className="font-light text-navy-muted text-[17px] leading-[31.45px] max-w-140 mt-6">
-              From engineering and production optimization to facility maintenance and equipment support, Eunisell delivers end-to-end production solutions that enhance asset
-              integrity, maximize production uptime, and improve operational efficiency across upstream oil and gas operations.
-            </p>
+            <StaggerItem>
+              <p className="font-light text-navy-muted text-[17px] leading-[31.45px] max-w-140 mt-6">
+                From engineering and production optimization to facility maintenance and equipment support, Eunisell delivers end-to-end production solutions that enhance asset
+                integrity, maximize production uptime, and improve operational efficiency across upstream oil and gas operations.
+              </p>
+            </StaggerItem>
 
-            <div className="flex flex-wrap gap-4 pt-8">
-              <button
+            <StaggerItem className="flex flex-wrap gap-4 pt-8">
+              <motion.button
                 type="button"
                 onClick={() => navigate(paths.contact)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="bg-secondary h-[54.5px] w-56.75 rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
               >
                 Speak with Our Experts
-              </button>
+              </motion.button>
 
-              <button
+              <motion.button
                 type="button"
                 onClick={() => navigate(paths.contact)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 className="h-[54.5px] w-56.75 border border-white rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
               >
                 Request a Proposal
-              </button>
-            </div>
-          </div>
+              </motion.button>
+            </StaggerItem>
+          </Stagger>
 
-          <div className="backdrop-blur-md bg-deep-navy border border-secondary rounded-[16px] flex flex-col gap-6 p-8 w-full max-w-130  justify-self-end">
+          <FadeIn delay={0.2} className="backdrop-blur-md bg-deep-navy border border-secondary rounded-[16px] flex flex-col gap-6 p-8 w-full max-w-130 justify-self-end">
             <p className="font-light text-white text-[10px] tracking-[3px] uppercase leading-3.75">Key Capabilities</p>
 
             <div className="flex flex-col">
@@ -94,23 +106,23 @@ const Hero: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </FadeIn>
         </div>
       </div>
 
       <div className="relative bg-deep-navy border-t border-secondary flex items-center justify-center py-4 lg:h-20 lg:py-0">
-        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 max-w-432 w-full px-9 md:px-16 lg:px-24">
+        <Stagger className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 max-w-432 w-full px-9 md:px-16 lg:px-24">
           {stats.map(({ value, label }) => (
-            <div key={value} className="flex gap-4 items-center">
+            <StaggerItem key={value} className="flex gap-4 items-center">
               <p className="font-light text-secondary text-3xl">{value}</p>
               <p className="font-light text-white text-sm leading-[17.5px]">
                 {label[0]}
                 <br />
                 {label[1]}
               </p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

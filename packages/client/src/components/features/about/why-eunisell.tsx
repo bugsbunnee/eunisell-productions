@@ -1,4 +1,5 @@
 import whyImg from '/about/why-eunisell.png';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 
 const points = [
   {
@@ -26,28 +27,28 @@ const points = [
 const WhyEunisell: React.FC = () => {
   return (
     <section className="bg-deep-navy flex flex-col gap-16 items-start px-9 md:px-16 lg:px-36 py-16 lg:py-40">
-      <div className="flex flex-col gap-4 items-start w-full">
+      <FadeIn className="flex flex-col gap-4 items-start w-full">
         <p className="font-light text-secondary text-sm tracking-[4px] uppercase">Our Advantage</p>
         <h2 className="font-light text-white text-[32px] md:text-[40px] lg:text-[48px] leading-[1.5]">Why Eunisell Production Solutions</h2>
-      </div>
+      </FadeIn>
 
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start justify-center w-full">
-        <div className="flex flex-1 flex-col gap-12 items-start w-full min-w-0">
+        <Stagger className="flex flex-1 flex-col gap-12 items-start w-full min-w-0">
           {points.map(({ number, title, description }) => (
-            <div key={number} className="flex gap-8 items-start w-full">
+            <StaggerItem key={number} className="flex gap-8 items-start w-full">
               <p className="font-light text-secondary text-3xl leading-[1.5] opacity-30 shrink-0">{number}</p>
               <div className="flex flex-col gap-4 items-start">
                 <h4 className="font-light text-white text-2xl leading-[1.5]">{title}</h4>
                 <p className="font-light text-navy-subtle text-base leading-[1.625]">{description}</p>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
-        <div className="relative flex-1 w-full lg:max-w-169">
+        <FadeIn delay={0.15} className="relative flex-1 w-full lg:max-w-169">
           <img src={whyImg} alt="Field engineer inspecting wind turbine infrastructure" className="w-full h-75 lg:h-140 object-cover" />
           <div className="absolute inset-0 bg-linear-to-t from-deep-navy to-deep-navy/0" />
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

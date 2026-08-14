@@ -1,3 +1,5 @@
+import { FadeIn } from '../../common/motion';
+
 import heroImg from '/csr/hero.png';
 import decor1 from '../../../assets/icons/csr/hero-decor-1.svg';
 import decor2 from '../../../assets/icons/csr/hero-decor-2.svg';
@@ -8,7 +10,7 @@ const Hero: React.FC = () => {
       <img src={decor1} alt="" className="absolute top-0 right-0 size-100 opacity-5" />
 
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,471px)_1fr] gap-12 lg:gap-20 items-center max-w-360 w-full">
-        <div className="flex flex-col gap-6 items-start">
+        <FadeIn className="flex flex-col gap-6 items-start">
           <nav className="flex gap-2 items-center">
             <span className="font-light text-secondary text-sm tracking-[0.35px] uppercase">Home</span>
             <span className="font-light text-muted text-sm tracking-[0.35px] uppercase">/</span>
@@ -29,14 +31,14 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="bg-secondary h-0.5 w-24" />
-        </div>
+        </FadeIn>
 
-        <div className="relative">
+        <FadeIn delay={0.15} className="relative">
           <div className="bg-transparent border border-accent rounded-2xl shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] overflow-hidden h-100 lg:h-125">
             <img src={heroImg} alt="Eunisell community engagement" className="size-full object-cover" />
           </div>
           <img src={decor2} alt="" className="hidden lg:block absolute -bottom-8 -right-8 size-48 opacity-20" />
-        </div>
+        </FadeIn>
       </div>
     </section>
   );

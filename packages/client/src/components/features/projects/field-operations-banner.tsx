@@ -1,3 +1,5 @@
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+
 import bannerImg from '/projects/field-operations-banner.png';
 
 const stats = [
@@ -12,7 +14,7 @@ const FieldOperationsBanner: React.FC = () => {
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative flex flex-col items-start px-9 md:px-16 lg:px-36 w-full">
-        <div className="backdrop-blur-md bg-deep-navy/90 border-l-8 border-secondary rounded-2xl flex flex-col gap-3.875 items-start max-w-150 p-8 md:p-12">
+        <FadeIn className="backdrop-blur-md bg-deep-navy/90 border-l-8 border-secondary rounded-2xl flex flex-col gap-3.875 items-start max-w-150 p-8 md:p-12">
           <p className="font-light text-secondary text-xl tracking-[4px] uppercase">Field Operations</p>
           <h3 className="font-light text-white text-[32px] md:text-[40px] lg:text-[48px] leading-[1.17]">
             EWT/EPF Package
@@ -20,15 +22,15 @@ const FieldOperationsBanner: React.FC = () => {
             Mobilization
           </h3>
 
-          <div className="flex flex-wrap gap-8 items-start pt-6.25">
+          <Stagger className="flex flex-wrap gap-8 items-start pt-6.25">
             {stats.map(({ value, label }) => (
-              <div key={label} className="flex flex-col gap-1 items-start min-w-47.5">
+              <StaggerItem key={label} className="flex flex-col gap-1 items-start min-w-47.5">
                 <p className="font-light text-secondary text-3xl leading-[1.5]">{value}</p>
                 <p className="font-light text-navy-muted text-xs tracking-[0.6px] uppercase">{label}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-        </div>
+          </Stagger>
+        </FadeIn>
       </div>
     </section>
   );

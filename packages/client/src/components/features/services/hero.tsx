@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
 
 import heroBg from '/services/hero-bg.png';
+import { Stagger, StaggerItem } from '../../common/motion';
 import arrowWhite from '../../../assets/icons/services/arrow-white.svg';
 
 const Hero: React.FC = () => {
@@ -13,24 +14,30 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-linear-to-r from-deep-navy via-deep-navy/80 via-50% to-deep-navy/0" />
       <div className="absolute inset-0 bg-linear-to-t from-deep-navy to-deep-navy/0 opacity-60" />
 
-      <div className="relative flex flex-col gap-6 items-start max-w-300 px-9 md:px-16 lg:px-36 w-full">
-        <div className="flex gap-4 items-center">
+      <Stagger className="relative flex flex-col gap-6 items-start max-w-300 px-9 md:px-16 lg:px-36 w-full">
+        <StaggerItem className="flex gap-4 items-center">
           <div className="bg-white h-0.5 w-12" />
           <p className="font-light text-white text-[17px] leading-[1.5]">OUR EXPERTISE</p>
-        </div>
+        </StaggerItem>
 
-        <h1 className="font-light text-white text-[44px] md:text-[64px] lg:text-[84px] leading-[1.1] tracking-[-2.1px] pt-2">Our Services</h1>
+        <StaggerItem>
+          <h1 className="font-light text-white text-[44px] md:text-[64px] lg:text-[84px] leading-[1.1] tracking-[-2.1px] pt-2">Our Services</h1>
+        </StaggerItem>
 
-        <p className="font-light text-navy-muted text-lg lg:text-[22px] leading-[1.625] tracking-[-0.45px] pt-2">
-          Delivering Engineering Excellence Across the Entire Production Lifecycle
-        </p>
+        <StaggerItem>
+          <p className="font-light text-navy-muted text-lg lg:text-[22px] leading-[1.625] tracking-[-0.45px] pt-2">
+            Delivering Engineering Excellence Across the Entire Production Lifecycle
+          </p>
+        </StaggerItem>
 
-        <p className="font-light text-navy-muted text-base lg:text-lg leading-[1.78] tracking-[-0.4px] max-w-200">
-          Eunisell delivers integrated engineering, production, maintenance, installation, commissioning, and equipment support services that help operators improve operational
-          performance, maximize asset reliability, and safely deliver production objectives.
-        </p>
+        <StaggerItem>
+          <p className="font-light text-navy-muted text-base lg:text-lg leading-[1.78] tracking-[-0.4px] max-w-200">
+            Eunisell delivers integrated engineering, production, maintenance, installation, commissioning, and equipment support services that help operators improve operational
+            performance, maximize asset reliability, and safely deliver production objectives.
+          </p>
+        </StaggerItem>
 
-        <div className="flex flex-wrap gap-6 items-center pt-6">
+        <StaggerItem className="flex flex-wrap gap-6 items-center pt-6">
           <button
             type="button"
             onClick={() => navigate(paths.services)}
@@ -47,8 +54,8 @@ const Hero: React.FC = () => {
           >
             Speak With Our Engineers
           </button>
-        </div>
-      </div>
+        </StaggerItem>
+      </Stagger>
     </section>
   );
 };

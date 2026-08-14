@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 
 import upstreamImg from '/about/industry-upstream.png';
 import independentImg from '/about/industry-independent.png';
@@ -56,14 +57,14 @@ const Industries: React.FC = () => {
   return (
     <section className="bg-white flex flex-col items-start px-9 md:px-16 lg:px-36 py-16 lg:py-35">
       <div className="flex flex-col gap-16 items-start max-w-360 w-full">
-        <div className="flex flex-col gap-4 items-center w-full">
+        <FadeIn className="flex flex-col gap-4 items-center w-full">
           <p className="font-light text-secondary text-base text-center">INDUSTRIES WE SERVED</p>
           <h2 className="font-light text-accent text-[32px] md:text-[42px] lg:text-[52px] leading-[1.5] text-center">Serving the Full Spectrum of Operators</h2>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
           {industries.map(({ title, description, image, imageOpacity, gradient, imageClassName }) => (
-            <div key={title} className={`relative flex flex-col justify-end h-130 rounded-2xl overflow-hidden px-5 py-12 ${gradient}`}>
+            <StaggerItem key={title} hover className={`relative flex flex-col justify-end h-130 rounded-2xl overflow-hidden px-5 py-12 ${gradient}`}>
               <div className={`absolute inset-0 overflow-hidden ${imageOpacity}`}>
                 <img src={image} alt={title} className={imageClassName} />
               </div>
@@ -75,9 +76,9 @@ const Industries: React.FC = () => {
                   Explore →
                 </button>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

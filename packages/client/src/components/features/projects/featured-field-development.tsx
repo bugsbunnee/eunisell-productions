@@ -1,9 +1,10 @@
+import { FadeIn } from '../../common/motion';
 import fieldDevImg from '/projects/field-development.png';
 
 const FeaturedFieldDevelopment: React.FC = () => {
   return (
     <section className="bg-white flex flex-col lg:flex-row gap-16 lg:gap-20 items-center px-9 md:px-16 lg:px-36 py-16 lg:py-35">
-      <div className="relative flex-1 w-full pb-10 lg:pb-0 lg:pr-10">
+      <FadeIn className="relative flex-1 w-full pb-10 lg:pb-0 lg:pr-10">
         <div className="h-100 md:h-125 lg:h-150 rounded-2xl overflow-hidden shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
           <img src={fieldDevImg} alt="Early production facility on shallow water" className="size-full object-cover" />
         </div>
@@ -12,9 +13,9 @@ const FeaturedFieldDevelopment: React.FC = () => {
           <p className="font-light text-secondary text-4xl leading-[1.5]">10k</p>
           <p className="font-light text-white text-sm tracking-[0.7px] uppercase">BPD Capacity</p>
         </div>
-      </div>
+      </FadeIn>
 
-      <div className="flex flex-1 flex-col gap-8 items-start w-full">
+      <FadeIn delay={0.15} className="flex flex-1 flex-col gap-8 items-start w-full">
         <div className="flex flex-col gap-4.25 items-start pt-0.5">
           <p className="font-light text-secondary text-xl tracking-[1.4px] uppercase">Shallow Water · OML 46 Atala</p>
           <h4 className="font-light text-accent text-[36px] md:text-[44px] lg:text-[56px] leading-[1.14]">
@@ -42,7 +43,7 @@ const FeaturedFieldDevelopment: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

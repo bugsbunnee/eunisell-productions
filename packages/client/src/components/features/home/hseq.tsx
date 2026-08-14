@@ -1,3 +1,5 @@
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+
 import zeroHarmIcon from '../../../assets/icons/home/hseq-zero-harm.svg';
 import complianceIcon from '../../../assets/icons/home/hseq-compliance.svg';
 import riskIcon from '../../../assets/icons/home/hseq-risk.svg';
@@ -42,7 +44,7 @@ const Hseq: React.FC = () => {
       />
 
       <div className="relative flex flex-col gap-20 items-start max-w-360 w-full">
-        <div className="flex flex-col gap-4 items-center w-full">
+        <FadeIn className="flex flex-col gap-4 items-center w-full">
           <p className="font-light text-secondary text-lg text-center tracking-[3.85px]">HSEQ</p>
           <h2 className="font-light text-white text-[32px] md:text-[44px] lg:text-[56px] text-center leading-[1.1]">Safety Drives Every Operation</h2>
           <p className="font-light text-navy-subtle text-lg text-center max-w-180 leading-[1.8]">
@@ -50,19 +52,19 @@ const Hseq: React.FC = () => {
             implementing rigorous risk management, quality assurance, and environmental protection practices to safeguard our people, our clients, and the communities in which we
             operate.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {pillars.map(({ icon, title, description }) => (
-            <div key={title} className="bg-white border border-secondary rounded-2xl flex flex-col gap-2.75 items-start p-10">
+            <StaggerItem key={title} hover className="bg-white border border-secondary rounded-2xl flex flex-col gap-2.75 items-start p-10 h-full">
               <div className="bg-secondary rounded-full flex items-center justify-center shrink-0 size-15">
                 <img src={icon} alt="" className="size-7" />
               </div>
               <h3 className="font-light text-accent text-lg leading-[27px] pt-3.25">{title}</h3>
               <p className="font-light text-navy-subtle text-sm leading-[24.5px]">{description}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

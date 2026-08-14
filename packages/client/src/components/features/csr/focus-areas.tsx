@@ -1,3 +1,5 @@
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+
 import footballImg from '/csr/football-development.png';
 import youthImg from '/csr/youth-development.png';
 
@@ -20,14 +22,14 @@ const FocusAreas: React.FC = () => {
   return (
     <section className="bg-white flex flex-col items-center px-9 md:px-16 lg:px-36 pt-16 lg:pt-25 pb-16">
       <div className="flex flex-col gap-16 items-center w-full max-w-360">
-        <div className="flex flex-col gap-4 items-center">
+        <FadeIn className="flex flex-col gap-4 items-center">
           <h2 className="font-light text-accent text-[32px] md:text-[40px] lg:text-[48px] leading-normal text-center">CSR Focus Areas</h2>
           <div className="bg-secondary h-0.75 w-16" />
-        </div>
+        </FadeIn>
 
-        <div className="flex flex-col gap-8 items-start w-full">
+        <Stagger className="flex flex-col gap-8 items-start w-full">
           {areas.map(({ image, title, description }) => (
-            <div key={title} className="grid grid-cols-1 md:grid-cols-[384px_1fr] w-full bg-white rounded-2xl shadow-[0px_4px_32px_0px_rgba(0,0,0,0.05)] overflow-hidden">
+            <StaggerItem key={title} className="grid grid-cols-1 md:grid-cols-[384px_1fr] w-full bg-white rounded-2xl shadow-[0px_4px_32px_0px_rgba(0,0,0,0.05)] overflow-hidden">
               <div className="h-70 md:h-full">
                 <img src={image} alt={title} className="size-full object-cover" />
               </div>
@@ -38,9 +40,9 @@ const FocusAreas: React.FC = () => {
                   CTA Placeholder →
                 </a>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

@@ -1,5 +1,7 @@
+import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { FadeIn } from '../../common/motion';
 
 const badges = ['ISO 9001 Certified', 'HSE Excellence', 'Global Operations'];
 
@@ -10,7 +12,7 @@ const FinalCta: React.FC = () => {
     <section className="relative bg-deep-navy flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:py-32 overflow-hidden">
       <div className="absolute bg-primary blur-[80px] rounded-full size-200 -right-100 -top-100 pointer-events-none" />
 
-      <div className="relative flex flex-col items-center max-w-225 w-full text-center">
+      <FadeIn className="relative flex flex-col items-center max-w-225 w-full text-center">
         <h2 className="font-light text-white text-[36px] md:text-[50px] lg:text-[64px] leading-[1.25] tracking-[-1.7px] pb-8">
           Let&apos;s Build Better Production Performance Together
         </h2>
@@ -21,20 +23,24 @@ const FinalCta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-6 items-center justify-center">
-          <button
+          <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="bg-white rounded-full shadow-[0px_10px_15px_-3px_rgba(0,131,206,0.2),0px_4px_6px_-4px_rgba(0,131,206,0.2)] px-12 py-5 font-light text-secondary text-base tracking-[-0.44px] whitespace-nowrap"
           >
             Contact Production Solutions
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             className="border border-white rounded-full px-12 py-5 font-light text-white text-base tracking-[-0.38px] whitespace-nowrap"
           >
             Request Technical Consultation
-          </button>
+          </motion.button>
         </div>
 
         <div className="flex flex-wrap gap-8 items-center justify-center opacity-40 pt-16">
@@ -45,7 +51,7 @@ const FinalCta: React.FC = () => {
             </span>
           ))}
         </div>
-      </div>
+      </FadeIn>
     </section>
   );
 };

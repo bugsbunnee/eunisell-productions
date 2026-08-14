@@ -1,4 +1,5 @@
 import bgImage from '/csr/governance-bg.jpg';
+import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
 import downloadIcon from '../../../assets/icons/csr/download-icon.svg';
 import ethicsIcon from '../../../assets/icons/csr/ethics-icon.svg';
 import integrityIcon from '../../../assets/icons/csr/principle-integrity.svg';
@@ -26,7 +27,7 @@ const Governance: React.FC = () => {
       <img src={bgImage} alt="" className="absolute inset-0 size-full object-cover opacity-5" />
 
       <div className="relative grid grid-cols-1 lg:grid-cols-[494px_1fr] gap-16 justify-center w-full max-w-360 mx-auto">
-        <div className="flex flex-col gap-8 items-start">
+        <FadeIn className="flex flex-col gap-8 items-start">
           <p className="font-light text-secondary text-base tracking-[3px] uppercase">Compliance &amp; Ethics</p>
           <h2 className="font-light text-white text-[28px] md:text-[34px] lg:text-[41px] leading-[1.46]">Governance and Accountability</h2>
           <p className="font-light text-muted text-sm leading-[29.25px]">
@@ -45,18 +46,18 @@ const Governance: React.FC = () => {
               </a>
             ))}
           </div>
-        </div>
+        </FadeIn>
 
-        <div className="flex flex-col gap-6 items-start">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
+        <FadeIn delay={0.15} className="flex flex-col gap-6 items-start">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
             {principles.map(({ icon, title, description }) => (
-              <div key={title} className="bg-white/5 border border-white/10 rounded-2xl flex flex-col gap-4 items-start p-8.25">
+              <StaggerItem key={title} hover className="bg-white/5 border border-white/10 rounded-2xl flex flex-col gap-4 items-start p-8.25 h-full">
                 <img src={icon} alt="" className="size-6" />
                 <h3 className="font-light text-white text-lg leading-[30px]">{title}</h3>
                 <p className="font-light text-muted text-sm leading-[22.75px]">{description}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
 
           <div className="bg-white/5 border border-white/10 rounded-2xl flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between w-full p-10">
             <h3 className="font-light text-white text-2xl tracking-[0.02px]">Send us an email</h3>
@@ -71,7 +72,7 @@ const Governance: React.FC = () => {
               </p>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </div>
     </section>
   );
