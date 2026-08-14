@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import engineeringIcon from '../../../assets/icons/home/capability-engineering.svg';
 import productionIcon from '../../../assets/icons/home/capability-production.svg';
 import wellServicesIcon from '../../../assets/icons/home/capability-well-services.svg';
@@ -5,6 +6,7 @@ import facilityIcon from '../../../assets/icons/home/capability-facility.svg';
 import equipmentIcon from '../../../assets/icons/home/capability-equipment.svg';
 import integrityIcon from '../../../assets/icons/home/capability-integrity.svg';
 import waterSandIcon from '../../../assets/icons/home/capability-water-sand.svg';
+import { paths } from '../../../lib/data';
 
 const capabilities = [
   { icon: engineeringIcon, title: 'Engineering & Project Delivery', description: ['Full project lifecycle management', 'from concept through completion.'] },
@@ -18,6 +20,8 @@ const capabilities = [
 ];
 
 const Capabilities: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-white flex flex-col items-center px-9 md:px-16 lg:px-36 py-24 lg:py-35">
       <div className="flex flex-col gap-20 items-start max-w-360 w-full">
@@ -46,9 +50,9 @@ const Capabilities: React.FC = () => {
                 ))}
               </p>
 
-              <a href="#" className="font-light text-secondary text-[13px] leading-[19.5px] pt-4">
+              <button type="button" onClick={() => navigate(paths.services)} className="font-light text-secondary text-[13px] leading-[19.5px] pt-4">
                 Learn More →
-              </a>
+              </button>
             </div>
           ))}
         </div>

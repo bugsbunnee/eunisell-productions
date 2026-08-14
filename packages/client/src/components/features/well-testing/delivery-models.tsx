@@ -28,9 +28,9 @@ const DeliveryModels: React.FC = () => {
           <div className="hidden lg:block absolute bg-secondary/30 h-0.5 left-[10%] right-[10%] top-9.75" />
 
           {models.map(({ icon, label }) => (
-            <div key={label} className="flex flex-col gap-4 items-center">
+            <div key={label} className="flex flex-col gap-4 items-center z-50">
               <div className="bg-ice-blue rounded-xl flex items-center justify-center shrink-0 size-14">
-                <img src={icon} alt="" className="size-6" />
+                <img src={icon} alt={label} className="size-6" />
               </div>
               <div className="relative bg-secondary border-3 border-white rounded-full shrink-0 size-6.5">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-white rounded-full shadow-[0px_0px_0px_3px_rgba(0,131,206,0.25)] size-5" />

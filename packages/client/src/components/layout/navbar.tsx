@@ -4,14 +4,12 @@ import { MenuIcon, XIcon } from 'lucide-react';
 import { paths } from '../../lib/data';
 
 const navLinks = [
-  { label: 'Company', path: '#' },
+  { label: 'Company', path: paths.about },
   { label: 'Services', path: paths.services },
-  { label: 'Projects', path: '#' },
-  { label: 'Industries', path: '#' },
-  { label: 'HSEQ', path: '#' },
-  { label: 'Knowledge Centre', path: '#' },
-  { label: 'Careers', path: '#' },
-  { label: 'Contact', path: '#' },
+  { label: 'Projects', path: paths.projects },
+  { label: 'Industries', path: paths.portfolio },
+  { label: 'HSEQ', path: paths.hseq },
+  { label: 'Contact', path: paths.contact },
 ];
 
 const Navbar: React.FC = () => {
@@ -23,11 +21,11 @@ const Navbar: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <header className={`relative border-b flex flex-col w-full ${isDark ? 'bg-deep-navy border-white' : 'bg-white border-transparent'}`}>
+    <header className={`sticky top-0 z-50 border-b flex flex-col w-full ${isDark ? 'bg-deep-navy border-white' : 'bg-white border-transparent'}`}>
       <div className="flex items-center justify-between h-25 max-w-432 w-full mx-auto px-9 md:px-16 lg:px-36">
-        <a href="#" className="inline-flex items-center bg-secondary rounded-full px-6 py-[8.5px] text-sm text-white leading-5 whitespace-nowrap">
+        <Link to={paths.contact} className="inline-flex items-center bg-secondary rounded-full px-6 py-[8.5px] text-sm text-white leading-5 whitespace-nowrap">
           Contact Our Team
-        </a>
+        </Link>
 
         <nav className={`hidden lg:flex items-center gap-10 ${isDark ? 'text-white' : 'text-accent'}`}>
           {navLinks.map(({ label, path }) => (
@@ -48,7 +46,7 @@ const Navbar: React.FC = () => {
             {open ? <XIcon size={24} /> : <MenuIcon size={24} />}
           </button>
 
-          <Link to="/" className="shrink-0">
+          <Link to={paths.home} className="shrink-0">
             {isDark ? (
               <img src="/general/logo-alternate.png" alt="Eunisell" className="h-10.5 w-26.5 object-contain" />
             ) : (

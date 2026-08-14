@@ -31,7 +31,7 @@ const EnquiryForm: React.FC = () => {
   };
 
   return (
-    <section className="bg-white flex flex-col items-start px-9 md:px-16 lg:px-66 py-16 lg:py-35">
+    <section id="enquiry-form" className="bg-white flex flex-col items-start px-9 md:px-16 lg:px-66 py-16 lg:py-35">
       <div className="flex flex-col gap-16 items-start max-w-300 w-full">
         <div className="flex flex-col gap-4 items-center w-full text-center">
           <h2 className="font-light text-accent text-[32px] md:text-[40px] lg:text-5xl leading-[1.5] tracking-[-0.2px]">Detailed Project Enquiry</h2>

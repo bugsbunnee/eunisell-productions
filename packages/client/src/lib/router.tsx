@@ -7,6 +7,7 @@ import ProjectsPage from '../pages/ProjectsPage';
 import ServicesPage from '../pages/ServicesPage';
 import PortfolioPage from '../pages/PortfolioPage';
 import WellTestingPage from '../pages/WellTestingPage';
+import EpcPage from '../pages/EpcPage';
 import CsrPage from '../pages/CsrPage';
 import HseqPage from '../pages/HseqPage';
 import ContactPage from '../pages/ContactPage';
@@ -39,6 +40,10 @@ export const routes: RouteObject[] = [
       {
         path: 'services/well-testing',
         element: <WellTestingPage />,
+      },
+      {
+        path: 'services/epc',
+        element: <EpcPage />,
       },
       {
         path: 'csr',

@@ -1,6 +1,17 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+import { scrollToView } from '../../../lib/utils';
+
 const badges = ['ISO 9001 Certified', '20+ Years Experience', 'Global Operations', 'HSE Excellence'];
 
-const FinalCta: React.FC = () => {
+interface FinalCtaProps {
+  scrollTargetId?: string;
+}
+
+const FinalCta: React.FC<FinalCtaProps> = ({ scrollTargetId }) => {
+  const navigate = useNavigate();
+  const handleCtaClick = () => (scrollTargetId ? scrollToView(scrollTargetId) : navigate(paths.contact));
+
   return (
     <section className="relative bg-deep-navy flex flex-col items-center px-9 md:px-16 lg:px-36 py-24 lg:py-40 overflow-hidden">
       <div
@@ -25,12 +36,12 @@ const FinalCta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-5 items-center justify-center pt-6">
-          <a href="#" className="bg-secondary rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap">
+          <button type="button" onClick={handleCtaClick} className="bg-secondary rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap">
             Contact Our Production Solutions Team
-          </a>
-          <a href="#" className="border-2 border-white rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap">
+          </button>
+          <button type="button" onClick={handleCtaClick} className="border-2 border-white rounded-full px-10 py-5 font-light text-white text-base whitespace-nowrap">
             Request a Technical Consultation
-          </a>
+          </button>
         </div>
 
         <div className="flex flex-wrap gap-8 items-center justify-center pt-4">

@@ -13,7 +13,7 @@ const ContactPage: React.FC = () => {
       <EnquiryForm />
       <Offices />
       <Process />
-      <FinalCta />
+      <FinalCta scrollTargetId="enquiry-form" />
     </div>
   );
 };

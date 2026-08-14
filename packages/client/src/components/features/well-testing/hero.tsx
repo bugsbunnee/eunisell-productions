@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+
 import heroBg from '/services/well-testing/hero-bg.png';
 import heroDecor1 from '../../../assets/icons/well-testing/hero-decor-1.svg';
 import heroDecor2 from '../../../assets/icons/well-testing/hero-decor-2.svg';
@@ -6,6 +9,8 @@ import btnArrow from '../../../assets/icons/well-testing/btn-arrow.svg';
 const capabilities = ['Surface Well Testing', 'Extended Well Testing', 'Reservoir Surveillance', 'Real-Time Data Acquisition'];
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative flex flex-col justify-center overflow-hidden bg-deep-navy lg:h-205">
       <img src={heroBg} alt="Well testing operations" className="absolute inset-0 size-full object-cover opacity-50" />
@@ -29,13 +34,22 @@ const Hero: React.FC = () => {
           <p className="font-light text-navy-muted text-lg md:text-xl leading-[1.7] max-w-150">Surface &amp; Extended Well Testing (SWT, EWT) and reservoir surveillance</p>
 
           <div className="flex flex-wrap gap-5 items-center pt-4">
-            <a href="#" className="bg-secondary rounded-full flex gap-3 items-center px-10 py-4.5 font-light text-white text-base whitespace-nowrap">
+            <button
+              type="button"
+              onClick={() => navigate(paths.contact)}
+              className="bg-secondary rounded-full flex gap-3 items-center px-10 py-4.5 font-light text-white text-base whitespace-nowrap"
+            >
               Speak With Our Team
-              <img src={btnArrow} alt="" className="w-3.5 h-3" />
-            </a>
-            <a href="#" className="border border-white rounded-full flex items-center px-10 py-4.25 font-light text-white text-base whitespace-nowrap">
+              <img src={btnArrow} alt="Speak With Our Team" className="w-3.5 h-3" />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => navigate(paths.contact)}
+              className="border border-white rounded-full flex items-center px-10 py-4.25 font-light text-white text-base whitespace-nowrap"
+            >
               Request Technical Consultation
-            </a>
+            </button>
           </div>
         </div>
 

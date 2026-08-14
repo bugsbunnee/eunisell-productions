@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { paths } from '../../../lib/data';
+import { scrollToView } from '../../../lib/utils';
 import heroImg from '/contact/hero-control-room.png';
 
 const Hero: React.FC = () => {
@@ -33,9 +34,13 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="flex gap-6 items-center pt-2">
-          <a href="#" className="bg-secondary rounded-full px-10 py-5 font-light text-white text-base tracking-[0.05px] whitespace-nowrap">
+          <button
+            type="button"
+            onClick={() => scrollToView('enquiry-form')}
+            className="bg-secondary rounded-full px-10 py-5 font-light text-white text-base tracking-[0.05px] whitespace-nowrap"
+          >
             Request a Technical Consultation
-          </a>
+          </button>
           <div className="bg-secondary h-0.5 w-12 hidden sm:block" />
         </div>
       </div>

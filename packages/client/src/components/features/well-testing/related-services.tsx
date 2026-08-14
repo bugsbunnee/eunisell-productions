@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+
 import productionFacilitiesImg from '/services/well-testing/related-production-facilities.png';
 import operationsImg from '/services/well-testing/related-operations.png';
 import waterSolutionsImg from '/services/well-testing/related-water-solutions.png';
@@ -24,6 +27,8 @@ const relatedServices: RelatedService[] = [
 ];
 
 const RelatedServices: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-ice-blue flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:py-32">
       <div className="flex flex-col gap-20 w-full max-w-360">
@@ -31,7 +36,12 @@ const RelatedServices: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 w-full">
           {relatedServices.map(({ number, title, description, image, imageBg }) => (
-            <a key={number} href="#" className="bg-white border border-line rounded-2xl shadow-sm overflow-hidden flex flex-col items-start">
+            <button
+              key={number}
+              type="button"
+              onClick={() => navigate(paths.services)}
+              className="bg-white border border-line rounded-2xl shadow-sm overflow-hidden flex flex-col items-start text-left"
+            >
               <div className={`h-55 w-full overflow-hidden ${imageBg ?? ''}`}>
                 <img src={image} alt={title} className="size-full object-cover" />
               </div>
@@ -49,7 +59,7 @@ const RelatedServices: React.FC = () => {
                   <img src={relatedArrow} alt="" className="w-4 h-2.5" />
                 </div>
               </div>
-            </a>
+            </button>
           ))}
         </div>
       </div>

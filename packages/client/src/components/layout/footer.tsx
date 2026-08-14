@@ -1,27 +1,35 @@
+import { Link } from 'react-router-dom';
 import footerLogo from '/general/footer-logo.png';
 import linkedinIcon from '../../assets/icons/footer/social-linkedin.svg';
 import xIcon from '../../assets/icons/footer/social-x.svg';
 import pinIcon from '../../assets/icons/footer/pin.svg';
 import mailIcon from '../../assets/icons/footer/mail.svg';
 import phoneIcon from '../../assets/icons/footer/phone.svg';
+import { paths } from '../../lib/data';
 
-const companyLinks = ['About Us', 'Management Team', 'Our Story', 'Careers', 'News & Insights'];
+const companyLinks = [
+  { label: 'About Us', path: paths.about },
+  { label: 'Management Team', path: paths.about },
+  { label: 'Our Story', path: paths.about },
+  { label: 'News & Insights', path: paths.about },
+  { label: 'Corporate Social Responsibility', path: paths.csr },
+];
 
 const serviceLinks = [
-  'Engineering, Procurement & Construction',
-  'Production Facilities',
-  'Installation & Commissioning',
-  'Engineering Design',
-  'Production Improvement',
-  'Well Testing',
-  'Wellhead Maintenance',
-  'Operations & Maintenance',
-  'Shut-in Well Re-entry',
-  'Equipment Supply',
-  'Equipment Rentals',
-  'Equipment Repairs',
-  'Produced Water Management',
-  'Sand Management',
+  { label: 'Engineering, Procurement & Construction', path: paths.epc },
+  { label: 'Production Facilities', path: paths.services },
+  { label: 'Installation & Commissioning', path: paths.services },
+  { label: 'Engineering Design', path: paths.services },
+  { label: 'Production Improvement', path: paths.services },
+  { label: 'Well Testing', path: paths.wellTesting },
+  { label: 'Wellhead Maintenance', path: paths.services },
+  { label: 'Operations & Maintenance', path: paths.services },
+  { label: 'Shut-in Well Re-entry', path: paths.services },
+  { label: 'Equipment Supply', path: paths.services },
+  { label: 'Equipment Rentals', path: paths.services },
+  { label: 'Equipment Repairs', path: paths.services },
+  { label: 'Produced Water Management', path: paths.services },
+  { label: 'Sand Management', path: paths.services },
 ];
 
 const industryLinks = ['Upstream Oil & Gas', 'International Oil Companies', 'Independent Operators', 'Marginal Field Operators', 'Production Engineering'];
@@ -55,11 +63,11 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-5 items-start">
             <h3 className="font-light text-white text-[11px] tracking-[2.2px]">COMPANY</h3>
             <ul className="flex flex-col items-start w-full">
-              {companyLinks.map((label) => (
+              {companyLinks.map(({ label, path }) => (
                 <li key={label} className="w-full py-2.25">
-                  <a href="#" className="font-light text-navy-subtle text-sm">
+                  <Link to={path} className="font-light text-navy-subtle text-sm">
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -68,11 +76,11 @@ const Footer: React.FC = () => {
           <div className="flex flex-col gap-5 items-start">
             <h3 className="font-light text-white text-[11px] tracking-[2.2px]">SERVICES</h3>
             <ul className="flex flex-col items-start w-full">
-              {serviceLinks.map((label) => (
+              {serviceLinks.map(({ label, path }) => (
                 <li key={label} className="w-full py-2.25">
-                  <a href="#" className="font-light text-navy-subtle text-sm">
+                  <Link to={path} className="font-light text-navy-subtle text-sm">
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -83,9 +91,9 @@ const Footer: React.FC = () => {
             <ul className="flex flex-col items-start w-full">
               {industryLinks.map((label) => (
                 <li key={label} className="w-full py-2.25">
-                  <a href="#" className="font-light text-navy-subtle text-sm">
+                  <Link to={paths.portfolio} className="font-light text-navy-subtle text-sm">
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

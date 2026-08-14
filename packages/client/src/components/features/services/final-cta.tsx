@@ -1,6 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+
 const badges = ['ISO 9001 Certified', 'HSE Excellence', 'Global Operations'];
 
 const FinalCta: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative bg-deep-navy flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:py-32 overflow-hidden">
       <div className="absolute bg-primary blur-[80px] rounded-full size-200 -right-100 -top-100 pointer-events-none" />
@@ -16,15 +21,20 @@ const FinalCta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-6 items-center justify-center">
-          <a
-            href="#"
+          <button
+            type="button"
+            onClick={() => navigate(paths.contact)}
             className="bg-white rounded-full shadow-[0px_10px_15px_-3px_rgba(0,131,206,0.2),0px_4px_6px_-4px_rgba(0,131,206,0.2)] px-12 py-5 font-light text-secondary text-base tracking-[-0.44px] whitespace-nowrap"
           >
             Contact Production Solutions
-          </a>
-          <a href="#" className="border border-white rounded-full px-12 py-5 font-light text-white text-base tracking-[-0.38px] whitespace-nowrap">
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate(paths.contact)}
+            className="border border-white rounded-full px-12 py-5 font-light text-white text-base tracking-[-0.38px] whitespace-nowrap"
+          >
             Request Technical Consultation
-          </a>
+          </button>
         </div>
 
         <div className="flex flex-wrap gap-8 items-center justify-center opacity-40 pt-16">

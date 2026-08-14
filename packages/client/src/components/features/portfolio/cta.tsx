@@ -1,6 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import blueprintBg from '/portfolio/cta-blueprint.png';
+import { paths } from '../../../lib/data';
 
 const Cta: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative bg-accent flex flex-col items-center overflow-hidden px-9 md:px-16 lg:px-36 py-16 lg:py-32">
       <img src={blueprintBg} alt="" className="absolute inset-0 size-full object-cover opacity-10" />
@@ -13,9 +17,9 @@ const Cta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-6 items-center justify-center pt-4">
-          <a href="#" className="bg-secondary rounded-full px-10 py-5 font-light text-white text-lg whitespace-nowrap">
+          <button type="button" onClick={() => navigate(paths.contact)} className="bg-secondary rounded-full px-10 py-5 font-light text-white text-lg whitespace-nowrap">
             Contact Our Specialists
-          </a>
+          </button>
 
           <a href="#" className="border border-white rounded-full px-10 py-5 font-light text-white text-lg whitespace-nowrap">
             Download Capability Profile

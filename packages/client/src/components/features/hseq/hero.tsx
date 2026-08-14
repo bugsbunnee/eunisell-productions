@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import heroBg from '/hseq/hero-bg.png';
 import heroDecor1 from '../../../assets/icons/hseq/hero-decor-1.svg';
 import heroDecor2 from '../../../assets/icons/hseq/hero-decor-2.svg';
@@ -6,6 +7,7 @@ import safetyFirst from '../../../assets/icons/hseq/safety-first.svg';
 import qualityAssured from '../../../assets/icons/hseq/quality-assured.svg';
 import environmentalResponsibility from '../../../assets/icons/hseq/environmental-responsibility.svg';
 import operationalExcellence from '../../../assets/icons/hseq/operational-excellence.svg';
+import { paths } from '../../../lib/data';
 
 const highlights = [
   { icon: safetyFirst, title: 'Safety First', subtitle: 'Zero incident milestone philosophy' },
@@ -15,6 +17,8 @@ const highlights = [
 ];
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative flex flex-col items-center justify-center overflow-hidden bg-deep-navy">
       <img src={heroBg} alt="HSEQ field operations" className="absolute inset-0 size-full object-cover" />
@@ -40,13 +44,21 @@ const Hero: React.FC = () => {
           </p>
 
           <div className="flex flex-wrap gap-5 items-center pt-4">
-            <a href="#" className="bg-secondary rounded-full flex gap-3 items-center px-10 py-5.25 font-light text-white text-base whitespace-nowrap">
+            <button
+              type="button"
+              onClick={() => navigate(paths.contact)}
+              className="bg-secondary rounded-full flex gap-3 items-center px-10 py-5.25 font-light text-white text-base whitespace-nowrap"
+            >
               Contact Our Team
               <img src={btnArrow} alt="" className="w-3.5 h-3" />
-            </a>
-            <a href="#" className="border border-white rounded-full flex items-center px-10 py-5 font-light text-white text-base whitespace-nowrap">
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate(paths.services)}
+              className="border border-white rounded-full flex items-center px-10 py-5 font-light text-white text-base whitespace-nowrap"
+            >
               Explore Our Services
-            </a>
+            </button>
           </div>
         </div>
 

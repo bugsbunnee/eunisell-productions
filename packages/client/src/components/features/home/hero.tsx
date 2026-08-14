@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+
 import assetLifecycleIcon from '../../../assets/icons/home/asset-lifecycle.svg';
 import engineeringExpertiseIcon from '../../../assets/icons/home/engineering-expertise.svg';
 import productionOptimizationIcon from '../../../assets/icons/home/production-optimization.svg';
@@ -24,6 +27,8 @@ const stats = [
 ];
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-deep-navy relative flex flex-col justify-center pt-18 overflow-hidden">
       <div
@@ -33,11 +38,12 @@ const Hero: React.FC = () => {
             'linear-gradient(90deg, rgba(0, 131, 206, 0.08) 1.6667%, rgba(0, 131, 206, 0) 1.6667%), linear-gradient(180deg, rgba(0, 131, 206, 0.08) 1.6667%, rgba(0, 131, 206, 0) 1.6667%)',
         }}
       />
+
       <div className="absolute inset-[20%_-5%_20%_65%] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(255,120,0,0.05) 0%, rgba(255,120,0,0) 70%)' }} />
       <div className="absolute inset-[15%_10%_15%_40%] pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(0,131,206,0.1) 0%, rgba(0,131,206,0) 70%)' }} />
 
       <div className="relative flex-1 flex items-center justify-center px-9 md:px-16 lg:px-36 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_520px] gap-16 max-w-432 w-full items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[2fr_520px] gap-16 max-w-432 w-full items-center">
           <div className="flex flex-col items-start">
             <p className="font-light text-white text-[11px] tracking-[3.85px] leading-[16.5px] pb-2.5">INTEGRATED PRODUCTION SOLUTIONS</p>
 
@@ -51,16 +57,25 @@ const Hero: React.FC = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 pt-8">
-              <a href="#" className="bg-secondary rounded-full px-8 pt-3.75 pb-4.625 font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap">
+              <button
+                type="button"
+                onClick={() => navigate(paths.contact)}
+                className="bg-secondary h-[54.5px] w-56.75 rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
+              >
                 Speak with Our Experts
-              </a>
-              <a href="#" className="border border-white rounded-full px-8 pt-3.75 pb-4.625 font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap">
+              </button>
+
+              <button
+                type="button"
+                onClick={() => navigate(paths.contact)}
+                className="h-[54.5px] w-56.75 border border-white rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
+              >
                 Request a Proposal
-              </a>
+              </button>
             </div>
           </div>
 
-          <div className="backdrop-blur-md bg-deep-navy border border-secondary rounded-[16px] flex flex-col gap-6 p-8 w-full max-w-130 lg:w-130 justify-self-end">
+          <div className="backdrop-blur-md bg-deep-navy border border-secondary rounded-[16px] flex flex-col gap-6 p-8 w-full max-w-130  justify-self-end">
             <p className="font-light text-white text-[10px] tracking-[3px] uppercase leading-3.75">Key Capabilities</p>
 
             <div className="flex flex-col">

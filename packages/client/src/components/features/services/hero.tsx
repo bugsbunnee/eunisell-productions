@@ -1,7 +1,12 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+
 import heroBg from '/services/hero-bg.png';
 import arrowWhite from '../../../assets/icons/services/arrow-white.svg';
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative flex h-125 md:h-160 lg:h-200 items-center overflow-hidden bg-deep-navy">
       <img src={heroBg} alt="Offshore oil and gas production facility at dusk" className="absolute inset-0 size-full object-cover opacity-50" />
@@ -26,13 +31,22 @@ const Hero: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-6 items-center pt-6">
-          <a href="#" className="bg-secondary rounded-full flex gap-4 items-center px-10 py-4.5 font-light text-white text-base tracking-[-0.2px] whitespace-nowrap">
+          <button
+            type="button"
+            onClick={() => navigate(paths.services)}
+            className="bg-secondary rounded-full flex gap-4 items-center px-10 py-4.5 font-light text-white text-base tracking-[-0.2px] whitespace-nowrap"
+          >
             Explore Our Services
-            <img src={arrowWhite} alt="" className="w-3.5 h-3" />
-          </a>
-          <a href="#" className="border border-white rounded-full flex items-center px-10 py-4.5 font-light text-white text-base tracking-[-0.2px] whitespace-nowrap">
+            <img src={arrowWhite} alt="Explore Our Services" className="w-3.5 h-3" />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => navigate(paths.contact)}
+            className="border border-white rounded-full flex items-center px-10 py-4.5 font-light text-white text-base tracking-[-0.2px] whitespace-nowrap"
+          >
             Speak With Our Engineers
-          </a>
+          </button>
         </div>
       </div>
     </section>

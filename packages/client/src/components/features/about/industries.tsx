@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+
 import upstreamImg from '/about/industry-upstream.png';
 import independentImg from '/about/industry-independent.png';
 import iocImg from '/about/industry-ioc.png';
@@ -48,6 +51,8 @@ const industries: Industry[] = [
 ];
 
 const Industries: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-white flex flex-col items-start px-9 md:px-16 lg:px-36 py-16 lg:py-35">
       <div className="flex flex-col gap-16 items-start max-w-360 w-full">
@@ -66,9 +71,9 @@ const Industries: React.FC = () => {
               <div className="relative flex flex-col gap-2.7 items-start w-full">
                 <h3 className="font-light text-white text-[28px] leading-[1.5]">{title}</h3>
                 <p className="font-light text-white text-[15px] leading-[1.65]">{description}</p>
-                <a href="#" className="font-light text-white text-sm pt-3.3">
+                <button type="button" onClick={() => navigate(paths.portfolio)} className="font-light text-white text-sm pt-3.3">
                   Explore →
-                </a>
+                </button>
               </div>
             </div>
           ))}

@@ -1,9 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../lib/data';
+
 import decor1 from '../../../assets/icons/well-testing/partner-decor-1.svg';
 import decor2 from '../../../assets/icons/well-testing/partner-decor-2.svg';
 
 const badges = ['ISO 9001 CERTIFIED', 'HSE EXCELLENCE', 'GLOBAL STANDARDS'];
 
 const PartnerCta: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative bg-accent overflow-hidden flex flex-col items-center px-9 md:px-16 lg:px-36 py-16 lg:py-32">
       <div
@@ -33,12 +38,20 @@ const PartnerCta: React.FC = () => {
         </p>
 
         <div className="flex flex-wrap gap-5 items-center justify-center pt-2">
-          <a href="#" className="bg-secondary rounded-full flex items-center justify-center px-12 py-5 font-light text-white text-base whitespace-nowrap">
+          <button
+            type="button"
+            onClick={() => navigate(paths.contact)}
+            className="bg-secondary rounded-full flex items-center justify-center px-12 py-5 font-light text-white text-base whitespace-nowrap"
+          >
             Contact Our Production Solutions Team
-          </a>
-          <a href="#" className="border-2 border-white rounded-full flex items-center justify-center px-12 py-5 font-light text-white text-base whitespace-nowrap">
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate(paths.contact)}
+            className="border-2 border-white rounded-full flex items-center justify-center px-12 py-5 font-light text-white text-base whitespace-nowrap"
+          >
             Request Technical Consultation
-          </a>
+          </button>
         </div>
 
         <div className="flex flex-wrap gap-6 sm:gap-10 items-center justify-center opacity-40 pt-6">
