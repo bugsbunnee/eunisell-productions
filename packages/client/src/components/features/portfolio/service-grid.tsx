@@ -6,7 +6,7 @@ import wellTestingImg from '/portfolio/card-well-testing.png';
 import productionFacilitiesImg from '/portfolio/card-production-facilities.png';
 import operationsMaintenanceImg from '/portfolio/card-operations-maintenance.png';
 import waterSolutionsImg from '/portfolio/card-water-solutions.png';
-import productionEnhancementImg from '/portfolio/card-production-enhancement.png';
+import productionEnhancementImg from '/portfolio/card-production-enhancement.jpeg';
 import equipmentSolutionsImg from '/portfolio/card-equipment-solutions.png';
 import engineeringServicesImg from '/portfolio/card-engineering-services.png';
 import arrowWhite from '../../../assets/icons/services/arrow-white.svg';

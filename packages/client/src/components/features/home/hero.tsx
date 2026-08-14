@@ -2,6 +2,9 @@ import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
 import { FadeIn, Stagger, StaggerItem } from '../../common/motion';
+import { BackgroundVideo } from '../../common/background-video';
+
+const HERO_VIDEOS = ['/home/production.mp4'];
 
 import assetLifecycleIcon from '../../../assets/icons/home/asset-lifecycle.svg';
 import engineeringExpertiseIcon from '../../../assets/icons/home/engineering-expertise.svg';
@@ -32,7 +35,9 @@ const Hero: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-deep-navy relative flex flex-col justify-center pt-18 overflow-hidden">
+    <section className="bg-deep-navy relative isolate flex flex-col justify-center pt-18 overflow-hidden">
+      <BackgroundVideo sources={HERO_VIDEOS} overlayClassName="bg-deep-navy/65" />
+
       <div
         className="absolute inset-0 opacity-50 pointer-events-none"
         style={{
@@ -87,7 +92,7 @@ const Hero: React.FC = () => {
             </StaggerItem>
           </Stagger>
 
-          <FadeIn delay={0.2} className="backdrop-blur-md bg-deep-navy border border-secondary rounded-[16px] flex flex-col gap-6 p-8 w-full max-w-130 justify-self-end">
+          <FadeIn delay={0.2} className="backdrop-blur-md bg-deep-navy/20 border border-secondary rounded-[16px] flex flex-col gap-6 p-8 w-full max-w-130 justify-self-end">
             <p className="font-light text-white text-[10px] tracking-[3px] uppercase leading-3.75">Key Capabilities</p>
 
             <div className="flex flex-col">
