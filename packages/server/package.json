@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "bun --hot run src/index.ts",
     "start": "bun run src/index.ts",
-    "build:emails": "bun build src/infrastructure/emails/welcome.tsx src/infrastructure/emails/recent-login.tsx --target=node --format=esm --production --external react --external react/jsx-runtime --external react-dom --external @react-email/components --outdir src/infrastructure/emails",
+    "build:emails": "bun build src/infrastructure/emails/welcome.tsx src/infrastructure/emails/recent-login.tsx src/infrastructure/emails/enquiry-notification.tsx --target=node --format=esm --production --external react --external react/jsx-runtime --external react-dom --external @react-email/components --outdir src/infrastructure/emails",
     "db:generate": "bunx prisma generate",
     "db:push": "bunx prisma db push",
     "db:migrate": "bunx prisma migrate dev",

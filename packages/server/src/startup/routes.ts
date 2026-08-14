@@ -5,6 +5,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 
 import auth from '../routes/auth.routes.js';
+import contact from '../routes/contact.routes.js';
 
 import error from '../middleware/error.js';
 
@@ -23,6 +24,7 @@ const registerRoutes = (app: Express) => {
   app.use(express.static('public'));
 
   app.use('/api/v1/auth', auth);
+  app.use('/api/v1/contact', contact);
 
   app.use(error);
 };

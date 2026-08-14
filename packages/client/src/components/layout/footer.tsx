@@ -1,40 +1,14 @@
 import { Link } from 'react-router-dom';
+
 import footerLogo from '/general/footer-logo.png';
 import linkedinIcon from '../../assets/icons/footer/social-linkedin.svg';
 import xIcon from '../../assets/icons/footer/social-x.svg';
 import pinIcon from '../../assets/icons/footer/pin.svg';
 import mailIcon from '../../assets/icons/footer/mail.svg';
 import phoneIcon from '../../assets/icons/footer/phone.svg';
+
+import { companyLinks, serviceLinks, industryLinks, SOCIAL_LINKS, legalLinks } from './footer.constants';
 import { paths } from '../../lib/data';
-
-const companyLinks = [
-  { label: 'About Us', path: paths.about },
-  { label: 'Management Team', path: paths.about },
-  { label: 'Our Story', path: paths.about },
-  { label: 'News & Insights', path: paths.about },
-  { label: 'Corporate Social Responsibility', path: paths.csr },
-];
-
-const serviceLinks = [
-  { label: 'Engineering, Procurement & Construction', path: paths.epc },
-  { label: 'Production Facilities', path: paths.services },
-  { label: 'Installation & Commissioning', path: paths.services },
-  { label: 'Engineering Design', path: paths.services },
-  { label: 'Production Improvement', path: paths.services },
-  { label: 'Well Testing', path: paths.wellTesting },
-  { label: 'Wellhead Maintenance', path: paths.services },
-  { label: 'Operations & Maintenance', path: paths.services },
-  { label: 'Shut-in Well Re-entry', path: paths.services },
-  { label: 'Equipment Supply', path: paths.services },
-  { label: 'Equipment Rentals', path: paths.services },
-  { label: 'Equipment Repairs', path: paths.services },
-  { label: 'Produced Water Management', path: paths.services },
-  { label: 'Sand Management', path: paths.services },
-];
-
-const industryLinks = ['Upstream Oil & Gas', 'International Oil Companies', 'Independent Operators', 'Marginal Field Operators', 'Production Engineering'];
-
-const legalLinks = ['Privacy Policy', 'Terms of Use', 'HSEQ Policy', 'Cookie Settings'];
 
 const Footer: React.FC = () => {
   return (
@@ -51,10 +25,22 @@ const Footer: React.FC = () => {
             </p>
 
             <div className="flex gap-3 items-start pt-3">
-              <a href="#" aria-label="LinkedIn" className="bg-white/5 border border-white/10 rounded-full flex items-center justify-center shrink-0 size-9">
+              <a
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="bg-white/5 border border-white/10 rounded-full flex items-center justify-center shrink-0 size-9"
+              >
                 <img src={linkedinIcon} alt="" className="size-4" />
               </a>
-              <a href="#" aria-label="X" className="bg-white/5 border border-white/10 rounded-full flex items-center justify-center shrink-0 size-9">
+              <a
+                href={SOCIAL_LINKS.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+                className="bg-white/5 border border-white/10 rounded-full flex items-center justify-center shrink-0 size-9"
+              >
                 <img src={xIcon} alt="" className="size-4" />
               </a>
             </div>
@@ -126,11 +112,17 @@ const Footer: React.FC = () => {
           <p className="font-light text-white text-sm">© 2026 Eunisell Production Solutions Limited. All rights reserved.</p>
 
           <div className="flex flex-wrap gap-8 items-start">
-            {legalLinks.map((label) => (
-              <a key={label} href="#" className="font-light text-white text-sm whitespace-nowrap">
-                {label}
-              </a>
-            ))}
+            {legalLinks.map(({ label, path }) =>
+              path ? (
+                <Link key={label} to={path} className="font-light text-white text-sm whitespace-nowrap">
+                  {label}
+                </Link>
+              ) : (
+                <a key={label} href="#" className="font-light text-white text-sm whitespace-nowrap">
+                  {label}
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AnimatePresence, motion } from 'motion/react';
@@ -14,22 +15,30 @@ import {
   ERROR_CLASSNAME,
 } from './enquiry-form.constants';
 
+import contactService from '../../../services/contact.service';
+
 const EnquiryForm: React.FC = () => {
+  const [submitState, setSubmitState] = useState<'idle' | 'success' | 'error'>('idle');
+
   const {
     register,
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
   } = useForm<EnquiryFormValues>({
     resolver: zodResolver(enquirySchema),
     defaultValues: ENQUIRY_FORM_DEFAULT_VALUES,
   });
 
   const onSubmit = async (values: EnquiryFormValues) => {
-    console.log('Contact enquiry submitted', values);
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    reset(ENQUIRY_FORM_DEFAULT_VALUES);
+    try {
+      await contactService.submitEnquiry(values);
+      setSubmitState('success');
+      reset(ENQUIRY_FORM_DEFAULT_VALUES);
+    } catch {
+      setSubmitState('error');
+    }
   };
 
   return (
@@ -185,8 +194,9 @@ const EnquiryForm: React.FC = () => {
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
+
               <AnimatePresence>
-                {isSubmitSuccessful && (
+                {submitState === 'success' && (
                   <motion.span
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -195,6 +205,18 @@ const EnquiryForm: React.FC = () => {
                     className="text-sm text-secondary"
                   >
                     Thanks — your enquiry has been sent. Our team will be in touch shortly.
+                  </motion.span>
+                )}
+
+                {submitState === 'error' && (
+                  <motion.span
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-sm text-destructive"
+                  >
+                    Something went wrong while sending your enquiry. Please try again or contact us directly.
                   </motion.span>
                 )}
               </AnimatePresence>
