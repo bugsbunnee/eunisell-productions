@@ -13,6 +13,18 @@ import HseqPage from '../pages/HseqPage';
 import ContactPage from '../pages/ContactPage';
 import PrivacyPage from '../pages/PrivacyPage';
 import BlogPage from '../pages/BlogPage';
+import InstallationCommissioningPage from '../pages/InstallationCommissioningPage';
+import EngineeringDesignPage from '../pages/EngineeringDesignPage';
+import ProductionImprovementPage from '../pages/ProductionImprovementPage';
+import ProductionFacilitiesPage from '../pages/ProductionFacilitiesPage';
+import WellheadMaintenancePage from '../pages/WellheadMaintenancePage';
+import OperationsMaintenancePage from '../pages/OperationsMaintenancePage';
+import ShutinWellReentryPage from '../pages/ShutinWellReentryPage';
+import EquipmentSupplyPage from '../pages/EquipmentSupplyPage';
+import EquipmentRepairsPage from '../pages/EquipmentRepairsPage';
+import EquipmentRentalsPage from '../pages/EquipmentRentalsPage';
+import ProducedWaterManagementPage from '../pages/ProducedWaterManagementPage';
+import SandManagementPage from '../pages/SandManagementPage';
 
 export const routes: RouteObject[] = [
   {
@@ -46,6 +58,54 @@ export const routes: RouteObject[] = [
       {
         path: 'services/epc',
         element: <EpcPage />,
+      },
+      {
+        path: 'services/installation-commissioning',
+        element: <InstallationCommissioningPage />,
+      },
+      {
+        path: 'services/engineering-design',
+        element: <EngineeringDesignPage />,
+      },
+      {
+        path: 'services/production-improvement',
+        element: <ProductionImprovementPage />,
+      },
+      {
+        path: 'services/production-facilities',
+        element: <ProductionFacilitiesPage />,
+      },
+      {
+        path: 'services/wellhead-maintenance',
+        element: <WellheadMaintenancePage />,
+      },
+      {
+        path: 'services/operations-maintenance',
+        element: <OperationsMaintenancePage />,
+      },
+      {
+        path: 'services/shut-in-well-re-entry',
+        element: <ShutinWellReentryPage />,
+      },
+      {
+        path: 'services/equipment-supply',
+        element: <EquipmentSupplyPage />,
+      },
+      {
+        path: 'services/equipment-repairs',
+        element: <EquipmentRepairsPage />,
+      },
+      {
+        path: 'services/equipment-rentals',
+        element: <EquipmentRentalsPage />,
+      },
+      {
+        path: 'services/produced-water-management',
+        element: <ProducedWaterManagementPage />,
+      },
+      {
+        path: 'services/sand-management',
+        element: <SandManagementPage />,
       },
       {
         path: 'csr',
