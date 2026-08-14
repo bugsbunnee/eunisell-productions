@@ -18,7 +18,7 @@ export const FadeIn: React.FC<FadeInProps> = ({ children, className, delay = 0, 
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 'some' }}
       variants={{ hidden: { opacity: 0, y: shouldReduceMotion ? 0 : y }, visible: { opacity: 1, y: 0 } }}
       transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: EASE, delay: shouldReduceMotion ? 0 : delay }}
     >
