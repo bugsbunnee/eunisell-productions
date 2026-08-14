@@ -498,10 +498,6 @@ export type ContactEnquiryMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder;
 };
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null;
-};
-
 export type ContactEnquirySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;

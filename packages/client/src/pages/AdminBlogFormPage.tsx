@@ -1,0 +1,265 @@
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'sonner';
+import { ArrowLeft, ImagePlus, Loader2 } from 'lucide-react';
+
+import blogService, { type BlogStatus } from '../services/blog.service';
+import { adminPaths } from '../lib/data';
+import { slugify, getErrorMessage, cn } from '../lib/utils';
+import { BLOG_FORM_DEFAULT_VALUES, blogFormSchema, CATEGORY_OPTIONS, type BlogFormValues } from '../components/features/admin/blog/blog-form.constants';
+
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
+import { Textarea } from '../components/ui/textarea';
+import { Switch } from '../components/ui/switch';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
+import StatusStamp from '../components/features/admin/blog/status-stamp';
+
+const AdminBlogFormPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const isEditing = !!id;
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
+  const [slugTouched, setSlugTouched] = useState(false);
+
+  const { data: existingPost, isLoading: isLoadingPost } = useQuery({
+    queryKey: ['blog-post', id],
+    queryFn: () => blogService.get(id as string),
+    enabled: isEditing,
+  });
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<BlogFormValues>({ resolver: zodResolver(blogFormSchema), defaultValues: BLOG_FORM_DEFAULT_VALUES });
+
+  useEffect(() => {
+    if (!existingPost) return;
+
+    reset({
+      title: existingPost.title,
+      slug: existingPost.slug,
+      category: existingPost.category,
+      excerpt: existingPost.excerpt,
+      content: existingPost.content,
+      readTime: existingPost.readTime,
+      featured: existingPost.featured,
+      status: existingPost.status,
+    });
+    setPreviewUrl(existingPost.coverImage);
+    setSlugTouched(true);
+  }, [existingPost, reset]);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl?.startsWith('blob:')) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
+
+  const title = watch('title');
+  useEffect(() => {
+    if (!slugTouched) setValue('slug', slugify(title || ''));
+  }, [title, slugTouched, setValue]);
+
+  const handleFile = (file: File | undefined) => {
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      setImageError('Choose an image file (PNG, JPG, or WebP).');
+      return;
+    }
+
+    setImageError(null);
+    setCoverFile(file);
+    setPreviewUrl((current) => {
+      if (current?.startsWith('blob:')) URL.revokeObjectURL(current);
+      return URL.createObjectURL(file);
+    });
+  };
+
+  const saveMutation = useMutation({
+    mutationFn: (payload: { values: BlogFormValues; status: BlogStatus }) => {
+      const values = { ...payload.values, status: payload.status };
+      return isEditing ? blogService.update(id as string, values, coverFile) : blogService.create(values, coverFile as File);
+    },
+    onSuccess: (post) => {
+      toast.success(isEditing ? 'Post updated' : post.status === 'PUBLISHED' ? 'Post published' : 'Draft saved');
+      queryClient.invalidateQueries({ queryKey: ['blog-posts'] });
+      queryClient.invalidateQueries({ queryKey: ['blog-stats'] });
+      navigate(adminPaths.blog);
+    },
+    onError: (error) => toast.error(getErrorMessage(error) || 'Could not save the post'),
+  });
+
+  const onSave = (status: BlogStatus) =>
+    handleSubmit((values) => {
+      if (!isEditing && !coverFile) {
+        setImageError('A cover image is required.');
+        return;
+      }
+
+      saveMutation.mutate({ values, status });
+    });
+
+  if (isEditing && isLoadingPost) {
+    return (
+      <div className="flex items-center justify-center h-full py-24">
+        <Loader2 className="size-5 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-6 px-10 py-9 max-w-260">
+      <div className="flex flex-col gap-3">
+        <Link to={adminPaths.blog} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground w-fit transition-colors">
+          <ArrowLeft className="size-3.5" /> Blog Posts
+        </Link>
+
+        <div className="flex items-center gap-3">
+          <h1 className="text-2xl font-semibold text-foreground">{isEditing ? 'Edit Post' : 'New Post'}</h1>
+          {existingPost && <StatusStamp status={existingPost.status} />}
+        </div>
+      </div>
+
+      <form className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 items-start">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <Label>Cover image</Label>
+
+            <label
+              htmlFor="coverImage"
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault();
+                handleFile(e.dataTransfer.files?.[0]);
+              }}
+              className={cn(
+                'group relative flex aspect-[4/3] cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden rounded-lg border-2 border-dashed bg-muted/40 transition-colors',
+                imageError ? 'border-destructive' : 'border-border hover:border-primary/50'
+              )}
+            >
+              {previewUrl ? (
+                <>
+                  <img src={previewUrl} alt="Cover preview" className="absolute inset-0 size-full object-cover" />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/50 group-hover:opacity-100">
+                    <span className="text-sm font-medium text-white">Replace image</span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <ImagePlus className="size-6 text-muted-foreground" strokeWidth={1.5} />
+                  <p className="px-6 text-center text-sm text-muted-foreground">Drop an image, or click to browse</p>
+                </>
+              )}
+              <input id="coverImage" type="file" accept="image/*" className="sr-only" onChange={(e) => handleFile(e.target.files?.[0])} />
+            </label>
+            {imageError && <p className="text-xs text-destructive">{imageError}</p>}
+          </div>
+
+          <div className="flex items-center justify-between rounded-lg border border-border bg-card px-4 py-3.5">
+            <div className="flex flex-col gap-0.5">
+              <Label htmlFor="featured">Featured</Label>
+              <p className="text-xs text-muted-foreground">Show as the highlighted post</p>
+            </div>
+            <Controller control={control} name="featured" render={({ field }) => <Switch id="featured" checked={field.value} onCheckedChange={field.onChange} />} />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="title">Title</Label>
+            <Input id="title" placeholder="Why Accurate Well Testing Matters" aria-invalid={!!errors.title} {...register('title')} />
+            {errors.title && <p className="text-xs text-destructive">{errors.title.message}</p>}
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="slug">Slug</Label>
+            <div className="flex items-center gap-1 rounded-md border border-input bg-transparent pl-2.5 has-focus-visible:border-ring has-focus-visible:ring-3 has-focus-visible:ring-ring/50">
+              <span className="font-mono text-xs text-muted-foreground shrink-0">/blog/</span>
+              <Input
+                id="slug"
+                aria-invalid={!!errors.slug}
+                className="border-0 shadow-none px-0 font-mono focus-visible:ring-0"
+                {...register('slug', {
+                  onChange: () => setSlugTouched(true),
+                })}
+              />
+            </div>
+            {errors.slug && <p className="text-xs text-destructive">{errors.slug.message}</p>}
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="category">Category</Label>
+              <Controller
+                control={control}
+                name="category"
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger id="category" aria-invalid={!!errors.category} className="w-full">
+                      <SelectValue placeholder="Choose a category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {CATEGORY_OPTIONS.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.category && <p className="text-xs text-destructive">{errors.category.message}</p>}
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="readTime">Read time</Label>
+              <Input id="readTime" placeholder="5 min read" aria-invalid={!!errors.readTime} {...register('readTime')} />
+              {errors.readTime && <p className="text-xs text-destructive">{errors.readTime.message}</p>}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="excerpt">Excerpt</Label>
+              <span className="font-mono text-[11px] text-muted-foreground">{(watch('excerpt') || '').length}/300</span>
+            </div>
+            <Textarea id="excerpt" rows={2} placeholder="A short summary shown on the blog index…" aria-invalid={!!errors.excerpt} {...register('excerpt')} />
+            {errors.excerpt && <p className="text-xs text-destructive">{errors.excerpt.message}</p>}
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="content">Content</Label>
+            <Textarea id="content" rows={14} placeholder="Write the full article…" className="min-h-72" aria-invalid={!!errors.content} {...register('content')} />
+            {errors.content && <p className="text-xs text-destructive">{errors.content.message}</p>}
+          </div>
+
+          <div className="flex items-center gap-3 pt-2">
+            <Button type="button" variant="outline" disabled={saveMutation.isPending} onClick={onSave('DRAFT')}>
+              {saveMutation.isPending ? 'Saving…' : 'Save as draft'}
+            </Button>
+            <Button type="button" disabled={saveMutation.isPending} onClick={onSave('PUBLISHED')}>
+              {saveMutation.isPending ? 'Saving…' : 'Publish'}
+            </Button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default AdminBlogFormPage;

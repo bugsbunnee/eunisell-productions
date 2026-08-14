@@ -24,3 +24,11 @@ export const paths = {
   privacy: '/privacy-policy',
   blog: '/blog',
 };
+
+export const adminPaths = {
+  login: '/admin/login',
+  dashboard: '/admin',
+  blog: '/admin/blog',
+  blogNew: '/admin/blog/new',
+  blogEdit: (id: string) => `/admin/blog/${id}/edit`,
+};

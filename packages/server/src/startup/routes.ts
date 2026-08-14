@@ -6,6 +6,7 @@ import helmet from 'helmet';
 
 import auth from '../routes/auth.routes.js';
 import contact from '../routes/contact.routes.js';
+import blog from '../routes/blog.routes.js';
 
 import error from '../middleware/error.js';
 
@@ -25,6 +26,7 @@ const registerRoutes = (app: Express) => {
 
   app.use('/api/v1/auth', auth);
   app.use('/api/v1/contact', contact);
+  app.use('/api/v1/blog', blog);
 
   app.use(error);
 };

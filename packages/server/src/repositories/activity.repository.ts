@@ -2,10 +2,14 @@ import prisma from '../../prisma/index.js';
 
 export enum ActivityAction {
   Login = 'login',
+  Created = 'created',
+  Updated = 'updated',
+  Deleted = 'deleted',
 }
 
 export enum ActivityCategory {
   Auth = 'auth',
+  Blog = 'blog',
 }
 
 export interface ActivityData {

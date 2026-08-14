@@ -191,6 +191,7 @@ export type AdminWhereInput = {
   createdAt?: Prisma.DateTimeFilter<'Admin'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'Admin'> | Date | string;
   activityLogs?: Prisma.ActivityLogListRelationFilter;
+  blogPosts?: Prisma.BlogPostListRelationFilter;
 };
 
 export type AdminOrderByWithRelationInput = {
@@ -202,6 +203,7 @@ export type AdminOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput;
+  blogPosts?: Prisma.BlogPostOrderByRelationAggregateInput;
 };
 
 export type AdminWhereUniqueInput = Prisma.AtLeast<
@@ -217,6 +219,7 @@ export type AdminWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<'Admin'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'Admin'> | Date | string;
     activityLogs?: Prisma.ActivityLogListRelationFilter;
+    blogPosts?: Prisma.BlogPostListRelationFilter;
   },
   'id' | 'email'
 >;
@@ -256,6 +259,7 @@ export type AdminCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutAdminInput;
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminUncheckedCreateInput = {
@@ -267,6 +271,7 @@ export type AdminUncheckedCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutAdminInput;
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminUpdateInput = {
@@ -278,6 +283,7 @@ export type AdminUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutAdminNestedInput;
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminUncheckedUpdateInput = {
@@ -289,6 +295,7 @@ export type AdminUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutAdminNestedInput;
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminCreateManyInput = {
@@ -364,6 +371,22 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string;
 };
 
+export type AdminCreateNestedOneWithoutBlogPostsInput = {
+  create?: Prisma.XOR<Prisma.AdminCreateWithoutBlogPostsInput, Prisma.AdminUncheckedCreateWithoutBlogPostsInput>;
+  connectOrCreate?: Prisma.AdminCreateOrConnectWithoutBlogPostsInput;
+  connect?: Prisma.AdminWhereUniqueInput;
+};
+
+export type AdminUpdateOneWithoutBlogPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.AdminCreateWithoutBlogPostsInput, Prisma.AdminUncheckedCreateWithoutBlogPostsInput>;
+  connectOrCreate?: Prisma.AdminCreateOrConnectWithoutBlogPostsInput;
+  upsert?: Prisma.AdminUpsertWithoutBlogPostsInput;
+  disconnect?: Prisma.AdminWhereInput | boolean;
+  delete?: Prisma.AdminWhereInput | boolean;
+  connect?: Prisma.AdminWhereUniqueInput;
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AdminUpdateToOneWithWhereWithoutBlogPostsInput, Prisma.AdminUpdateWithoutBlogPostsInput>, Prisma.AdminUncheckedUpdateWithoutBlogPostsInput>;
+};
+
 export type AdminCreateNestedOneWithoutActivityLogsInput = {
   create?: Prisma.XOR<Prisma.AdminCreateWithoutActivityLogsInput, Prisma.AdminUncheckedCreateWithoutActivityLogsInput>;
   connectOrCreate?: Prisma.AdminCreateOrConnectWithoutActivityLogsInput;
@@ -383,6 +406,66 @@ export type AdminUpdateOneWithoutActivityLogsNestedInput = {
   >;
 };
 
+export type AdminCreateWithoutBlogPostsInput = {
+  id?: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutAdminInput;
+};
+
+export type AdminUncheckedCreateWithoutBlogPostsInput = {
+  id?: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutAdminInput;
+};
+
+export type AdminCreateOrConnectWithoutBlogPostsInput = {
+  where: Prisma.AdminWhereUniqueInput;
+  create: Prisma.XOR<Prisma.AdminCreateWithoutBlogPostsInput, Prisma.AdminUncheckedCreateWithoutBlogPostsInput>;
+};
+
+export type AdminUpsertWithoutBlogPostsInput = {
+  update: Prisma.XOR<Prisma.AdminUpdateWithoutBlogPostsInput, Prisma.AdminUncheckedUpdateWithoutBlogPostsInput>;
+  create: Prisma.XOR<Prisma.AdminCreateWithoutBlogPostsInput, Prisma.AdminUncheckedCreateWithoutBlogPostsInput>;
+  where?: Prisma.AdminWhereInput;
+};
+
+export type AdminUpdateToOneWithWhereWithoutBlogPostsInput = {
+  where?: Prisma.AdminWhereInput;
+  data: Prisma.XOR<Prisma.AdminUpdateWithoutBlogPostsInput, Prisma.AdminUncheckedUpdateWithoutBlogPostsInput>;
+};
+
+export type AdminUpdateWithoutBlogPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutAdminNestedInput;
+};
+
+export type AdminUncheckedUpdateWithoutBlogPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutAdminNestedInput;
+};
+
 export type AdminCreateWithoutActivityLogsInput = {
   id?: string;
   email: string;
@@ -391,6 +474,7 @@ export type AdminCreateWithoutActivityLogsInput = {
   password: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminUncheckedCreateWithoutActivityLogsInput = {
@@ -401,6 +485,7 @@ export type AdminUncheckedCreateWithoutActivityLogsInput = {
   password: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminCreateOrConnectWithoutActivityLogsInput = {
@@ -427,6 +512,7 @@ export type AdminUpdateWithoutActivityLogsInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminUncheckedUpdateWithoutActivityLogsInput = {
@@ -437,6 +523,7 @@ export type AdminUncheckedUpdateWithoutActivityLogsInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput;
 };
 
 /**
@@ -445,10 +532,12 @@ export type AdminUncheckedUpdateWithoutActivityLogsInput = {
 
 export type AdminCountOutputType = {
   activityLogs: number;
+  blogPosts: number;
 };
 
 export type AdminCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityLogs?: boolean | AdminCountOutputTypeCountActivityLogsArgs;
+  blogPosts?: boolean | AdminCountOutputTypeCountBlogPostsArgs;
 };
 
 /**
@@ -468,6 +557,13 @@ export type AdminCountOutputTypeCountActivityLogsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.ActivityLogWhereInput;
 };
 
+/**
+ * AdminCountOutputType without action
+ */
+export type AdminCountOutputTypeCountBlogPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BlogPostWhereInput;
+};
+
 export type AdminSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
@@ -478,6 +574,7 @@ export type AdminSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     createdAt?: boolean;
     updatedAt?: boolean;
     activityLogs?: boolean | Prisma.Admin$activityLogsArgs<ExtArgs>;
+    blogPosts?: boolean | Prisma.Admin$blogPostsArgs<ExtArgs>;
     _count?: boolean | Prisma.AdminCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['admin']
@@ -525,6 +622,7 @@ export type AdminOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 >;
 export type AdminInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityLogs?: boolean | Prisma.Admin$activityLogsArgs<ExtArgs>;
+  blogPosts?: boolean | Prisma.Admin$blogPostsArgs<ExtArgs>;
   _count?: boolean | Prisma.AdminCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type AdminIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -534,6 +632,7 @@ export type $AdminPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: 'Admin';
   objects: {
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[];
+    blogPosts: Prisma.$BlogPostPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -953,6 +1052,9 @@ export interface Prisma__AdminClient<
   activityLogs<T extends Prisma.Admin$activityLogsArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.Admin$activityLogsArgs<ExtArgs>>
   ): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityLogPayload<ExtArgs>, T, 'findMany', GlobalOmitOptions> | Null>;
+  blogPosts<T extends Prisma.Admin$blogPostsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Admin$blogPostsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, 'findMany', GlobalOmitOptions> | Null>;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1402,6 +1504,30 @@ export type Admin$activityLogsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number;
   skip?: number;
   distinct?: Prisma.ActivityLogScalarFieldEnum | Prisma.ActivityLogScalarFieldEnum[];
+};
+
+/**
+ * Admin.blogPosts
+ */
+export type Admin$blogPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BlogPost
+   */
+  select?: Prisma.BlogPostSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the BlogPost
+   */
+  omit?: Prisma.BlogPostOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BlogPostInclude<ExtArgs> | null;
+  where?: Prisma.BlogPostWhereInput;
+  orderBy?: Prisma.BlogPostOrderByWithRelationInput | Prisma.BlogPostOrderByWithRelationInput[];
+  cursor?: Prisma.BlogPostWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.BlogPostScalarFieldEnum | Prisma.BlogPostScalarFieldEnum[];
 };
 
 /**

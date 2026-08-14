@@ -353,6 +353,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Admin: 'Admin',
+  BlogPost: 'BlogPost',
   ContactEnquiry: 'ContactEnquiry',
   ActivityLog: 'ActivityLog',
 } as const;
@@ -368,7 +369,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: 'admin' | 'contactEnquiry' | 'activityLog';
+    modelProps: 'admin' | 'blogPost' | 'contactEnquiry' | 'activityLog';
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
@@ -443,6 +444,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.AdminCountArgs<ExtArgs>;
           result: runtime.Types.Utils.Optional<Prisma.AdminCountAggregateOutputType> | number;
+        };
+      };
+    };
+    BlogPost: {
+      payload: Prisma.$BlogPostPayload<ExtArgs>;
+      fields: Prisma.BlogPostFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.BlogPostFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.BlogPostFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>;
+        };
+        findFirst: {
+          args: Prisma.BlogPostFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.BlogPostFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>;
+        };
+        findMany: {
+          args: Prisma.BlogPostFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>[];
+        };
+        create: {
+          args: Prisma.BlogPostCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>;
+        };
+        createMany: {
+          args: Prisma.BlogPostCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.BlogPostCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>[];
+        };
+        delete: {
+          args: Prisma.BlogPostDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>;
+        };
+        update: {
+          args: Prisma.BlogPostUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>;
+        };
+        deleteMany: {
+          args: Prisma.BlogPostDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.BlogPostUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.BlogPostUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>[];
+        };
+        upsert: {
+          args: Prisma.BlogPostUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BlogPostPayload>;
+        };
+        aggregate: {
+          args: Prisma.BlogPostAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBlogPost>;
+        };
+        groupBy: {
+          args: Prisma.BlogPostGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.BlogPostGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.BlogPostCountArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.BlogPostCountAggregateOutputType> | number;
         };
       };
     };
@@ -644,6 +719,26 @@ export const AdminScalarFieldEnum = {
 
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum];
 
+export const BlogPostScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  category: 'category',
+  excerpt: 'excerpt',
+  content: 'content',
+  readTime: 'readTime',
+  coverImage: 'coverImage',
+  coverImageId: 'coverImageId',
+  featured: 'featured',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum];
+
 export const ContactEnquiryScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
@@ -719,6 +814,21 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>;
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>;
+
+/**
+ * Reference to a field of type 'BlogStatus'
+ */
+export type EnumBlogStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BlogStatus'>;
+
+/**
+ * Reference to a field of type 'BlogStatus[]'
+ */
+export type ListEnumBlogStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BlogStatus[]'>;
 
 /**
  * Reference to a field of type 'Int'
@@ -882,6 +992,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter;
 export type GlobalOmitConfig = {
   admin?: Prisma.AdminOmit;
+  blogPost?: Prisma.BlogPostOmit;
   contactEnquiry?: Prisma.ContactEnquiryOmit;
   activityLog?: Prisma.ActivityLogOmit;
 };

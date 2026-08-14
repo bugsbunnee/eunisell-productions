@@ -22,6 +22,11 @@ export * from './enums.js';
  */
 export type Admin = Prisma.AdminModel;
 /**
+ * Model BlogPost
+ *
+ */
+export type BlogPost = Prisma.BlogPostModel;
+/**
  * Model ContactEnquiry
  *
  */

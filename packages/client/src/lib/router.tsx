@@ -26,6 +26,13 @@ import EquipmentRentalsPage from '../pages/EquipmentRentalsPage';
 import ProducedWaterManagementPage from '../pages/ProducedWaterManagementPage';
 import SandManagementPage from '../pages/SandManagementPage';
 
+import AdminLayout from '../pages/AdminLayout';
+import AdminLoginPage from '../pages/AdminLoginPage';
+import AdminDashboardPage from '../pages/AdminDashboardPage';
+import AdminBlogListPage from '../pages/AdminBlogListPage';
+import AdminBlogFormPage from '../pages/AdminBlogFormPage';
+import ProtectedRoute from '../components/admin/protected-route';
+
 export const routes: RouteObject[] = [
   {
     path: '/',
@@ -126,6 +133,25 @@ export const routes: RouteObject[] = [
       {
         path: 'blog',
         element: <BlogPage />,
+      },
+    ],
+  },
+  {
+    path: 'admin/login',
+    element: <AdminLoginPage />,
+  },
+  {
+    path: 'admin',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <AdminDashboardPage /> },
+          { path: 'blog', element: <AdminBlogListPage /> },
+          { path: 'blog/new', element: <AdminBlogFormPage /> },
+          { path: 'blog/:id/edit', element: <AdminBlogFormPage /> },
+        ],
       },
     ],
   },

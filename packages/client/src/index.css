@@ -2,6 +2,9 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 @import '@fontsource-variable/inter';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
 
 @font-face {
   font-family: 'Universe';
@@ -144,6 +147,16 @@
   --sidebar-border: oklch(0.922 0 0);
 
   --sidebar-ring: oklch(0.708 0 0);
+
+  --divider: #ebebeb;
+
+  --surface-muted: #f4f4f4;
+
+  --graphite: #1a1a1a;
+
+  --slate: #595959;
+
+  --smoke: #b8b8b8;
 }
 
 #root {
@@ -209,6 +222,13 @@ body {
   --color-ink-soft: var(--ink-soft);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+  --color-stamp-draft: var(--stamp-draft, #6b6f6c);
+  --color-stamp-published: var(--stamp-published, #1f6f4a);
+  --color-divider: var(--divider);
+  --color-surface-muted: var(--surface-muted);
+  --color-graphite: var(--graphite);
+  --color-slate: var(--slate);
+  --color-smoke: var(--smoke);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
