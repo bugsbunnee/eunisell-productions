@@ -34,6 +34,18 @@ class PublicBlogController {
     const categories = await blogRepository.publishedCategories();
     return res.json({ data: categories });
   }
+
+  async get(req: Request, res: Response) {
+    const post = await blogRepository.publicFindBySlug(req.params.slug as string);
+
+    if (!post) {
+      return res.status(HttpStatusCode.NotFound).json({ error: 'Post not found' });
+    }
+
+    const related = await blogRepository.publicRelated(post.category, post.id, 3);
+
+    return res.json({ data: post, related });
+  }
 }
 
 export default new PublicBlogController();

@@ -106,6 +106,43 @@ export const blogRepository = {
     return { posts, total };
   },
 
+  publicFindBySlug(slug: string) {
+    return prisma.blogPost.findFirst({
+      where: { slug, status: 'PUBLISHED' },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        category: true,
+        excerpt: true,
+        content: true,
+        readTime: true,
+        coverImage: true,
+        publishedAt: true,
+        createdAt: true,
+        author: { select: { firstName: true, lastName: true } },
+      },
+    });
+  },
+
+  publicRelated(category: string, excludeId: string, take: number) {
+    return prisma.blogPost.findMany({
+      where: { status: 'PUBLISHED', category, id: { not: excludeId } },
+      orderBy: { publishedAt: 'desc' },
+      take,
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        category: true,
+        excerpt: true,
+        readTime: true,
+        coverImage: true,
+        publishedAt: true,
+      },
+    });
+  },
+
   featured() {
     return prisma.blogPost.findFirst({
       where: { status: 'PUBLISHED', featured: true },

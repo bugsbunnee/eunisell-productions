@@ -29,6 +29,16 @@ export interface PublicBlogListResponse {
   totalPages: number;
 }
 
+export interface PublicBlogPostDetail extends Omit<PublicBlogPost, 'featured'> {
+  content: string;
+  author: { firstName: string; lastName: string } | null;
+}
+
+export interface PublicBlogPostWithRelated {
+  post: PublicBlogPostDetail;
+  related: Omit<PublicBlogPost, 'featured'>[];
+}
+
 const publicBlogService = {
   list(params: PublicBlogListParams) {
     return http.get<PublicBlogListResponse>('/api/v1/public/blog', { params }).then((res) => res.data);
@@ -40,6 +50,12 @@ const publicBlogService = {
 
   categories() {
     return http.get<{ data: string[] }>('/api/v1/public/blog/categories').then((res) => res.data.data);
+  },
+
+  get(slug: string) {
+    return http
+      .get<{ data: PublicBlogPostDetail; related: Omit<PublicBlogPost, 'featured'>[] }>(`/api/v1/public/blog/${slug}`)
+      .then((res) => ({ post: res.data.data, related: res.data.related }));
   },
 };
 

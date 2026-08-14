@@ -4,14 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../lib/data';
 import { FadeIn } from '../../common/motion';
 
-const badges = ['ISO 9001 Certified', 'ISO 14001 Certified', 'ISO 45001 Certified'];
+const DEFAULT_BADGES = ['ISO 9001 Certified', 'ISO 14001 Certified', 'ISO 45001 Certified'];
 
 interface CtaProps {
   heading: ReactNode;
   description: string;
+  primaryLabel?: string;
+  secondaryLabel?: string;
+  badges?: string[];
 }
 
-const Cta: React.FC<CtaProps> = ({ heading, description }) => {
+const Cta: React.FC<CtaProps> = ({ heading, description, primaryLabel = 'Contact Our Engineers', secondaryLabel = 'Request Technical Consultation', badges = DEFAULT_BADGES }) => {
   const navigate = useNavigate();
 
   return (
@@ -31,7 +34,7 @@ const Cta: React.FC<CtaProps> = ({ heading, description }) => {
             whileTap={{ scale: 0.97 }}
             className="bg-secondary rounded-full px-12 py-5 font-light text-white text-base whitespace-nowrap"
           >
-            Contact Our Engineers
+            {primaryLabel}
           </motion.button>
 
           <motion.button
@@ -41,18 +44,20 @@ const Cta: React.FC<CtaProps> = ({ heading, description }) => {
             whileTap={{ scale: 0.97 }}
             className="border border-white rounded-full px-12 py-5 font-light text-white text-base whitespace-nowrap"
           >
-            Request Technical Consultation
+            {secondaryLabel}
           </motion.button>
         </div>
 
-        <div className="flex flex-wrap gap-8 items-center justify-center opacity-40 pt-16">
-          {badges.map((badge, index) => (
-            <span key={badge} className="flex items-center gap-8 font-light text-white text-sm tracking-[1.4px] uppercase whitespace-nowrap">
-              {badge}
-              {index < badges.length - 1 && <span aria-hidden="true" className="size-1 rounded-full bg-white" />}
-            </span>
-          ))}
-        </div>
+        {badges.length > 0 && (
+          <div className="flex flex-wrap gap-8 items-center justify-center opacity-40 pt-16">
+            {badges.map((badge, index) => (
+              <span key={badge} className="flex items-center gap-8 font-light text-white text-sm tracking-[1.4px] uppercase whitespace-nowrap">
+                {badge}
+                {index < badges.length - 1 && <span aria-hidden="true" className="size-1 rounded-full bg-white" />}
+              </span>
+            ))}
+          </div>
+        )}
       </FadeIn>
     </section>
   );

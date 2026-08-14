@@ -1,6 +1,9 @@
+import type { PublicBlogPost } from '../../../services/public-blog.service';
+
+import { Link } from 'react-router-dom';
 import { FadeIn } from '../../common/motion';
 import { Skeleton } from '../../ui/skeleton';
-import type { PublicBlogPost } from '../../../services/public-blog.service';
+import { paths } from '../../../lib/data';
 
 import clockIcon from '../../../assets/icons/blog/clock.svg';
 import arrowRightIcon from '../../../assets/icons/blog/arrow-right-lg.svg';
@@ -42,10 +45,10 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post, isLoading }) => {
                   <span className="font-normal text-navy-subtle text-sm">{post.readTime}</span>
                 </div>
 
-                <button type="button" className="flex gap-3 items-center group">
+                <Link to={paths.blogPost(post.slug)} className="flex gap-3 items-center group">
                   <span className="font-bold text-secondary text-sm tracking-[0.7px] uppercase">Read Article</span>
                   <img src={arrowRightIcon} alt="" className="w-3 h-3.5 transition-transform group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </>
           )}

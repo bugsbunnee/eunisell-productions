@@ -69,13 +69,13 @@ const Hero: React.FC = () => {
               </p>
             </StaggerItem>
 
-            <StaggerItem className="flex flex-wrap gap-4 pt-8">
+            <StaggerItem className="flex flex-wrap gap-4 pt-8 w-full">
               <motion.button
                 type="button"
                 onClick={() => navigate(paths.contact)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="bg-secondary h-[54.5px] w-56.75 rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
+                className="bg-secondary h-[54.5px] w-full lg:w-56.75 rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
               >
                 Speak with Our Experts
               </motion.button>
@@ -85,14 +85,17 @@ const Hero: React.FC = () => {
                 onClick={() => navigate(paths.contact)}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="h-[54.5px] w-56.75 border border-white rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
+                className="h-[54.5px] w-full lg:w-56.75 border border-white rounded-full px-8 flex items-center justify-center text-center font-light text-white text-[15px] leading-[22.5px] whitespace-nowrap"
               >
                 Request a Proposal
               </motion.button>
             </StaggerItem>
           </Stagger>
 
-          <FadeIn delay={0.2} className="backdrop-blur-md bg-deep-navy/20 border border-secondary rounded-[16px] flex flex-col gap-6 p-8 w-full max-w-130 justify-self-end">
+          <FadeIn
+            delay={0.2}
+            className="hidden lg:flex backdrop-blur-md bg-deep-navy/20 border border-secondary rounded-[16px] flex-col gap-6 p-8 w-full max-w-130 justify-self-end"
+          >
             <p className="font-light text-white text-[10px] tracking-[3px] uppercase leading-3.75">Key Capabilities</p>
 
             <div className="flex flex-col">

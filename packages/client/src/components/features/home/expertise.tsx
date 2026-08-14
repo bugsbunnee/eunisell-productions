@@ -35,13 +35,13 @@ const Expertise: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex gap-6 flex-col lg:flex-row lg:justify-start justify-center items-center">
+        <div className="flex gap-6 flex-col lg:flex-row lg:justify-start justify-center items-center w-full">
           <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="min-w-72.5 h-14.5 bg-secondary rounded-full px-2.5 flex items-center justify-center font-light text-white text-lg tracking-[0.07px] text-center"
+            className="w-full lg:w-auto lg:min-w-72.5 h-14.5 bg-secondary rounded-full px-2.5 flex items-center justify-center font-light text-white text-lg tracking-[0.07px] text-center"
           >
             Speak with Our Experts
           </motion.button>
@@ -51,7 +51,7 @@ const Expertise: React.FC = () => {
             onClick={() => navigate(paths.contact)}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="min-w-72.5 h-14.5 border border-accent rounded-full px-2.5 flex items-center justify-center font-light text-accent text-lg tracking-[0.07px] text-center"
+            className="w-full lg:w-auto lg:min-w-72.5 h-14.5 border border-accent rounded-full px-2.5 flex items-center justify-center font-light text-accent text-lg tracking-[0.07px] text-center"
           >
             Speak With Our Engineers
           </motion.button>

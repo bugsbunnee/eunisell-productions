@@ -13,6 +13,7 @@ import HseqPage from '../pages/HseqPage';
 import ContactPage from '../pages/ContactPage';
 import PrivacyPage from '../pages/PrivacyPage';
 import BlogPage from '../pages/BlogPage';
+import BlogDetailPage from '../pages/BlogDetailPage';
 import InstallationCommissioningPage from '../pages/InstallationCommissioningPage';
 import EngineeringDesignPage from '../pages/EngineeringDesignPage';
 import ProductionImprovementPage from '../pages/ProductionImprovementPage';
@@ -133,6 +134,10 @@ export const routes: RouteObject[] = [
       {
         path: 'blog',
         element: <BlogPage />,
+      },
+      {
+        path: 'blog/:slug',
+        element: <BlogDetailPage />,
       },
     ],
   },

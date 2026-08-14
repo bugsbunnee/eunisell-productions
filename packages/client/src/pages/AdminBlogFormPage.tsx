@@ -9,6 +9,7 @@ import { ArrowLeft, ChevronRight, FileText, ImagePlus } from 'lucide-react';
 import StatusStamp from '../components/features/admin/blog/status-stamp';
 import BlogFormSteps, { type BlogFormStep } from '../components/features/admin/blog/blog-form-steps';
 import BlogFormSkeleton from '../components/features/admin/blog/blog-form-skeleton';
+import RichTextEditor from '../components/features/admin/blog/rich-text-editor';
 import blogService, { type BlogStatus } from '../services/blog.service';
 
 import { adminPaths } from '../lib/data';
@@ -262,7 +263,7 @@ const AdminBlogFormPage: React.FC = () => {
 
                 <div className="flex flex-col gap-1">
                   <Label htmlFor="content">Content</Label>
-                  <Textarea id="content" rows={14} placeholder="Write the full article…" className="min-h-72 rounded-xl" aria-invalid={!!errors.content} {...register('content')} />
+                  <Controller control={control} name="content" render={({ field }) => <RichTextEditor value={field.value} onChange={field.onChange} />} />
                   {errors.content && <p className="text-xs text-destructive">{errors.content.message}</p>}
                 </div>
               </div>

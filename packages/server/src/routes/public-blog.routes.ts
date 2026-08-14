@@ -8,5 +8,6 @@ const router = Router();
 router.get('/', [paginate], publicBlog.list);
 router.get('/featured', publicBlog.featured);
 router.get('/categories', publicBlog.categories);
+router.get('/:slug', publicBlog.get);
 
 export default router;

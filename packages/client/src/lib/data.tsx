@@ -23,6 +23,7 @@ export const paths = {
   contact: '/contact',
   privacy: '/privacy-policy',
   blog: '/blog',
+  blogPost: (slug: string) => `/blog/${slug}`,
 };
 
 export const adminPaths = {

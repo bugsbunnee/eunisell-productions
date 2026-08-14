@@ -1,27 +1,29 @@
 import type { PublicBlogPost } from '../../../services/public-blog.service';
 
+import { Link } from 'react-router-dom';
 import { Stagger, StaggerItem } from '../../common/motion';
 import { Skeleton } from '../../ui/skeleton';
+import { paths } from '../../../lib/data';
 
 import arrowUpRightIcon from '../../../assets/icons/blog/arrow-up-right.svg';
 
 const PostCard: React.FC<{ post: PublicBlogPost }> = ({ post }) => (
-  <article className="flex flex-col gap-5 items-start">
+  <Link to={paths.blogPost(post.slug)} className="flex flex-col gap-5 items-start group">
     <div className="h-60 w-full rounded-lg overflow-hidden">
       <img src={post.coverImage} alt="" className="size-full object-cover" />
     </div>
 
     <div className="flex flex-col gap-3 items-start w-full">
       <p className="font-bold text-secondary text-xs uppercase">{post.category}</p>
-      <h3 className="font-semibold text-accent text-2xl leading-[1.3]">{post.title}</h3>
+      <h3 className="font-semibold text-accent text-2xl leading-[1.3] group-hover:text-secondary transition-colors">{post.title}</h3>
       <p className="font-normal text-navy-subtle text-sm leading-normal line-clamp-2">{post.excerpt}</p>
 
       <div className="flex items-center justify-between w-full pt-2">
         <span className="font-normal text-navy-subtle text-xs">{post.readTime}</span>
-        <img src={arrowUpRightIcon} alt="" className="w-3.5 h-4" />
+        <img src={arrowUpRightIcon} alt="" className="w-3.5 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </div>
     </div>
-  </article>
+  </Link>
 );
 
 const PostCardSkeleton: React.FC = () => (
