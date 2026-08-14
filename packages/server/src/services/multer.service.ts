@@ -1,5 +1,5 @@
 import multer from 'multer';
-import { MB_IN_BYTES } from '../infrastructure/utils/constants';
+import { MB_IN_BYTES } from '../infrastructure/utils/constants.js';
 
 const upload = multer({
   storage: multer.memoryStorage(),
