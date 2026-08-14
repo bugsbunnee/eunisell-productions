@@ -7,7 +7,7 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Admin.ts';
-export type * from './models/ContactEnquiry.ts';
-export type * from './models/ActivityLog.ts';
-export type * from './commonInputTypes.ts';
+export type * from './models/Admin.js';
+export type * from './models/ContactEnquiry.js';
+export type * from './models/ActivityLog.js';
+export type * from './commonInputTypes.js';

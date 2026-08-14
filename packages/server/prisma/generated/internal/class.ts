@@ -11,7 +11,7 @@
  */
 
 import * as runtime from '@prisma/client/runtime/client';
-import type * as Prisma from './prismaNamespace.ts';
+import type * as Prisma from './prismaNamespace.js';
 
 const config: runtime.GetPrismaClientConfig = {
   previewFeatures: [],
@@ -19,7 +19,7 @@ const config: runtime.GetPrismaClientConfig = {
   engineVersion: 'e922089b7d7502aff4249d5da3420f6fa55fc6ad',
   activeProvider: 'postgresql',
   inlineSchema:
-    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider   = "prisma-client"\n  output     = "./generated"\n  engineType = "client"\n  runtime    = "nodejs"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nmodel Admin {\n  id           String        @id @default(cuid())\n  email        String        @unique\n  firstName    String\n  lastName     String\n  password     String\n  createdAt    DateTime      @default(now())\n  updatedAt    DateTime      @updatedAt\n  activityLogs ActivityLog[]\n}\n\nmodel ContactEnquiry {\n  id String @id @default(cuid())\n\n  fullName    String\n  companyName String\n  jobTitle    String?\n  email       String\n  phone       String?\n\n  country           String\n  serviceOfInterest String\n  projectLocation   String?\n  projectStage      String\n  subject           String?\n  message           String  @db.Text\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel ActivityLog {\n  id String @id @default(cuid())\n\n  admin   Admin?  @relation(fields: [adminId], references: [id])\n  adminId String?\n\n  action      String\n  category    String\n  description String @db.Text\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n',
+    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider            = "prisma-client"\n  output              = "./generated"\n  engineType          = "client"\n  runtime             = "nodejs"\n  importFileExtension = "js"\n}\n\ndatasource db {\n  provider = "postgresql"\n}\n\nmodel Admin {\n  id           String        @id @default(cuid())\n  email        String        @unique\n  firstName    String\n  lastName     String\n  password     String\n  createdAt    DateTime      @default(now())\n  updatedAt    DateTime      @updatedAt\n  activityLogs ActivityLog[]\n}\n\nmodel ContactEnquiry {\n  id String @id @default(cuid())\n\n  fullName    String\n  companyName String\n  jobTitle    String?\n  email       String\n  phone       String?\n\n  country           String\n  serviceOfInterest String\n  projectLocation   String?\n  projectStage      String\n  subject           String?\n  message           String  @db.Text\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel ActivityLog {\n  id String @id @default(cuid())\n\n  admin   Admin?  @relation(fields: [adminId], references: [id])\n  adminId String?\n\n  action      String\n  category    String\n  description String @db.Text\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n',
   runtimeDataModel: {
     models: {},
     enums: {},

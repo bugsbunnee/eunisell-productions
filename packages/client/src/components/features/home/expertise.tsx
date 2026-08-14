@@ -35,7 +35,7 @@ const Expertise: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex gap-6 items-center">
+        <div className="flex gap-6 flex-col lg:flex-row lg:justify-start justify-center items-center">
           <motion.button
             type="button"
             onClick={() => navigate(paths.contact)}
