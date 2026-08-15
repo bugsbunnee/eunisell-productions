@@ -2,6 +2,7 @@ import { paths } from '../../lib/data';
 
 export const companyLinks = [
   { label: 'About Us', path: paths.about },
+  { label: 'Management Team', path: paths.managementTeam },
   { label: 'News & Insights', path: paths.blog },
   { label: 'Corporate Social Responsibility', path: paths.csr },
 ];
