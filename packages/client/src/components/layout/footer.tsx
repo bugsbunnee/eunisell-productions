@@ -97,12 +97,20 @@ const Footer: React.FC = () => {
                 <p className="font-light text-navy-subtle text-sm">Plot 3A, Aswani Road, Oshodi Industrial Scheme, Isolo. Lagos.</p>
               </div>
               <div className="flex gap-3 items-start">
+                <img src={pinIcon} alt="" className="size-4 mt-0.5 shrink-0" />
+                <p className="font-light text-navy-subtle text-sm">
+                  Plot 49/51 Danjuma Drive, Trans Amadi Industrial Layout, Port Harcourt <br /> +234 908 765 9940
+                </p>
+              </div>
+              <div className="flex gap-3 items-start">
                 <img src={mailIcon} alt="" className="size-4 mt-0.5 shrink-0" />
-                <p className="font-light text-navy-subtle text-sm">info@eunisellproductionsolutions.com</p>
+                <p className="font-light text-navy-subtle text-sm">info@eunisell.com</p>
               </div>
               <div className="flex gap-3 items-start">
                 <img src={phoneIcon} alt="" className="size-4 mt-0.5 shrink-0" />
-                <p className="font-light text-navy-subtle text-sm">234 908 765 9938, 234 908 765 9939</p>
+                <p className="font-light text-navy-subtle text-sm">
+                  234 908 765 9938 <br /> 234 908 765 9939
+                </p>
               </div>
             </div>
           </div>

@@ -16,8 +16,8 @@ const ExecutiveSummary: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 w-full">
           <p className="font-light text-navy-muted text-lg leading-[1.8]">
-            We specialize in delivering integrated solutions that address the core challenges of modern energy production. From complex facility development to day-to-day
-            operations and maintenance, our approach is defined by technical rigor and a commitment to excellence.
+            Since 1998, Eunisell has been delivering integrated solutions that address the core challenges of modern energy production. From complex facility development to
+            day-to-day operations and maintenance, our approach is defined by technical rigor and a commitment to excellence.
           </p>
           <p className="font-light text-navy-muted text-lg leading-[1.8]">
             By bridging the gap between engineering design and field execution, we ensure that every project is optimized for safety, cost-efficiency, and long-term asset integrity

@@ -7,6 +7,7 @@ import ManagementTeamPage from '../pages/ManagementTeamPage';
 import ProjectsPage from '../pages/ProjectsPage';
 import ServicesPage from '../pages/ServicesPage';
 import PortfolioPage from '../pages/PortfolioPage';
+import OilAndGasPage from '../pages/OilAndGasPage';
 import WellTestingPage from '../pages/WellTestingPage';
 import EpcPage from '../pages/EpcPage';
 import CsrPage from '../pages/CsrPage';
@@ -63,6 +64,10 @@ export const routes: RouteObject[] = [
       {
         path: 'portfolio',
         element: <PortfolioPage />,
+      },
+      {
+        path: 'portfolio/oil-and-gas',
+        element: <OilAndGasPage />,
       },
       {
         path: 'services/well-testing',

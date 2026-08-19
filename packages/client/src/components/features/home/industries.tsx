@@ -14,6 +14,7 @@ const industries = [
     gradient: 'bg-linear-to-t from-[#001020] via-[rgba(0,26,48,0.8)] via-50% to-[rgba(10,42,74,0.4)]',
     title: 'Upstream Oil & Gas',
     description: 'Supporting onshore, swamp, shallow water, and offshore production operations.',
+    path: paths.oilAndGas,
   },
   {
     image: industryIndependent,
@@ -50,14 +51,14 @@ const Industries: React.FC = () => {
         </FadeIn>
 
         <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          {industries.map(({ image, imageOpacity, gradient, title, description }) => (
+          {industries.map(({ image, imageOpacity, gradient, title, description, path }) => (
             <StaggerItem key={title} hover className={`group relative flex flex-col justify-end overflow-hidden rounded-2xl h-130 px-5 py-12 ${gradient}`}>
               <img src={image} alt={title} className={`absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-110 ${imageOpacity}`} />
 
               <div className="relative flex flex-col gap-2.5 items-start">
                 <h3 className="font-light text-white text-[28px] leading-[42px]">{title}</h3>
                 <p className="font-light text-white text-[15px] leading-[24.75px]">{description}</p>
-                <button type="button" onClick={() => navigate(paths.portfolio)} className="font-light text-white text-sm pt-3">
+                <button type="button" onClick={() => navigate(path ?? paths.portfolio)} className="font-light text-white text-sm pt-3">
                   Explore →
                 </button>
               </div>

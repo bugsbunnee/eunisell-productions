@@ -19,6 +19,7 @@ export const paths = {
   producedWaterManagement: '/services/produced-water-management',
   sandManagement: '/services/sand-management',
   portfolio: '/portfolio',
+  oilAndGas: '/portfolio/oil-and-gas',
   csr: '/csr',
   hseq: '/hseq',
   contact: '/contact',

@@ -14,7 +14,7 @@ const serviceLines = [
   'Well Services & Testing',
   'Production Optimization',
   'Water & Sand Management',
-  'Asset Integrity Management',
+  'Equipment Solutions',
 ];
 
 const ServiceLines: React.FC = () => {

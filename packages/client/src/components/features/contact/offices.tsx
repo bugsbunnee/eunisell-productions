@@ -17,14 +17,14 @@ const offices: Office[] = [
   {
     name: 'Lagos Headquarters',
     address: '209, Muri Okunola street, Victoria Island, Lagos.',
-    phone: '+234 908 765 9938',
-    email: 'info@eunisellproductionsolutions.com',
+    phone: '234 908 765 9938, 234 908 765 9939',
+    email: 'info@eunisell.com',
   },
   {
     name: 'Port Harcourt Hub',
     address: 'Plot 234, Trans Amadi Industrial Layout, Port Harcourt.',
-    phone: '+234 908 765 9939',
-    email: 'ph@eunisellproductionsolutions.com',
+    phone: '234 908 765 9940',
+    email: 'info@eunisell.com',
   },
 ];
 

@@ -14,6 +14,7 @@ interface Industry {
   imageOpacity: string;
   gradient: string;
   imageClassName: string;
+  path?: string;
 }
 
 const industries: Industry[] = [
@@ -24,6 +25,7 @@ const industries: Industry[] = [
     imageOpacity: 'opacity-60',
     gradient: 'bg-linear-to-t from-[#001020] via-[rgba(0,26,48,0.8)] via-50% to-[rgba(10,42,74,0.4)]',
     imageClassName: 'absolute inset-0 size-full object-cover',
+    path: paths.oilAndGas,
   },
   {
     title: 'Independent Operators',
@@ -59,20 +61,20 @@ const Industries: React.FC = () => {
       <div className="flex flex-col gap-16 items-start max-w-360 w-full">
         <FadeIn className="flex flex-col gap-4 items-center w-full">
           <p className="font-light text-secondary text-base text-center">INDUSTRIES WE SERVED</p>
-          <h2 className="font-light text-accent text-[32px] md:text-[42px] lg:text-[52px] leading-[1.5] text-center">Serving the Full Spectrum of Operators</h2>
+          <h2 className="font-light text-accent text-[32px] md:text-[42px] lg:text-[52px] leading-normal text-center">Serving the Full Spectrum of Operators</h2>
         </FadeIn>
 
         <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          {industries.map(({ title, description, image, imageOpacity, gradient, imageClassName }) => (
+          {industries.map(({ title, description, image, imageOpacity, gradient, imageClassName, path }) => (
             <StaggerItem key={title} hover className={`relative flex flex-col justify-end h-130 rounded-2xl overflow-hidden px-5 py-12 ${gradient}`}>
               <div className={`absolute inset-0 overflow-hidden ${imageOpacity}`}>
                 <img src={image} alt={title} className={imageClassName} />
               </div>
 
               <div className="relative flex flex-col gap-2.7 items-start w-full">
-                <h3 className="font-light text-white text-[28px] leading-[1.5]">{title}</h3>
+                <h3 className="font-light text-white text-[28px] leading-normal">{title}</h3>
                 <p className="font-light text-white text-[15px] leading-[1.65]">{description}</p>
-                <button type="button" onClick={() => navigate(paths.portfolio)} className="font-light text-white text-sm pt-3.3">
+                <button type="button" onClick={() => navigate(path ?? paths.portfolio)} className="font-light text-white text-sm pt-3.3">
                   Explore →
                 </button>
               </div>
