@@ -45,8 +45,8 @@ export const uploadFile = async (file: File) => {
   }
 };
 
-export const uploadStream = (buffer: Buffer, folder: string = FOLDER_NAME) => {
-  const options: cloudinary.UploadApiOptions = { folder };
+export const uploadStream = (buffer: Buffer, folder: string = FOLDER_NAME, resourceType: cloudinary.UploadApiOptions['resource_type'] = 'image') => {
+  const options: cloudinary.UploadApiOptions = { folder, resource_type: resourceType };
 
   return new Promise<cloudinary.UploadApiResponse | undefined>((resolve, reject) => {
     cloudinary.v2.uploader
@@ -58,6 +58,19 @@ export const uploadStream = (buffer: Buffer, folder: string = FOLDER_NAME) => {
   });
 };
 
-export const deleteFile = (publicId: string) => {
-  return cloudinary.v2.uploader.destroy(publicId);
+export const uploadUnsignedStream = (buffer: Buffer, uploadPreset: string, folder: string = FOLDER_NAME, resourceType: cloudinary.UploadApiOptions['resource_type'] = 'image') => {
+  const options: cloudinary.UploadApiOptions = { folder, resource_type: resourceType };
+
+  return new Promise<cloudinary.UploadApiResponse | undefined>((resolve, reject) => {
+    cloudinary.v2.uploader
+      .unsigned_upload_stream(uploadPreset, options, function (error, result) {
+        if (error) reject(error);
+        else resolve(result);
+      })
+      .end(buffer);
+  });
+};
+
+export const deleteFile = (publicId: string, resourceType: cloudinary.UploadApiOptions['resource_type'] = 'image') => {
+  return cloudinary.v2.uploader.destroy(publicId, { resource_type: resourceType });
 };

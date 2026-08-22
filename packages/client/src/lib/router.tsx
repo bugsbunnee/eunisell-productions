@@ -12,6 +12,7 @@ import WellTestingPage from '../pages/WellTestingPage';
 import EpcPage from '../pages/EpcPage';
 import CsrPage from '../pages/CsrPage';
 import HseqPage from '../pages/HseqPage';
+import KnowledgeCentrePage from '../pages/KnowledgeCentrePage';
 import ContactPage from '../pages/ContactPage';
 import PrivacyPage from '../pages/PrivacyPage';
 import BlogPage from '../pages/BlogPage';
@@ -34,6 +35,8 @@ import AdminLoginPage from '../pages/AdminLoginPage';
 import AdminDashboardPage from '../pages/AdminDashboardPage';
 import AdminBlogListPage from '../pages/AdminBlogListPage';
 import AdminBlogFormPage from '../pages/AdminBlogFormPage';
+import AdminKnowledgeCentreListPage from '../pages/AdminKnowledgeCentreListPage';
+import AdminKnowledgeCentreFormPage from '../pages/AdminKnowledgeCentreFormPage';
 import ProtectedRoute from '../components/admin/protected-route';
 
 export const routes: RouteObject[] = [
@@ -134,6 +137,10 @@ export const routes: RouteObject[] = [
         element: <HseqPage />,
       },
       {
+        path: 'knowledge-centre',
+        element: <KnowledgeCentrePage />,
+      },
+      {
         path: 'contact',
         element: <ContactPage />,
       },
@@ -166,6 +173,9 @@ export const routes: RouteObject[] = [
           { path: 'blog', element: <AdminBlogListPage /> },
           { path: 'blog/new', element: <AdminBlogFormPage /> },
           { path: 'blog/:id/edit', element: <AdminBlogFormPage /> },
+          { path: 'knowledge-centre', element: <AdminKnowledgeCentreListPage /> },
+          { path: 'knowledge-centre/new', element: <AdminKnowledgeCentreFormPage /> },
+          { path: 'knowledge-centre/:id/edit', element: <AdminKnowledgeCentreFormPage /> },
         ],
       },
     ],

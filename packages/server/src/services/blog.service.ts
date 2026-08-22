@@ -2,6 +2,7 @@ import moment from 'moment';
 import * as cloudinaryService from './cloudinary.service.js';
 
 const BLOG_FOLDER = 'eunisell/blog';
+const BLOG_CONTENT_FOLDER = 'eunisell/blog/content';
 
 class BlogService {
   slugify(value: string) {
@@ -22,6 +23,13 @@ class BlogService {
   async deleteCoverImage(publicId?: string | null) {
     if (!publicId) return;
     await cloudinaryService.deleteFile(publicId).catch(() => undefined);
+  }
+
+  async uploadContentImage(buffer: Buffer) {
+    const result = await cloudinaryService.uploadStream(buffer, BLOG_CONTENT_FOLDER);
+    if (!result) throw new Error('Failed to upload image');
+
+    return { url: result.secure_url };
   }
 
   bucketByMonth(dates: { createdAt: Date }[], months: number) {

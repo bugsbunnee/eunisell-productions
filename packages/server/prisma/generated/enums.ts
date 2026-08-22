@@ -14,3 +14,10 @@ export const BlogStatus = {
 } as const;
 
 export type BlogStatus = (typeof BlogStatus)[keyof typeof BlogStatus];
+
+export const KnowledgeResourceStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+} as const;
+
+export type KnowledgeResourceStatus = (typeof KnowledgeResourceStatus)[keyof typeof KnowledgeResourceStatus];

@@ -14,6 +14,7 @@ router.use(auth);
 router.get('/', [paginate], blog.list);
 router.get('/stats', blog.stats);
 router.get('/:id', blog.get);
+router.post('/upload-image', [upload.single('image')], blog.uploadImage);
 router.post('/', [upload.single('coverImage'), validate(blogPostSchema)], blog.create);
 router.put('/:id', [upload.single('coverImage'), validate(updateBlogPostSchema)], blog.update);
 router.delete('/:id', blog.remove);

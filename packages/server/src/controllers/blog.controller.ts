@@ -4,8 +4,10 @@ import z from 'zod';
 
 import { blogRepository } from '../repositories/blog.repository.js';
 import { ActivityAction, ActivityCategory, activityRepository } from '../repositories/activity.repository.js';
-import blogService from '../services/blog.service.js';
 import { blogListQuerySchema } from '../infrastructure/schemas/index.js';
+import { BLOG_IMAGE_MAX_BYTES } from '../infrastructure/utils/constants.js';
+
+import blogService from '../services/blog.service.js';
 
 import type { Request, Response } from 'express';
 import type { IBlogPost, IUpdateBlogPost } from '../infrastructure/schemas/index.js';
@@ -55,7 +57,9 @@ class BlogController {
 
   async create(req: Request, res: Response) {
     const body = req.body as IBlogPost;
+
     if (!req.file) return res.status(HttpStatusCode.BadRequest).json({ error: 'A cover image is required' });
+    if (req.file.size > BLOG_IMAGE_MAX_BYTES) return res.status(HttpStatusCode.BadRequest).json({ error: 'The cover image must be under 5MB' });
 
     const existing = await blogRepository.findBySlug(body.slug);
     if (existing) return res.status(HttpStatusCode.Conflict).json({ error: 'A blog post with this slug already exists' });
@@ -95,6 +99,7 @@ class BlogController {
     let imageFields: { coverImage: string; coverImageId: string | null } | undefined;
 
     if (req.file) {
+      if (req.file.size > BLOG_IMAGE_MAX_BYTES) return res.status(HttpStatusCode.BadRequest).json({ error: 'The cover image must be under 5MB' });
       imageFields = await blogService.uploadCoverImage(req.file.buffer);
       await blogService.deleteCoverImage(existingPost.coverImageId);
     }
@@ -115,6 +120,14 @@ class BlogController {
     });
 
     return res.json(post);
+  }
+
+  async uploadImage(req: Request, res: Response) {
+    if (!req.file) return res.status(HttpStatusCode.BadRequest).json({ error: 'An image file is required' });
+    if (req.file.size > BLOG_IMAGE_MAX_BYTES) return res.status(HttpStatusCode.BadRequest).json({ error: 'The image must be under 5MB' });
+
+    const { url } = await blogService.uploadContentImage(req.file.buffer);
+    return res.status(HttpStatusCode.Created).json({ url });
   }
 
   async remove(req: Request, res: Response) {

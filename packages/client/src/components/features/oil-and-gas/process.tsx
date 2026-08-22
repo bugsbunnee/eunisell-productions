@@ -17,7 +17,7 @@ const Process: React.FC = () => {
           <Fragment key={number}>
             {index > 0 && <div className="hidden lg:block h-px flex-1 bg-secondary" />}
             <StaggerItem className="flex flex-col gap-3 items-center lg:items-start shrink-0 w-1/2 sm:w-auto">
-              <div className="border border-secondary rounded-full flex items-center justify-center size-10">
+              <div className="border border-secondary rounded-full flex items-center mx-auto justify-center size-10">
                 <span className="font-inter font-bold text-white text-base">{number}</span>
               </div>
               <h3 className="font-inter font-bold text-white text-xl leading-normal whitespace-nowrap">{title}</h3>

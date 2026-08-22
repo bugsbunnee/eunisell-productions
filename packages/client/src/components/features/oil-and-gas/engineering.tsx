@@ -7,7 +7,7 @@ const stages = ['FEED', 'Detailed Engineering', 'Asset Integrity', 'Brownfield E
 const Engineering: React.FC = () => {
   return (
     <section className="bg-white flex flex-col lg:flex-row items-stretch">
-      <FadeIn className="flex flex-col gap-10 items-start justify-center w-full lg:w-1/2 px-9 md:px-16 lg:pl-36 py-16 lg:py-0">
+      <FadeIn className="flex flex-col gap-10 items-start justify-center w-full lg:w-1/2 px-9 md:px-16 lg:px-16 py-16 lg:py-27.5">
         <div className="flex flex-col gap-3 items-start">
           <p className="font-inter font-bold text-secondary text-sm tracking-[2.8px] uppercase">Engineering-Led</p>
           <h2 className="font-inter font-bold text-accent text-[32px] md:text-[40px] lg:text-[48px] leading-[1.15]">
@@ -19,9 +19,9 @@ const Engineering: React.FC = () => {
           </h2>
         </div>
 
-        <Stagger className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
           {stages.map((stage) => (
-            <StaggerItem key={stage} className="bg-ice-blue rounded-[16px] flex gap-3 items-center h-16 px-5">
+            <StaggerItem key={stage} className="bg-ice-blue rounded-[16px] flex gap-3 items-center h-16 px-4">
               <div className="bg-secondary rounded-full shrink-0 size-3" />
               <span className="font-inter font-bold text-accent text-base whitespace-nowrap">{stage}</span>
             </StaggerItem>

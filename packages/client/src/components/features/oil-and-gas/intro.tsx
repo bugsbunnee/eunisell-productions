@@ -25,15 +25,8 @@ const Intro: React.FC = () => {
           <div className="bg-secondary h-1 w-20" />
 
           <p className="font-inter text-navy-subtle text-lg leading-[1.6] tracking-[-0.018px]">
-            Our approach combines technical excellence with deep
-            <br />
-            regional experience to ensure that energy assets operate
-            <br />
-            at peak efficiency. We understand the complexities of the
-            <br />
-            African energy landscape and provide tailored solutions
-            <br />
-            that mitigate risk and maximize output.
+            Our approach combines technical excellence with deep regional experience to ensure that energy assets operate at peak efficiency. We understand the complexities of the
+            African energy landscape and provide tailored solutions that mitigate risk and maximize output.
           </p>
         </div>
 

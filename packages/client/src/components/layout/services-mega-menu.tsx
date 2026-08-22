@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 import { serviceLinks } from './footer.constants';
 import { paths } from '../../lib/data';
-import serviceLinkArrow from '../../assets/icons/nav/service-link-arrow.svg';
 import navDropdownImage from '/services/nav-dropdown.jpg';
 
 // Mirrors the 5 / 5 / 4 three-column split from the Figma "Our Services" mega menu.
@@ -32,15 +31,11 @@ const ServicesMegaMenu: React.FC<ServicesMegaMenuProps> = ({ open }) => {
 
             <div className="flex flex-wrap justify-between gap-x-8 gap-y-10">
               {columns.map((column, index) => (
-                <ul key={index} className={`flex flex-col ${index === 0 ? 'gap-5' : 'gap-2'} items-start ${index === 2 ? 'w-54.75' : 'w-45'}`}>
+                <ul key={index} className={`flex flex-col gap-2 items-start ${index === 2 ? 'w-54.75' : 'w-45'}`}>
                   {column.map(({ label, path }) => (
                     <li key={label} className="w-full">
-                      <Link
-                        to={path}
-                        className="group/link flex items-center justify-between gap-2 -mx-3 rounded-lg py-3 pl-3 pr-5.5 text-[15px] font-light text-accent hover:bg-secondary-tint hover:text-secondary"
-                      >
+                      <Link to={path} className="flex items-center -mx-3 rounded-lg py-3 px-3 text-[15px] font-light text-accent hover:bg-secondary-tint hover:text-secondary">
                         {label}
-                        <img src={serviceLinkArrow} alt="" className="size-3 shrink-0 opacity-0 transition-opacity group-hover/link:opacity-100" />
                       </Link>
                     </li>
                   ))}

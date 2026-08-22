@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+export const BLOG_IMAGE_MAX_BYTES = 5 * 1024 * 1024;
+
 export const CATEGORY_OPTIONS = [
   'Engineering',
   'Equipment',

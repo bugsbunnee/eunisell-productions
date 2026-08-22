@@ -25,15 +25,17 @@ const Projects: React.FC = () => {
 
         <Stagger className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
           {projects.map(({ image, badge, title, description }) => (
-            <StaggerItem key={title} hover className="flex flex-col gap-6 items-start">
-              <div className="h-87.5 w-full rounded-[16px] overflow-hidden">
-                <img src={image} alt={title} className="size-full object-cover" />
-              </div>
-              <div className="flex flex-col gap-2 items-start">
-                <p className="font-inter font-bold text-secondary text-sm">{badge}</p>
-                <h3 className="font-inter font-bold text-accent text-xl leading-normal">{title}</h3>
-                <p className="font-inter text-navy-subtle text-base leading-normal">{description}</p>
-              </div>
+            <StaggerItem key={title} hover>
+              <Link to={paths.projects} className="flex flex-col gap-6 items-start">
+                <div className="h-87.5 w-full rounded-[16px] overflow-hidden">
+                  <img src={image} alt={title} className="size-full object-cover" />
+                </div>
+                <div className="flex flex-col gap-2 items-start">
+                  <p className="font-inter font-bold text-secondary text-sm">{badge}</p>
+                  <h3 className="font-inter font-bold text-accent text-xl leading-normal">{title}</h3>
+                  <p className="font-inter text-navy-subtle text-base leading-normal">{description}</p>
+                </div>
+              </Link>
             </StaggerItem>
           ))}
         </Stagger>

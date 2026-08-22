@@ -21,7 +21,7 @@ const Lifecycle: React.FC = () => {
 
         <Stagger className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 w-full">
           {steps.map(({ number, title }, index) => (
-            <StaggerItem key={number} className="flex flex-col items-center max-w-45 mx-auto">
+            <StaggerItem key={number} className="flex flex-col items-center max-w-45 z-50 mx-auto">
               <div
                 className={`flex items-center justify-center rounded-full shadow-lg size-20 shrink-0 mb-6 ${index === 2 ? 'bg-secondary' : 'bg-white border-2 border-secondary'}`}
               >

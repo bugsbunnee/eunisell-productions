@@ -192,6 +192,7 @@ export type AdminWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<'Admin'> | Date | string;
   activityLogs?: Prisma.ActivityLogListRelationFilter;
   blogPosts?: Prisma.BlogPostListRelationFilter;
+  knowledgeResources?: Prisma.KnowledgeResourceListRelationFilter;
 };
 
 export type AdminOrderByWithRelationInput = {
@@ -204,6 +205,7 @@ export type AdminOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder;
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput;
   blogPosts?: Prisma.BlogPostOrderByRelationAggregateInput;
+  knowledgeResources?: Prisma.KnowledgeResourceOrderByRelationAggregateInput;
 };
 
 export type AdminWhereUniqueInput = Prisma.AtLeast<
@@ -220,6 +222,7 @@ export type AdminWhereUniqueInput = Prisma.AtLeast<
     updatedAt?: Prisma.DateTimeFilter<'Admin'> | Date | string;
     activityLogs?: Prisma.ActivityLogListRelationFilter;
     blogPosts?: Prisma.BlogPostListRelationFilter;
+    knowledgeResources?: Prisma.KnowledgeResourceListRelationFilter;
   },
   'id' | 'email'
 >;
@@ -260,6 +263,7 @@ export type AdminCreateInput = {
   updatedAt?: Date | string;
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutAdminInput;
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput;
+  knowledgeResources?: Prisma.KnowledgeResourceCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminUncheckedCreateInput = {
@@ -272,6 +276,7 @@ export type AdminUncheckedCreateInput = {
   updatedAt?: Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutAdminInput;
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUncheckedCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminUpdateInput = {
@@ -284,6 +289,7 @@ export type AdminUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutAdminNestedInput;
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminUncheckedUpdateInput = {
@@ -296,6 +302,7 @@ export type AdminUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutAdminNestedInput;
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUncheckedUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminCreateManyInput = {
@@ -387,6 +394,25 @@ export type AdminUpdateOneWithoutBlogPostsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AdminUpdateToOneWithWhereWithoutBlogPostsInput, Prisma.AdminUpdateWithoutBlogPostsInput>, Prisma.AdminUncheckedUpdateWithoutBlogPostsInput>;
 };
 
+export type AdminCreateNestedOneWithoutKnowledgeResourcesInput = {
+  create?: Prisma.XOR<Prisma.AdminCreateWithoutKnowledgeResourcesInput, Prisma.AdminUncheckedCreateWithoutKnowledgeResourcesInput>;
+  connectOrCreate?: Prisma.AdminCreateOrConnectWithoutKnowledgeResourcesInput;
+  connect?: Prisma.AdminWhereUniqueInput;
+};
+
+export type AdminUpdateOneWithoutKnowledgeResourcesNestedInput = {
+  create?: Prisma.XOR<Prisma.AdminCreateWithoutKnowledgeResourcesInput, Prisma.AdminUncheckedCreateWithoutKnowledgeResourcesInput>;
+  connectOrCreate?: Prisma.AdminCreateOrConnectWithoutKnowledgeResourcesInput;
+  upsert?: Prisma.AdminUpsertWithoutKnowledgeResourcesInput;
+  disconnect?: Prisma.AdminWhereInput | boolean;
+  delete?: Prisma.AdminWhereInput | boolean;
+  connect?: Prisma.AdminWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<Prisma.AdminUpdateToOneWithWhereWithoutKnowledgeResourcesInput, Prisma.AdminUpdateWithoutKnowledgeResourcesInput>,
+    Prisma.AdminUncheckedUpdateWithoutKnowledgeResourcesInput
+  >;
+};
+
 export type AdminCreateNestedOneWithoutActivityLogsInput = {
   create?: Prisma.XOR<Prisma.AdminCreateWithoutActivityLogsInput, Prisma.AdminUncheckedCreateWithoutActivityLogsInput>;
   connectOrCreate?: Prisma.AdminCreateOrConnectWithoutActivityLogsInput;
@@ -415,6 +441,7 @@ export type AdminCreateWithoutBlogPostsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutAdminInput;
+  knowledgeResources?: Prisma.KnowledgeResourceCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminUncheckedCreateWithoutBlogPostsInput = {
@@ -426,6 +453,7 @@ export type AdminUncheckedCreateWithoutBlogPostsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutAdminInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUncheckedCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminCreateOrConnectWithoutBlogPostsInput = {
@@ -453,6 +481,7 @@ export type AdminUpdateWithoutBlogPostsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutAdminNestedInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminUncheckedUpdateWithoutBlogPostsInput = {
@@ -464,6 +493,71 @@ export type AdminUncheckedUpdateWithoutBlogPostsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutAdminNestedInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUncheckedUpdateManyWithoutAuthorNestedInput;
+};
+
+export type AdminCreateWithoutKnowledgeResourcesInput = {
+  id?: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutAdminInput;
+  blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput;
+};
+
+export type AdminUncheckedCreateWithoutKnowledgeResourcesInput = {
+  id?: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutAdminInput;
+  blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput;
+};
+
+export type AdminCreateOrConnectWithoutKnowledgeResourcesInput = {
+  where: Prisma.AdminWhereUniqueInput;
+  create: Prisma.XOR<Prisma.AdminCreateWithoutKnowledgeResourcesInput, Prisma.AdminUncheckedCreateWithoutKnowledgeResourcesInput>;
+};
+
+export type AdminUpsertWithoutKnowledgeResourcesInput = {
+  update: Prisma.XOR<Prisma.AdminUpdateWithoutKnowledgeResourcesInput, Prisma.AdminUncheckedUpdateWithoutKnowledgeResourcesInput>;
+  create: Prisma.XOR<Prisma.AdminCreateWithoutKnowledgeResourcesInput, Prisma.AdminUncheckedCreateWithoutKnowledgeResourcesInput>;
+  where?: Prisma.AdminWhereInput;
+};
+
+export type AdminUpdateToOneWithWhereWithoutKnowledgeResourcesInput = {
+  where?: Prisma.AdminWhereInput;
+  data: Prisma.XOR<Prisma.AdminUpdateWithoutKnowledgeResourcesInput, Prisma.AdminUncheckedUpdateWithoutKnowledgeResourcesInput>;
+};
+
+export type AdminUpdateWithoutKnowledgeResourcesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutAdminNestedInput;
+  blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput;
+};
+
+export type AdminUncheckedUpdateWithoutKnowledgeResourcesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string;
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutAdminNestedInput;
+  blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminCreateWithoutActivityLogsInput = {
@@ -475,6 +569,7 @@ export type AdminCreateWithoutActivityLogsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   blogPosts?: Prisma.BlogPostCreateNestedManyWithoutAuthorInput;
+  knowledgeResources?: Prisma.KnowledgeResourceCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminUncheckedCreateWithoutActivityLogsInput = {
@@ -486,6 +581,7 @@ export type AdminUncheckedCreateWithoutActivityLogsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   blogPosts?: Prisma.BlogPostUncheckedCreateNestedManyWithoutAuthorInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUncheckedCreateNestedManyWithoutAuthorInput;
 };
 
 export type AdminCreateOrConnectWithoutActivityLogsInput = {
@@ -513,6 +609,7 @@ export type AdminUpdateWithoutActivityLogsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   blogPosts?: Prisma.BlogPostUpdateManyWithoutAuthorNestedInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUpdateManyWithoutAuthorNestedInput;
 };
 
 export type AdminUncheckedUpdateWithoutActivityLogsInput = {
@@ -524,6 +621,7 @@ export type AdminUncheckedUpdateWithoutActivityLogsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   blogPosts?: Prisma.BlogPostUncheckedUpdateManyWithoutAuthorNestedInput;
+  knowledgeResources?: Prisma.KnowledgeResourceUncheckedUpdateManyWithoutAuthorNestedInput;
 };
 
 /**
@@ -533,11 +631,13 @@ export type AdminUncheckedUpdateWithoutActivityLogsInput = {
 export type AdminCountOutputType = {
   activityLogs: number;
   blogPosts: number;
+  knowledgeResources: number;
 };
 
 export type AdminCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityLogs?: boolean | AdminCountOutputTypeCountActivityLogsArgs;
   blogPosts?: boolean | AdminCountOutputTypeCountBlogPostsArgs;
+  knowledgeResources?: boolean | AdminCountOutputTypeCountKnowledgeResourcesArgs;
 };
 
 /**
@@ -564,6 +664,13 @@ export type AdminCountOutputTypeCountBlogPostsArgs<ExtArgs extends runtime.Types
   where?: Prisma.BlogPostWhereInput;
 };
 
+/**
+ * AdminCountOutputType without action
+ */
+export type AdminCountOutputTypeCountKnowledgeResourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.KnowledgeResourceWhereInput;
+};
+
 export type AdminSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
@@ -575,6 +682,7 @@ export type AdminSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     updatedAt?: boolean;
     activityLogs?: boolean | Prisma.Admin$activityLogsArgs<ExtArgs>;
     blogPosts?: boolean | Prisma.Admin$blogPostsArgs<ExtArgs>;
+    knowledgeResources?: boolean | Prisma.Admin$knowledgeResourcesArgs<ExtArgs>;
     _count?: boolean | Prisma.AdminCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['admin']
@@ -623,6 +731,7 @@ export type AdminOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type AdminInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activityLogs?: boolean | Prisma.Admin$activityLogsArgs<ExtArgs>;
   blogPosts?: boolean | Prisma.Admin$blogPostsArgs<ExtArgs>;
+  knowledgeResources?: boolean | Prisma.Admin$knowledgeResourcesArgs<ExtArgs>;
   _count?: boolean | Prisma.AdminCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type AdminIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {};
@@ -633,6 +742,7 @@ export type $AdminPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[];
     blogPosts: Prisma.$BlogPostPayload<ExtArgs>[];
+    knowledgeResources: Prisma.$KnowledgeResourcePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1055,6 +1165,9 @@ export interface Prisma__AdminClient<
   blogPosts<T extends Prisma.Admin$blogPostsArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.Admin$blogPostsArgs<ExtArgs>>
   ): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, 'findMany', GlobalOmitOptions> | Null>;
+  knowledgeResources<T extends Prisma.Admin$knowledgeResourcesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Admin$knowledgeResourcesArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$KnowledgeResourcePayload<ExtArgs>, T, 'findMany', GlobalOmitOptions> | Null>;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1528,6 +1641,30 @@ export type Admin$blogPostsArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number;
   skip?: number;
   distinct?: Prisma.BlogPostScalarFieldEnum | Prisma.BlogPostScalarFieldEnum[];
+};
+
+/**
+ * Admin.knowledgeResources
+ */
+export type Admin$knowledgeResourcesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the KnowledgeResource
+   */
+  select?: Prisma.KnowledgeResourceSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the KnowledgeResource
+   */
+  omit?: Prisma.KnowledgeResourceOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.KnowledgeResourceInclude<ExtArgs> | null;
+  where?: Prisma.KnowledgeResourceWhereInput;
+  orderBy?: Prisma.KnowledgeResourceOrderByWithRelationInput | Prisma.KnowledgeResourceOrderByWithRelationInput[];
+  cursor?: Prisma.KnowledgeResourceWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.KnowledgeResourceScalarFieldEnum | Prisma.KnowledgeResourceScalarFieldEnum[];
 };
 
 /**

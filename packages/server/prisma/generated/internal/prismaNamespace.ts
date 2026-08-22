@@ -354,6 +354,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Admin: 'Admin',
   BlogPost: 'BlogPost',
+  KnowledgeResource: 'KnowledgeResource',
   ContactEnquiry: 'ContactEnquiry',
   ActivityLog: 'ActivityLog',
 } as const;
@@ -369,7 +370,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: 'admin' | 'blogPost' | 'contactEnquiry' | 'activityLog';
+    modelProps: 'admin' | 'blogPost' | 'knowledgeResource' | 'contactEnquiry' | 'activityLog';
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
@@ -518,6 +519,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BlogPostCountArgs<ExtArgs>;
           result: runtime.Types.Utils.Optional<Prisma.BlogPostCountAggregateOutputType> | number;
+        };
+      };
+    };
+    KnowledgeResource: {
+      payload: Prisma.$KnowledgeResourcePayload<ExtArgs>;
+      fields: Prisma.KnowledgeResourceFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.KnowledgeResourceFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.KnowledgeResourceFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>;
+        };
+        findFirst: {
+          args: Prisma.KnowledgeResourceFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.KnowledgeResourceFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>;
+        };
+        findMany: {
+          args: Prisma.KnowledgeResourceFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>[];
+        };
+        create: {
+          args: Prisma.KnowledgeResourceCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>;
+        };
+        createMany: {
+          args: Prisma.KnowledgeResourceCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.KnowledgeResourceCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>[];
+        };
+        delete: {
+          args: Prisma.KnowledgeResourceDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>;
+        };
+        update: {
+          args: Prisma.KnowledgeResourceUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>;
+        };
+        deleteMany: {
+          args: Prisma.KnowledgeResourceDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.KnowledgeResourceUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.KnowledgeResourceUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>[];
+        };
+        upsert: {
+          args: Prisma.KnowledgeResourceUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$KnowledgeResourcePayload>;
+        };
+        aggregate: {
+          args: Prisma.KnowledgeResourceAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateKnowledgeResource>;
+        };
+        groupBy: {
+          args: Prisma.KnowledgeResourceGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeResourceGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.KnowledgeResourceCountArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.KnowledgeResourceCountAggregateOutputType> | number;
         };
       };
     };
@@ -739,6 +814,27 @@ export const BlogPostScalarFieldEnum = {
 
 export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum];
 
+export const KnowledgeResourceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  category: 'category',
+  description: 'description',
+  coverImage: 'coverImage',
+  coverImageId: 'coverImageId',
+  file: 'file',
+  fileId: 'fileId',
+  fileType: 'fileType',
+  fileSizeBytes: 'fileSizeBytes',
+  featured: 'featured',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type KnowledgeResourceScalarFieldEnum = (typeof KnowledgeResourceScalarFieldEnum)[keyof typeof KnowledgeResourceScalarFieldEnum];
+
 export const ContactEnquiryScalarFieldEnum = {
   id: 'id',
   fullName: 'fullName',
@@ -839,6 +935,26 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>;
+
+/**
+ * Reference to a field of type 'KnowledgeResourceStatus'
+ */
+export type EnumKnowledgeResourceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KnowledgeResourceStatus'>;
+
+/**
+ * Reference to a field of type 'KnowledgeResourceStatus[]'
+ */
+export type ListEnumKnowledgeResourceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'KnowledgeResourceStatus[]'>;
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>;
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>;
 
 /**
  * Batch Payload for updateMany & deleteMany & createMany
@@ -993,6 +1109,7 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   admin?: Prisma.AdminOmit;
   blogPost?: Prisma.BlogPostOmit;
+  knowledgeResource?: Prisma.KnowledgeResourceOmit;
   contactEnquiry?: Prisma.ContactEnquiryOmit;
   activityLog?: Prisma.ActivityLogOmit;
 };

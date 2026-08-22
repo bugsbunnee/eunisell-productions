@@ -29,6 +29,15 @@ export function downloadFile(file: string, fileName: string) {
   document.body.removeChild(a);
 }
 
+export function formatFileSize(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+
+  const megabytes = bytes / (1024 * 1024);
+  if (megabytes >= 0.1) return `${megabytes.toFixed(1)} MB`;
+
+  return `${(bytes / 1024).toFixed(0)} KB`;
+}
+
 export function slugify(value: string) {
   return value
     .toLowerCase()

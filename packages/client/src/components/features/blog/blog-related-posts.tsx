@@ -18,11 +18,11 @@ const BlogRelatedPosts: React.FC<BlogRelatedPostsProps> = ({ posts }) => {
       <div className="flex flex-col sm:flex-row gap-6 sm:items-end justify-between">
         <div className="flex flex-col gap-3">
           <p className="font-bold text-secondary text-sm tracking-[1.4px] uppercase">More from Eunisell</p>
-          <h2 className="font-bold text-accent text-3xl md:text-4xl tracking-[-0.07px]">Continue Reading</h2>
+          <h2 className="font-bold text-accent text-3xl md:text-4xl lg:text-5xl tracking-[-0.09px]">Continue Reading</h2>
         </div>
 
         <Link to={paths.blog} className="flex gap-3 items-center group shrink-0">
-          <span className="font-bold text-secondary text-base whitespace-nowrap">View All Insights</span>
+          <span className="font-bold text-secondary text-base uppercase whitespace-nowrap">View All Insights</span>
           <img src={arrowRightIcon} alt="" className="w-3.5 h-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>

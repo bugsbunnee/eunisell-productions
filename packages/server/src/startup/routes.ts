@@ -8,6 +8,8 @@ import auth from '../routes/auth.routes.js';
 import contact from '../routes/contact.routes.js';
 import blog from '../routes/blog.routes.js';
 import publicBlog from '../routes/public-blog.routes.js';
+import knowledgeResource from '../routes/knowledge-resource.routes.js';
+import publicKnowledgeResource from '../routes/public-knowledge-resource.routes.js';
 import activity from '../routes/activity.routes.js';
 
 import error from '../middleware/error.js';
@@ -30,6 +32,8 @@ const registerRoutes = (app: Express) => {
   app.use('/api/v1/contact', contact);
   app.use('/api/v1/blog', blog);
   app.use('/api/v1/public/blog', publicBlog);
+  app.use('/api/v1/knowledge-resources', knowledgeResource);
+  app.use('/api/v1/public/knowledge-resources', publicKnowledgeResource);
   app.use('/api/v1/activity', activity);
 
   app.use(error);

@@ -16,15 +16,16 @@ datasource db {
 }
 
 model Admin {
-  id           String        @id @default(cuid())
-  email        String        @unique
-  firstName    String
-  lastName     String
-  password     String
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  activityLogs ActivityLog[]
-  blogPosts    BlogPost[]
+  id                 String              @id @default(cuid())
+  email              String              @unique
+  firstName          String
+  lastName           String
+  password           String
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  activityLogs       ActivityLog[]
+  blogPosts          BlogPost[]
+  knowledgeResources KnowledgeResource[]
 }
 
 enum BlogStatus {
@@ -56,6 +57,37 @@ model BlogPost {
   updatedAt DateTime @updatedAt
 }
 
+enum KnowledgeResourceStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model KnowledgeResource {
+  id String @id @default(cuid())
+
+  title       String
+  category    String
+  description String
+
+  coverImage   String
+  coverImageId String?
+
+  file          String
+  fileId        String?
+  fileType      String
+  fileSizeBytes Int
+
+  featured    Boolean                 @default(false)
+  status      KnowledgeResourceStatus @default(DRAFT)
+  publishedAt DateTime?
+
+  author   Admin?  @relation(fields: [authorId], references: [id])
+  authorId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model ContactEnquiry {
   id String @id @default(cuid())
 
@@ -70,7 +102,7 @@ model ContactEnquiry {
   projectLocation   String?
   projectStage      String
   subject           String?
-  message           String @db.Text
+  message           String  @db.Text
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

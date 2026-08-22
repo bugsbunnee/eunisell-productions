@@ -2,20 +2,18 @@ import { Stagger, StaggerItem } from '../../common/motion';
 
 import terrainOnshore from '/oil-and-gas/terrain-onshore.jpg';
 import terrainSwamp from '/oil-and-gas/terrain-swamp.jpg';
-import terrainShallowWater from '/oil-and-gas/terrain-shallow-water.jpg';
 import terrainOffshore from '/oil-and-gas/terrain-offshore.jpg';
 
 const terrains = [
   { image: terrainOnshore, title: 'Onshore' },
   { image: terrainSwamp, title: 'Swamp' },
-  { image: terrainShallowWater, title: 'Shallow Water' },
   { image: terrainOffshore, title: 'Offshore' },
 ];
 
 const Terrain: React.FC = () => {
   return (
     <section className="w-full">
-      <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <Stagger className="grid grid-cols-1 lg:grid-cols-3">
         {terrains.map(({ image, title }) => (
           <StaggerItem key={title} hover className="group relative h-125 overflow-hidden">
             <img src={image} alt={title} className="absolute inset-0 size-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />

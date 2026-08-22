@@ -86,6 +86,13 @@ const blogService = {
     return http.put<BlogPost>(`/api/v1/blog/${id}`, buildFormData(values, coverImage)).then((res) => res.data);
   },
 
+  uploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    return http.post<{ url: string }>('/api/v1/blog/upload-image', formData).then((res) => res.data.url);
+  },
+
   remove(id: string) {
     return http.delete(`/api/v1/blog/${id}`);
   },

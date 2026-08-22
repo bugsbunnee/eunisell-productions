@@ -13,8 +13,8 @@ import RichTextEditor from '../components/features/admin/blog/rich-text-editor';
 import blogService, { type BlogStatus } from '../services/blog.service';
 
 import { adminPaths } from '../lib/data';
-import { slugify, getErrorMessage, cn } from '../lib/utils';
-import { BLOG_FORM_DEFAULT_VALUES, blogFormSchema, CATEGORY_OPTIONS, type BlogFormValues } from '../components/features/admin/blog/blog-form.constants';
+import { slugify, getErrorMessage, cn, formatFileSize } from '../lib/utils';
+import { BLOG_FORM_DEFAULT_VALUES, blogFormSchema, CATEGORY_OPTIONS, BLOG_IMAGE_MAX_BYTES, type BlogFormValues } from '../components/features/admin/blog/blog-form.constants';
 
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -27,6 +27,7 @@ const FORM_STEPS: BlogFormStep[] = [{ id: 'details', label: 'Post Details', icon
 
 const AdminBlogFormPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+
   const isEditing = !!id;
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -76,6 +77,7 @@ const AdminBlogFormPage: React.FC = () => {
   }, [previewUrl]);
 
   const title = watch('title');
+
   useEffect(() => {
     if (!slugTouched) setValue('slug', slugify(title || ''));
   }, [title, slugTouched, setValue]);
@@ -85,6 +87,11 @@ const AdminBlogFormPage: React.FC = () => {
 
     if (!file.type.startsWith('image/')) {
       setImageError('Choose an image file (PNG, JPG, or WebP).');
+      return;
+    }
+
+    if (file.size > BLOG_IMAGE_MAX_BYTES) {
+      setImageError(`Max ${formatFileSize(BLOG_IMAGE_MAX_BYTES)}. This file is ${formatFileSize(file.size)}.`);
       return;
     }
 
@@ -175,6 +182,7 @@ const AdminBlogFormPage: React.FC = () => {
                       <>
                         <ImagePlus className="size-6 text-muted-foreground" strokeWidth={1.5} />
                         <p className="px-6 text-center text-sm text-muted-foreground">Drop an image, or click to browse</p>
+                        <p className="text-xs text-muted-foreground">Max {formatFileSize(BLOG_IMAGE_MAX_BYTES)}</p>
                       </>
                     )}
                     <input id="coverImage" type="file" accept="image/*" className="sr-only" onChange={(e) => handleFile(e.target.files?.[0])} />

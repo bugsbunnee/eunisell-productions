@@ -65,7 +65,7 @@ const BlogDetailPage: React.FC = () => {
 
           <span className="inline-flex items-start bg-secondary text-white font-bold text-xs tracking-[0.6px] uppercase rounded-xs px-3 py-1">{post.category}</span>
 
-          <h1 className="font-bold text-accent text-[40px] md:text-[56px] lg:text-[72px] leading-[1.1] tracking-tight max-w-4xl">{post.title}</h1>
+          <h1 className="font-light text-accent text-[40px] md:text-[50px] lg:text-[60px] leading-[1.32] max-w-4xl">{post.title}</h1>
 
           <p className="font-semibold text-navy-subtle text-xl md:text-2xl leading-[1.35] max-w-3xl">{post.excerpt}</p>
 

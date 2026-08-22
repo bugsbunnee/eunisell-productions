@@ -5,6 +5,12 @@ import { paths } from '../../lib/data';
 import { serviceLinks } from './footer.constants';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import ServicesMegaMenu from './services-mega-menu';
+import NavDropdown from './nav-dropdown';
+
+const newsInsightsLinks = [
+  { label: 'Knowledge Centre', path: paths.knowledgeCentre },
+  { label: 'Blog', path: paths.blog },
+];
 
 const navLinks = [
   { label: 'Company', path: paths.about },
@@ -12,15 +18,16 @@ const navLinks = [
   { label: 'Projects', path: paths.projects },
   { label: 'Service Portfolio', path: paths.portfolio },
   { label: 'HSEQ', path: paths.hseq },
-  { label: 'Blog', path: paths.blog },
+  { label: 'Insights', path: paths.blog, items: newsInsightsLinks },
   { label: 'Contact', path: paths.contact },
 ];
 
 const Navbar: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const servicesRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
+
+  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [prevPathname, setPrevPathname] = useState(location.pathname);
 
   const isDark = useMemo(() => {
@@ -30,25 +37,25 @@ const Navbar: React.FC = () => {
   if (location.pathname !== prevPathname) {
     setPrevPathname(location.pathname);
     setOpen(false);
-    setServicesOpen(false);
+    setOpenMenu(null);
   }
 
   useEffect(() => {
-    if (!servicesOpen) return;
+    if (!openMenu) return;
 
     const handleOutsideClick = (e: MouseEvent) => {
-      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) {
-        setServicesOpen(false);
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenMenu(null);
       }
     };
 
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
-  }, [servicesOpen]);
+  }, [openMenu]);
 
   return (
     <header className={`sticky top-0 z-50 border-b flex flex-col w-full ${isDark ? 'bg-deep-navy border-white' : 'bg-white border-transparent'}`}>
-      <div className="flex items-center justify-between h-25 max-w-432 w-full mx-auto px-9 md:px-16 lg:px-36">
+      <div className="flex items-center justify-between h-25 max-w-432 w-full mx-auto px-9 md:px-16 lg:px-26">
         <button
           type="button"
           onClick={() => setOpen((p) => !p)}
@@ -59,24 +66,24 @@ const Navbar: React.FC = () => {
           {open ? <XIcon size={24} /> : <MenuIcon size={24} />}
         </button>
 
-        <Link to={paths.contact} className="hidden lg:inline-flex items-center bg-secondary rounded-full px-6 py-[8.5px] text-sm text-white leading-5 whitespace-nowrap">
+        <Link to={paths.contact} className="hidden lg:inline-flex items-center bg-secondary rounded-full px-4 py-[6.5px] text-xs text-white leading-5 whitespace-nowrap">
           Contact Our Team
         </Link>
 
-        <nav className={`hidden lg:flex items-center gap-10 ${isDark ? 'text-white' : 'text-accent'}`}>
-          {navLinks.map(({ label, path }) =>
+        <nav ref={navRef} onKeyDown={(e) => e.key === 'Escape' && setOpenMenu(null)} className={`hidden lg:flex items-center gap-10 ${isDark ? 'text-white' : 'text-accent'}`}>
+          {navLinks.map(({ label, path, items }) =>
             label === 'Services' ? (
-              <div key={label} ref={servicesRef} onKeyDown={(e) => e.key === 'Escape' && setServicesOpen(false)}>
+              <div key={label}>
                 <button
                   type="button"
-                  onClick={() => setServicesOpen((p) => !p)}
+                  onClick={() => setOpenMenu((current) => (current === label ? null : label))}
                   aria-haspopup="true"
-                  aria-expanded={servicesOpen}
+                  aria-expanded={openMenu === label}
                   className="flex items-center text-sm leading-5 whitespace-nowrap cursor-pointer"
                 >
                   {label}
                   <span className="flex size-4.5 shrink-0 items-center justify-center">
-                    <svg width="10.5" height="6" viewBox="0 0 10.5 6" fill="none" className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`}>
+                    <svg width="10.5" height="6" viewBox="0 0 10.5 6" fill="none" className={`transition-transform duration-200 ${openMenu === label ? 'rotate-180' : ''}`}>
                       <path
                         fillRule="evenodd"
                         clipRule="evenodd"
@@ -87,8 +94,17 @@ const Navbar: React.FC = () => {
                   </span>
                 </button>
 
-                <ServicesMegaMenu open={servicesOpen} />
+                <ServicesMegaMenu open={openMenu === label} />
               </div>
+            ) : items ? (
+              <NavDropdown
+                key={label}
+                label={label}
+                items={items}
+                open={openMenu === label}
+                onToggle={() => setOpenMenu((current) => (current === label ? null : label))}
+                isDark={isDark}
+              />
             ) : (
               <Link key={label} to={path} className="text-sm leading-5 whitespace-nowrap">
                 {label}
@@ -99,16 +115,16 @@ const Navbar: React.FC = () => {
 
         <Link to={paths.home} className="shrink-0">
           {isDark ? (
-            <img src="/general/logo-alternate.png" alt="Eunisell" className="h-10.5 w-26.5 object-contain" />
+            <img src="/general/logo-alternate.png" alt="Eunisell" className="h-12.5 w-28.5 object-contain" />
           ) : (
-            <img src="/general/full-logo.png" alt="Eunisell" className="h-14 w-36.25 object-contain" />
+            <img src="/general/full-logo.png" alt="Eunisell" className="h-16 w-39.25 object-contain" />
           )}
         </Link>
       </div>
 
       {open && (
         <nav className={`lg:hidden flex flex-col gap-1 px-9 md:px-16 pb-6 ${isDark ? 'text-white' : 'text-accent'}`}>
-          {navLinks.map(({ label, path }) =>
+          {navLinks.map(({ label, path, items }) =>
             label === 'Services' ? (
               <Accordion key={label} type="single" collapsible>
                 <AccordionItem value="services" className="not-last:border-b-0">
@@ -117,6 +133,19 @@ const Navbar: React.FC = () => {
                     {serviceLinks.map((service) => (
                       <Link key={service.label} to={service.path} onClick={() => setOpen(false)} className="py-2 text-sm leading-5">
                         {service.label}
+                      </Link>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ) : items ? (
+              <Accordion key={label} type="single" collapsible>
+                <AccordionItem value={label} className="not-last:border-b-0">
+                  <AccordionTrigger className="rounded-none border-none py-2 text-sm font-light leading-5 hover:no-underline focus-visible:ring-0">{label}</AccordionTrigger>
+                  <AccordionContent className="flex flex-col pb-2 pl-4 [&_a]:no-underline">
+                    {items.map((item) => (
+                      <Link key={item.label} to={item.path} onClick={() => setOpen(false)} className="py-2 text-sm leading-5">
+                        {item.label}
                       </Link>
                     ))}
                   </AccordionContent>

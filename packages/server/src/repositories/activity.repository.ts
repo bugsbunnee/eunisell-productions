@@ -10,6 +10,7 @@ export enum ActivityAction {
 export enum ActivityCategory {
   Auth = 'auth',
   Blog = 'blog',
+  KnowledgeResource = 'knowledge-resource',
 }
 
 export interface ActivityData {

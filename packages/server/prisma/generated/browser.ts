@@ -27,6 +27,11 @@ export type Admin = Prisma.AdminModel;
  */
 export type BlogPost = Prisma.BlogPostModel;
 /**
+ * Model KnowledgeResource
+ *
+ */
+export type KnowledgeResource = Prisma.KnowledgeResourceModel;
+/**
  * Model ContactEnquiry
  *
  */

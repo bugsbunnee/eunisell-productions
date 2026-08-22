@@ -304,7 +304,7 @@ body {
 
 @layer components {
   .blog-article-content {
-    @apply text-article-text text-lg leading-8;
+    @apply text-article-text text-xl leading-8;
   }
 
   .blog-article-content > * + * {
@@ -312,11 +312,11 @@ body {
   }
 
   .blog-article-content h2 {
-    @apply text-accent text-4xl font-semibold leading-tight mt-2;
+    @apply text-accent text-4xl font-bold leading-tight mt-2;
   }
 
   .blog-article-content h3 {
-    @apply text-accent text-[28px] font-semibold leading-tight mt-2;
+    @apply text-accent text-[28px] font-bold leading-tight mt-2;
   }
 
   .blog-article-content ul {
@@ -340,7 +340,7 @@ body {
   }
 
   .blog-article-content blockquote {
-    @apply bg-accent border-secondary rounded-tr-2xl rounded-br-2xl border-l-4 px-8 py-10 text-2xl leading-snug font-semibold text-white;
+    @apply bg-accent border-secondary rounded-tr-2xl rounded-br-2xl border-l-4 pl-8 pr-12 py-12 text-[32px] leading-[1.3] font-bold text-white;
   }
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LayoutDashboard, Newspaper, LogOut, ExternalLink, PanelLeft } from 'lucide-react';
+import { LayoutDashboard, Newspaper, LibraryBig, LogOut, ExternalLink, PanelLeft } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { adminPaths, paths } from '../../../../lib/data';
 import { useAuthStore } from '../../../../stores/auth.store';
@@ -13,7 +13,10 @@ const navSections = [
   },
   {
     label: 'Content',
-    items: [{ label: 'Blog Posts', to: adminPaths.blog, icon: Newspaper, end: false }],
+    items: [
+      { label: 'Blog Posts', to: adminPaths.blog, icon: Newspaper, end: false },
+      { label: 'Knowledge Centre', to: adminPaths.knowledgeCentre, icon: LibraryBig, end: false },
+    ],
   },
 ];
 

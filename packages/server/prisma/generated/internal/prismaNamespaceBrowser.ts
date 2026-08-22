@@ -50,6 +50,7 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
   Admin: 'Admin',
   BlogPost: 'BlogPost',
+  KnowledgeResource: 'KnowledgeResource',
   ContactEnquiry: 'ContactEnquiry',
   ActivityLog: 'ActivityLog',
 } as const;
@@ -100,6 +101,27 @@ export const BlogPostScalarFieldEnum = {
 } as const;
 
 export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum];
+
+export const KnowledgeResourceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  category: 'category',
+  description: 'description',
+  coverImage: 'coverImage',
+  coverImageId: 'coverImageId',
+  file: 'file',
+  fileId: 'fileId',
+  fileType: 'fileType',
+  fileSizeBytes: 'fileSizeBytes',
+  featured: 'featured',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type KnowledgeResourceScalarFieldEnum = (typeof KnowledgeResourceScalarFieldEnum)[keyof typeof KnowledgeResourceScalarFieldEnum];
 
 export const ContactEnquiryScalarFieldEnum = {
   id: 'id',

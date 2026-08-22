@@ -22,6 +22,7 @@ export const paths = {
   oilAndGas: '/portfolio/oil-and-gas',
   csr: '/csr',
   hseq: '/hseq',
+  knowledgeCentre: '/knowledge-centre',
   contact: '/contact',
   privacy: '/privacy-policy',
   blog: '/blog',
@@ -34,4 +35,7 @@ export const adminPaths = {
   blog: '/admin/blog',
   blogNew: '/admin/blog/new',
   blogEdit: (id: string) => `/admin/blog/${id}/edit`,
+  knowledgeCentre: '/admin/knowledge-centre',
+  knowledgeCentreNew: '/admin/knowledge-centre/new',
+  knowledgeCentreEdit: (id: string) => `/admin/knowledge-centre/${id}/edit`,
 };
